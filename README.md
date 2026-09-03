@@ -1,4 +1,22 @@
+<h3 align="center">Teaching material by
+<a href="https://sites.google.com/view/fabiofurini/home-page">Fabio Furini</a></h3>
+<p align="center">
+  Associate professor of Operations Research ·
+  <a href="https://www.diag.uniroma1.it/">DIAG</a>, Sapienza University of Rome ·
+  <a href="https://sites.google.com/view/fabiofurini/home-page">personal website</a>
+</p>
+
 # Operations Research Lab
+
+> **The author.** Since September 2021 Fabio Furini has been an associate
+> professor at DIAG, Sapienza University of Rome. Ph.D. in Control Engineering
+> and Operations Research at the University of Bologna (2011), research fellow
+> there until 2012; postdoc at Université Paris-13 (2012–2013); from 2013 to 2019
+> *Maître de Conférences* at Université Paris-Dauphine. *Habilitation à Diriger
+> des Recherches* in France in 2017 and Italian National Scientific
+> Qualification for Full Professor in Operations Research in 2019. In 2020 CNR
+> researcher at IASI-CNR in Rome.
+> Personal website: <https://sites.google.com/view/fabiofurini/home-page>
 
 Continuous optimization models for Management Engineering — the course lecture
 notes in online form, with Python/Gurobi code, data and case studies.
