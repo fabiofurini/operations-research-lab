@@ -104,4 +104,5 @@ nav:
   - Optimization and machine learning:
       - optimization-ml.md
       - Support Vector Machine: svm.md
+      - Robust and quantile regression: regression.md
   - Lab organization: organization.md

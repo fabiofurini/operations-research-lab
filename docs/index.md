@@ -53,10 +53,10 @@ change by 5%?
 
     ---
 
-    The SVM as a convex QP: margin, dual, support vectors and kernel — without ML
-    libraries.
+    The SVM as a convex QP and robust regression as an LP: margin, dual, support
+    vectors and support points — without ML libraries.
 
-    [:octicons-arrow-right-24: The problem](optimization-ml.md)
+    [:octicons-arrow-right-24: The two problems](optimization-ml.md)
 
 </div>
 
@@ -89,10 +89,11 @@ change by 5%?
 **[Optimization and machine learning](optimization-ml.md)**
 
 14. [Support Vector Machine](svm.md) — QP
+15. [Robust and quantile regression](regression.md) — LP
 
 **The course**
 
-15. [Organization of the lab](organization.md) — lab sessions, submissions,
+16. [Organization of the lab](organization.md) — lab sessions, submissions,
     assessment, mistakes to avoid
 
 ## Notation and classes of models
@@ -117,8 +118,8 @@ the formulation and the constraints defining them close the model.
 
 ## Download as PDF
 
-- 📘 **[Full lecture notes](pdf/operations-research-lab-notes.pdf)** — 106 pages: models, worked examples, case studies, sensitivity analysis
-- 📊 **[Course slides](pdf/operations-research-lab-slides.pdf)** — 80 slides, the whole content of the notes in compact form
+- 📘 **[Full lecture notes](pdf/operations-research-lab-notes.pdf)** — 115 pages: models, worked examples, case studies, sensitivity analysis
+- 📊 **[Course slides](pdf/operations-research-lab-slides.pdf)** — 83 slides, the whole content of the notes in compact form
 
 ## Installation and licence
 

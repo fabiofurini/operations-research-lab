@@ -25,8 +25,8 @@ notes in online form, with Python/Gurobi code, data and case studies.
 
 ## Download as PDF
 
-- [Full lecture notes](https://fabiofurini.github.io/operations-research-lab/pdf/operations-research-lab-notes.pdf) (106 pages)
-- [Course slides](https://fabiofurini.github.io/operations-research-lab/pdf/operations-research-lab-slides.pdf) (80 slides)
+- [Full lecture notes](https://fabiofurini.github.io/operations-research-lab/pdf/operations-research-lab-notes.pdf) (115 pages)
+- [Course slides](https://fabiofurini.github.io/operations-research-lab/pdf/operations-research-lab-slides.pdf) (83 slides)
 
 ## Contents
 
@@ -57,6 +57,7 @@ notes in online form, with Python/Gurobi code, data and case studies.
 **Optimization and machine learning**
 
 - [Support Vector Machine](https://fabiofurini.github.io/operations-research-lab/svm/) — QP
+- [Robust and quantile regression](https://fabiofurini.github.io/operations-research-lab/regression/) — LP, estimating the parameters
 
 **The course**
 
@@ -64,7 +65,7 @@ notes in online form, with Python/Gurobi code, data and case studies.
 
 ## Running the models
 
-Every chapter has its own script in [`python/`](python/) (`lab04`–`lab15`), with the
+Every chapter has its own script in [`python/`](python/) (`lab04`–`lab16`), with the
 data in [`data/`](data/):
 
 ```bash

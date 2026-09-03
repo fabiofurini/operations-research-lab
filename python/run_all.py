@@ -24,6 +24,7 @@ SCRIPT = [
     "lab13_var_cvar.py",
     "lab14_arbitrage.py",
     "lab15_svm.py",
+    "lab16_regression.py",
 ]
 
 base = Path(__file__).resolve().parent

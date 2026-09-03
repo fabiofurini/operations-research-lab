@@ -2,6 +2,7 @@
 
 The bridge between the two disciplines: a learning model is, in the end, an
 optimization problem to be solved with the same solver as the rest of the course.
+A QP that classifies and an LP that estimates.
 
 <div class="grid cards" markdown>
 
@@ -13,5 +14,15 @@ optimization problem to be solved with the same solver as the rest of the course
     kernels — with no machine learning library.
 
     [:octicons-arrow-right-24: QP](svm.md)
+
+-   :material-chart-scatter-plot: **Robust and quantile regression**
+
+    ---
+
+    Estimating the parameters with an LP: absolute instead of squared
+    deviations, support points from the duals and the quantile the newsvendor
+    needs.
+
+    [:octicons-arrow-right-24: LP](regression.md)
 
 </div>

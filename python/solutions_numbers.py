@@ -469,4 +469,101 @@ print(f"ex. 14.3 — call on security 2, strike 20: price {d14.ObjVal:.4f} "
       f"(= 10 q1 / R = {10*0.296/1.04:.4f})")
 assert abs(d14.ObjVal - 2.846154) < 1e-4
 
+intestazione("Ch. 16 — regression: ex. 16.1-16.5")
+
+
+def qr16(X, y, tau=0.5, budget=None):
+    """Quantile regression as an LP (the same as chapter 16)."""
+    nn, pp = X.shape
+    m = gp.Model(); m.Params.OutputFlag = 0
+    w = m.addVars(pp, lb=-GRB.INFINITY); b = m.addVar(lb=-GRB.INFINITY)
+    u = m.addVars(nn); v = m.addVars(nn)
+    c = m.addConstrs(gp.quicksum(X[i, j]*w[j] for j in range(pp)) + b + u[i] - v[i]
+                     == y[i] for i in range(nn))
+    vb = None
+    if budget is not None:
+        z = m.addVars(pp)
+        m.addConstrs(w[j] <= z[j] for j in range(pp))
+        m.addConstrs(-w[j] <= z[j] for j in range(pp))
+        vb = m.addConstr(gp.quicksum(z[j] for j in range(pp)) <= budget)
+    m.setObjective(gp.quicksum(tau*u[i] + (1-tau)*v[i] for i in range(nn)), GRB.MINIMIZE)
+    m.optimize()
+    return m, np.array([w[j].X for j in range(pp)]), b.X, np.array([c[i].Pi for i in range(nn)]), vb
+
+
+y16 = np.array([88., 96., 104., 112., 120., 132., 148.])
+m16, _, b16, pi16, _ = qr16(np.zeros((7, 0)), y16, 0.5)
+print(f"ex. 16.1 — median {b16:.0f}, value {m16.ObjVal:.0f}, "
+      f"sum of the duals {pi16.sum():.6f}")
+assert b16 == 112.0 and m16.ObjVal == 56.0 and abs(pi16.sum()) < 1e-9
+
+rng16 = np.random.default_rng(16)
+n16 = 60
+temp16 = np.round(rng16.uniform(10, 34, n16), 1)
+prezzo16 = rng16.choice([2.20, 2.60, 3.00, 3.40], n16)
+week16 = (rng16.random(n16) < 0.30).astype(float)
+dom16 = (258 - 3.7*temp16 - 19.0*prezzo16 + 33.0*week16 + rng16.normal(0, 9, n16))
+sciop16 = [11, 22, 29, 41, 46]
+dom16[sciop16] = rng16.uniform(18, 32, len(sciop16))
+dom16 = np.round(dom16).astype(float)
+
+Xt16 = temp16.reshape(-1, 1)
+_, w16, bb16, _, _ = qr16(Xt16, dom16, 0.5)
+res16 = dom16 - (Xt16 @ w16 + bb16)
+app16 = np.where(np.abs(res16) < 1e-6)[0]
+sopra16 = np.where(res16 > 1e-6)[0]
+d_su = dom16.copy(); d_su[sopra16[0]] += 30
+_, wA16, bA16, _, _ = qr16(Xt16, d_su, 0.5)
+d_ap = dom16.copy(); d_ap[app16[0]] -= 30
+_, wB16, bB16, _, _ = qr16(Xt16, d_ap, 0.5)
+print(f"ex. 16.2 — line {bb16:.2f} {w16[0]:+.2f}t; +30 on a point above: "
+      f"{bA16:.2f} {wA16[0]:+.2f}t (unchanged); -30 on a support point: "
+      f"{bB16:.2f} {wB16[0]:+.2f}t")
+assert len(app16) == 2 and abs(bA16 - bb16) < 1e-6 and abs(bB16 - 211.84) < 0.01
+
+X3_16 = np.column_stack([temp16, prezzo16, week16])
+_, w3_16, b3_16, _, _ = qr16(X3_16, dom16, 0.5)
+puliti16 = np.abs(dom16 - (X3_16 @ w3_16 + b3_16)) <= 40
+tipo16 = np.array([28.0, 3.00, 1.0])
+prev16 = {}
+for co, tau in ((4, 9/13), (2, 9/11)):
+    _, wq, bq, _, _ = qr16(X3_16[puliti16], dom16[puliti16], tau)
+    prev16[co] = float(tipo16 @ wq + bq)
+print(f"ex. 16.3 — co=4 (alpha*=9/13): {prev16[4]:.1f} pieces; "
+      f"co=2 (alpha*=9/11): {prev16[2]:.1f} pieces (+{prev16[2]-prev16[4]:.1f})")
+assert abs(prev16[4] - 132.1) < 0.1 and abs(prev16[2] - 139.6) < 0.1
+
+foll16 = np.round(rng16.uniform(8, 20, n16), 1)
+pio16 = np.round(rng16.uniform(0, 12, n16), 1)
+bor16 = np.round(rng16.uniform(95, 115, n16), 1)
+gm16 = rng16.integers(1, 29, n16).astype(float)
+Xg16 = np.column_stack([temp16, prezzo16, week16, foll16, pio16, bor16, gm16])[puliti16]
+Xs16 = (Xg16 - Xg16.mean(0)) / Xg16.std(0)
+y3_16 = dom16[puliti16]
+vals16, ombre16 = [], []
+for t in np.arange(0, 60.5, 1.0):
+    mt, wt, bt, _, vb = qr16(Xs16, y3_16, 0.5, budget=t)
+    vals16.append(mt.ObjVal); ombre16.append(vb.Pi)
+vals16 = np.array(vals16); ombre16 = np.array(ombre16)
+convessa = all(vals16[i+1] - 2*vals16[i] + vals16[i-1] > -1e-6
+               for i in range(1, len(vals16)-1))
+rotture = sum(1 for i in range(1, 61) if abs(ombre16[i] - ombre16[i-1]) > 1e-6)
+print(f"ex. 16.4 — value from {vals16[0]:.1f} to {vals16[-1]:.1f}, convex: "
+      f"{convessa}, {rotture} shadow-price changes")
+assert convessa and np.all(np.diff(vals16) <= 1e-6) and rotture == 35
+
+rs16 = np.random.default_rng(7)
+idx16 = rs16.permutation(len(y3_16))
+stima16, verif16 = idx16[:40], idx16[40:]
+err16 = {}
+for t in range(5, 60, 5):
+    _, wt, bt, _, _ = qr16(Xs16[stima16], y3_16[stima16], 0.5, budget=t)
+    err16[t] = (float(np.abs(y3_16[stima16] - (Xs16[stima16] @ wt + bt)).mean()),
+                float(np.abs(y3_16[verif16] - (Xs16[verif16] @ wt + bt)).mean()))
+mono = all(err16[t][0] >= err16[t+5][0] - 1e-9 for t in range(5, 55, 5))
+print(f"ex. 16.5 — estimation monotone: {mono}; validation 45: {err16[45][1]:.2f}, "
+      f"50: {err16[50][1]:.2f}, 55: {err16[55][1]:.2f} (not monotone)")
+assert mono and err16[50][1] > err16[45][1]
+
+
 print("\nAll the computations for the solutions completed.")
