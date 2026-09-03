@@ -18,99 +18,58 @@ change by 5%?
     but *“which decision do we recommend and how robust is it?”*. All the models use
     **only continuous variables**: duality, shadow prices and KKT conditions apply.
 
+## The four parts of the lab
+
 <div class="grid cards" markdown>
 
--   :material-hammer-wrench: **Getting started**
+-   :material-hammer-wrench: **Tools**
 
     ---
 
-    How a model is built, how it is run, how to read the solution,
-    the shadow prices and the reduced costs.
+    How a model is built, how it is run, how to read the solution, the shadow
+    prices and the reduced costs: the theory and the solver.
 
-    [:octicons-arrow-right-24: LP theory](theory-lp.md) ·
-    [Nonlinear theory](theory-nonlinear.md) ·
-    [Solver, linear models](solver-lp.md) ·
-    [Solver, nonlinear](solver-nonlinear.md)
+    [:octicons-arrow-right-24: The four chapters](tools.md)
 
--   :material-factory: **Planning production**
+-   :material-factory: **Deterministic models**
 
     ---
 
-    Multi-period LP with inventory: the solver discovers the pre-build and the duals tell
-    how much an hour of capacity is worth.
+    Production, supply chain, portfolio, pricing, budget, location, electric
+    vehicle charging, queues: every datum is known.
 
-    [:octicons-arrow-right-24: Production and inventory](production.md)
+    [:octicons-arrow-right-24: The eight problems](deterministic-models.md)
 
--   :material-truck-delivery: **Moving the flows**
-
-    ---
-
-    Minimum-cost flow, convex congestion and cost-emissions frontier with the
-    internal price of CO₂.
-
-    [:octicons-arrow-right-24: Supply chain](supplychain.md)
-
--   :material-chart-line: **Investing**
+-   :material-dice-multiple: **Decisions under uncertainty**
 
     ---
 
-    The most famous QP in history: efficient frontier, diversification and
-    fragility of the estimates.
+    You decide before you know: the quantile rule, tail risk and the duality that
+    prices financial instruments.
 
-    [:octicons-arrow-right-24: Markowitz](markowitz.md)
+    [:octicons-arrow-right-24: The three problems](decisions-uncertainty.md)
 
--   :material-currency-eur: **Setting prices**
-
-    ---
-
-    Endogenous demand, bilinear objective, corner optima and the true value of one
-    extra seat.
-
-    [:octicons-arrow-right-24: Pricing](pricing.md) ·
-    [Advertising budget](budget.md)
-
--   :material-map-marker: **Locating and sizing**
+-   :material-robot: **Optimization and machine learning**
 
     ---
 
-    Efficiency against equity on the map; the utilization wall in queues;
-    the smart charging of a fleet.
+    The SVM as a convex QP: margin, dual, support vectors and kernel — without ML
+    libraries.
 
-    [:octicons-arrow-right-24: Location](location.md) ·
-    [Queues](queues.md) · [EV charging](ev-charging.md)
-
--   :material-dice-multiple: **Deciding before knowing**
-
-    ---
-
-    The quantile rule, the scenarios, the value of the stochastic solution and the
-    tail risk optimized with an LP.
-
-    [:octicons-arrow-right-24: Newsvendor](newsvendor.md) ·
-    [VaR and CVaR](var-cvar.md) ·
-    [Arbitrage](arbitrage.md)
-
--   :material-robot: **From the solver to machine learning**
-
-    ---
-
-    The SVM as a convex QP: margin, dual, support vectors and kernel — without
-    ML libraries.
-
-    [:octicons-arrow-right-24: Support Vector Machine](svm.md)
+    [:octicons-arrow-right-24: The problem](optimization-ml.md)
 
 </div>
 
 ## Complete index
 
-**Tools**
+**[Tools](tools.md)**
 
 1. [Theory: linear programming](theory-lp.md) and [nonlinear optimization](theory-nonlinear.md) — duality,
    shadow prices, KKT, sensitivity protocol
 2. [Solver, linear models](solver-lp.md) and [nonlinear](solver-nonlinear.md) — building the model, running
    it, retrieving the solution, interpreting the output
 
-**Deterministic models**
+**[Deterministic models](deterministic-models.md)**
 
 3. [Multi-period production and inventory](production.md) — LP/QP
 4. [Supply chain with congestion and CO₂](supplychain.md) — LP/NLP
@@ -121,13 +80,13 @@ change by 5%?
 9. [Electric vehicle charging](ev-charging.md) — LP/QP
 10. [Queues and service capacity](queues.md) — convex NLP
 
-**Decisions under uncertainty**
+**[Decisions under uncertainty](decisions-uncertainty.md)**
 
 11. [The Newsvendor and its variants](newsvendor.md) — stochastic LP
 12. [VaR and CVaR](var-cvar.md) — scenario-based LP
 13. [Arbitrage and pricing](arbitrage.md) — LP and duality that prices
 
-**Optimization and machine learning**
+**[Optimization and machine learning](optimization-ml.md)**
 
 14. [Support Vector Machine](svm.md) — QP
 
