@@ -4,26 +4,6 @@ The first subchapter of the background: duality, optimality conditions and
 sensitivity analysis of LPs. The nonlinear extension (convexity, QP, KKT) is in
 the [companion page](theory-nonlinear.md).
 
-## The three classes of models
-
-- **LP** (*Linear Programming*): linear objective and constraints;
-- **QP** (*Quadratic Programming*): quadratic objective, linear constraints;
-- **NLP** (*Nonlinear Programming*): general nonlinear objective or constraints.
-
-A problem is **convex** when every local minimum is also global: for LPs this is
-always true; for QPs and NLPs it depends on the functions.
-
-**Notation.** Scalars and indices in lowercase ($x_{it}$, $\lambda$); the objects
-of the models (products, channels, assets, scenarios…) are **numbered** and the
-indices run over explicitly enumerated sets, $i \in \{1, 2, \dots, n\}$; counts
-are integers ($n \in \mathbb{Z}_{\ge 1}$) and data rational ($\mathbb{Q}$);
-vectors in lowercase bold ($\boldsymbol{x}$), matrices in uppercase bold
-($\boldsymbol{Q}$); the dual variables are called $\pi_i$, the reduced costs
-$\bar c_j$; the **bar** denotes quantities evaluated in a feasible solution, the
-**tilde** an optimal solution ($\tilde{\boldsymbol x}$, $\tilde z$). In the models
-the wording is always “subject to”, the variables are introduced before the
-formulation and the constraints that define them close the model.
-
 ## Linear programming and duality
 
 The *data* are the costs $c_j$, the coefficients $a_{ij}$ and the right-hand sides $b_i$,
@@ -151,19 +131,19 @@ coincide).
 
 ## The optimality conditions of LP: complementary slackness
 
-Variables, when they are unknowns, are written plain; bar = values of a feasible
-solution, tilde = values of an optimal solution. To every constraint we associate its
-*slack* $s_i$, and to every variable its *reduced cost* $\bar c_j$ (here the bar is
-part of the name, as is traditional), that is the slack of the *dual* constraint:
+To every constraint we associate its *slack* $\bar s_i$, and to every variable
+its *reduced cost* $\bar c_j$, that is the slack of the corresponding *dual*
+constraint:
 
 $$
-s_i = \sum_{j \in N} a_{ij} x_j - b_i, \quad \forall i \in M,
+\bar s_i = \sum_{j \in N} a_{ij} \bar x_j - b_i, \quad \forall i \in M,
 \qquad
-\bar c_j = c_j - \sum_{i \in M} a_{ij} \pi_i, \quad \forall j \in N.
+\bar c_j = c_j - \sum_{i \in M} a_{ij} \bar\pi_i, \quad \forall j \in N.
 $$
 
-They are functions of the variables; bar and tilde denote their evaluation in a
-solution ($\bar s_i$, $\tilde s_i$, …).
+The slack measures how far the constraint is from being binding; the reduced
+cost measures $c_j$ net of the value of the resources consumed, at the shadow
+prices.
 
 A pair of feasible solutions is optimal for both problems **if and only if** the
 **complementary slackness** conditions hold:
