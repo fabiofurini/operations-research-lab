@@ -25,3 +25,6 @@ notes/
 slides/
 solutions/
 STYLE_AND_FORMAT.md
+
+# the PDFs published on the site are versioned
+!docs/pdf/*.pdf

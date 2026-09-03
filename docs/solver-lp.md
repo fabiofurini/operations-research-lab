@@ -7,32 +7,7 @@ pasted straight into a Python terminal. Nonlinear models are on the
 
 ---
 
-## 1. Installation and licence
-
-```bash
-python3 -m pip install gurobipy
-```
-
-The pip package ships with a **demo licence** (up to 2000 variables and 2000 constraints):
-enough for every model in this lab. At start-up the line
-`Restricted license - for non-production use only` appears: this is normal.
-
-**Full academic licence (free of charge):**
-1. register at <https://portal.gurobi.com> with your institutional email (`@uniroma1.it`);
-2. request a *Named-User Academic License*;
-3. run the command `grbgetkey XXXXXXXX-...` shown by the portal (you need the university network or a VPN);
-4. the licence is saved in `~/gurobi.lic` and from that moment there are no size limits.
-
-Quick check:
-
-```python
-import gurobipy as gp
-print(gp.gurobi.version())        # e.g. (13, 0, 3)
-```
-
----
-
-## 2. How to build a model
+## 1. How to build a model
 
 A mathematical programming model in `gurobipy` is always built in **the same five
 steps**. As an example we use a small generic maximization LP, with two
@@ -159,14 +134,14 @@ Optimal value: 1900.0
   vincolo2: Slack = 0.0   Pi = 8.0   SARHS = [30.0, 180.0]
 ```
 
-Section 5 explains how to read each of these numbers; the “all the cases”
-example (section 5.3 bis) also covers `=`/`≥` constraints and free or `≤ 0` variables;
+Section 4 explains how to read each of these numbers; the “all the cases”
+example (section 4.3 bis) also covers `=`/`≥` constraints and free or `≤ 0` variables;
 for nonlinear models there is the [companion page](solver-nonlinear.md).
 
 
 ---
 
-## 3. How to run it
+## 2. How to run it
 
 ```python
 m.optimize()
@@ -199,7 +174,7 @@ size?), the coefficient *ranges* (is the data well scaled?) and the last line (t
 
 ---
 
-## 4. How to retrieve the solution
+## 3. How to retrieve the solution
 
 **Before reading any value, always check the status:**
 
@@ -243,9 +218,9 @@ sol = pd.DataFrame([(i, t, x[i, t].X) for i in I for t in T],
 
 ---
 
-## 5. How to interpret the output
+## 4. How to interpret the output
 
-### 5.1 The outcome
+### 4.1 The outcome
 
 - **OPTIMAL** — certified optimal solution. In the convex models of this lab
   the optimum is **global**; even in a QP declared non-convex (`NonConvex=2`) and in
@@ -257,7 +232,7 @@ sol = pd.DataFrame([(i, t, x[i, t].X) for i in I for t in T],
 - **UNBOUNDED** — the objective can improve indefinitely: almost always a constraint or
   a bound is missing (e.g. maximum profit with no capacity constraint).
 
-### 5.2 Shadow prices (`Pi`) — "how much is one extra unit of resource worth?"
+### 4.2 Shadow prices (`Pi`) — "how much is one extra unit of resource worth?"
 
 In the 2×2 LP: at the optimum `x_1 = 30, x_2 = 20`, value 1900, both constraints
 active. The duals are:
@@ -274,7 +249,7 @@ the basis changes and the shadow price is no longer the same.
 A **non-active** constraint (`Slack > 0`) always has `Pi = 0`: the resource is left over, one
 extra unit is worth nothing.
 
-### 5.3 Reduced costs (`RC`) — "why is this variable at zero?"
+### 4.3 Reduced costs (`RC`) — "why is this variable at zero?"
 
 Basic variables have `RC = 0` (careful: there may be a variable **in the basis
 at value zero** — a *degenerate* basis — so `RC = 0` on its own does not say that
@@ -298,7 +273,7 @@ for v in m.getVars():
         print(v.VarName, v.RC)
 ```
 
-### 5.3 bis — The general case: signs and reading
+### 4.3 bis — The general case: signs and reading
 
 **Shadow prices** (`Pi`): always the "derivative of the optimum with respect to the
 right-hand side", `Pi = ∂z*/∂b`. The sign follows from two questions: *does increasing
@@ -359,7 +334,7 @@ complementarity); equality → free dual, here `+6`; `≤` in a minimum → dual
 perturbation: `b_2 = 101 → 626` (+6), `b_3 = -19 → 619` (−1), `x3` forced to
 −1 → `623` (+3).
 
-### 5.4 Interpretation checklist (to be used in every lab session)
+### 4.4 Interpretation checklist (to be used in every lab session)
 
 1. Is the status `OPTIMAL`? If not, stop and diagnose.
 2. Does the optimal value have the expected order of magnitude?
@@ -372,7 +347,7 @@ perturbation: `b_2 = 101 → 626` (+6), `b_3 = -19 → 619` (−1), `x3` forced 
 
 ---
 
-## 6. Typical errors and how to recognize them
+## 5. Typical errors and how to recognize them
 
 | Symptom | Likely cause | Remedy |
 |---|---|---|
@@ -386,7 +361,7 @@ perturbation: `b_2 = 101 → 626` (+6), `b_3 = -19 → 619` (−1), `x3` forced 
 
 ---
 
-## 7. Standard skeleton to reuse
+## 6. Standard skeleton to reuse
 
 Every script in the lab follows this skeleton:
 

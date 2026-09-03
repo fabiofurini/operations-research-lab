@@ -153,6 +153,36 @@ solution, the **tilde** those of an optimal one ($\tilde x_j$, $\tilde z$). In
 the models the wording is always "subject to", the variables are introduced before
 the formulation and the constraints defining them close the model.
 
+## Download as PDF
+
+- 📘 **[Full lecture notes](pdf/operations-research-lab-notes.pdf)** — 106 pages: models, worked examples, case studies, sensitivity analysis
+- 📊 **[Course slides](pdf/operations-research-lab-slides.pdf)** — 80 slides, the whole content of the notes in compact form
+
+## Installation and licence
+
+```bash
+python3 -m pip install gurobipy
+```
+
+The pip package ships with a **demo licence** (up to 2000 variables and 2000 constraints):
+enough for every model in this lab. At start-up the line
+`Restricted license - for non-production use only` appears: this is normal.
+
+**Full academic licence (free of charge):**
+1. register at <https://portal.gurobi.com> with your institutional email (`@uniroma1.it`);
+2. request a *Named-User Academic License*;
+3. run the command `grbgetkey XXXXXXXX-...` shown by the portal (you need the university network or a VPN);
+4. the licence is saved in `~/gurobi.lic` and from that moment there are no size limits.
+
+Quick check:
+
+```python
+import gurobipy as gp
+print(gp.gurobi.version())        # e.g. (13, 0, 3)
+```
+
+---
+
 ## Quick start
 
 ```bash

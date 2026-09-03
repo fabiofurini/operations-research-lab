@@ -5,6 +5,11 @@ notes in online form, with Python/Gurobi code, data and case studies.
 
 **📖 Online lecture notes: [fabiofurini.github.io/operations-research-lab](https://fabiofurini.github.io/operations-research-lab/)**
 
+## Download as PDF
+
+- [Full lecture notes](https://fabiofurini.github.io/operations-research-lab/pdf/operations-research-lab-notes.pdf) (106 pages)
+- [Course slides](https://fabiofurini.github.io/operations-research-lab/pdf/operations-research-lab-slides.pdf) (80 slides)
+
 ## Contents
 
 **Tools**
