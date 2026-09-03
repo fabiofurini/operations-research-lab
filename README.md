@@ -66,5 +66,5 @@ The whole lab is also available in Italian:
 
 ---
 
-Teaching material by **Fabio Furini** (Sapienza University of Rome).
+Teaching material by **[Fabio Furini](https://sites.google.com/view/fabiofurini/home-page)** — [DIAG](https://www.diag.uniroma1.it/), Sapienza University of Rome.
 Course slides and exercise solutions are distributed in class.

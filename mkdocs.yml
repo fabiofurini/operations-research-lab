@@ -39,6 +39,16 @@ theme:
 plugins:
   - search
 extra:
+  social:
+    - icon: material/web
+      link: https://sites.google.com/view/fabiofurini/home-page
+      name: Fabio Furini — sito personale
+    - icon: material/school
+      link: https://www.diag.uniroma1.it/
+      name: DIAG — Sapienza Università di Roma
+    - icon: fontawesome/brands/github
+      link: https://github.com/fabiofurini
+      name: GitHub
   alternate:
     - name: English
       link: https://fabiofurini.github.io/operations-research-lab/

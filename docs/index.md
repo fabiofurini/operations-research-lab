@@ -192,3 +192,8 @@ python3 python/run_all.py             # regenerates data, results and figures
 
 In the [repository](https://github.com/fabiofurini/operations-research-lab)
 you will find all the **Python scripts** and the case study **data** in CSV format.
+
+---
+
+Teaching material by **[Fabio Furini](https://sites.google.com/view/fabiofurini/home-page)** —
+[DIAG](https://www.diag.uniroma1.it/), Sapienza University of Rome.
