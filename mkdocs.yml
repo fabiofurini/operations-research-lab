@@ -1,0 +1,92 @@
+site_name: Operations Research Lab
+site_description: >-
+  Continuous optimization models for Management Engineering:
+  lecture notes, Python/Gurobi code, data and case studies.
+site_author: Fabio Furini
+repo_url: https://github.com/fabiofurini/operations-research-lab
+
+theme:
+  name: material
+  language: en
+  icon:
+    logo: material/chart-timeline-variant
+  font:
+    text: Source Sans 3
+    code: JetBrains Mono
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      toggle:
+        icon: material/weather-night
+        name: Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Light mode
+  features:
+    - navigation.instant
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - content.code.copy
+    - search.suggest
+
+plugins:
+  - search
+extra:
+  alternate:
+    - name: English
+      link: https://fabiofurini.github.io/operations-research-lab/
+      lang: en
+    - name: Italiano
+      link: https://fabiofurini.github.io/laboratorio-ricerca-operativa/
+      lang: it
+
+extra_css:
+  - stylesheets/extra.css
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.arithmatex:
+      generic: true
+  - tables
+  - attr_list
+  - md_in_html
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
+nav:
+  - Home: index.md
+  - Tools:
+      - Theory, linear programming: theory-lp.md
+      - Theory, nonlinear optimization: theory-nonlinear.md
+      - Solver, linear models: solver-lp.md
+      - Solver, nonlinear models: solver-nonlinear.md
+  - Deterministic models:
+      - Production and inventory: production.md
+      - Supply chain and CO2: supplychain.md
+      - Markowitz portfolio: markowitz.md
+      - Pricing and revenue management: pricing.md
+      - Advertising budget: budget.md
+      - Continuous location: location.md
+      - Electric vehicle charging: ev-charging.md
+      - Queues and service capacity: queues.md
+  - Decisions under uncertainty:
+      - The newsvendor: newsvendor.md
+      - VaR and CVaR: var-cvar.md
+      - Arbitrage and pricing: arbitrage.md
+  - Optimization and machine learning:
+      - Support Vector Machine: svm.md
+  - Lab organization: organization.md

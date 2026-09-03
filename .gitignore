@@ -1,0 +1,27 @@
+# LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.nav
+*.snm
+*.vrb
+notes/main.pdf
+solutions/solutions.pdf
+slides/slides_lab.pdf
+# Python
+__pycache__/
+*.pyc
+# MkDocs
+site/
+# misc
+.DS_Store
+
+# internal material, not published
+notes/
+slides/
+solutions/
+STYLE_AND_FORMAT.md
