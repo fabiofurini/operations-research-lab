@@ -105,10 +105,10 @@ change by 5%?
 
 **Tools**
 
-1. [Solver, linear models](solver-lp.md) and [nonlinear](solver-nonlinear.md) — building the model, running
+1. [Theory: linear programming](theory-lp.md) and [nonlinear optimization](theory-nonlinear.md) — duality,
+   shadow prices, KKT, sensitivity protocol
+2. [Solver, linear models](solver-lp.md) and [nonlinear](solver-nonlinear.md) — building the model, running
    it, retrieving the solution, interpreting the output
-2. [Theory: linear programming](theory-lp.md) and [nonlinear optimization](theory-nonlinear.md) — duality, shadow prices, KKT, sensitivity
-   protocol
 
 **Deterministic models**
 
@@ -129,11 +129,11 @@ change by 5%?
 
 **Optimization and machine learning**
 
-13. [Support Vector Machine](svm.md) — QP
+14. [Support Vector Machine](svm.md) — QP
 
 **The course**
 
-14. [Organization of the lab](organization.md) — lab sessions, submissions,
+15. [Organization of the lab](organization.md) — lab sessions, submissions,
     assessment, mistakes to avoid
 
 ## Notation and classes of models

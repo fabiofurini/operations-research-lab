@@ -31,6 +31,7 @@ theme:
     - navigation.tabs
     - navigation.tabs.sticky
     - navigation.sections
+    - navigation.indexes
     - navigation.top
     - navigation.footer
     - content.code.copy
@@ -42,10 +43,10 @@ extra:
   social:
     - icon: material/web
       link: https://sites.google.com/view/fabiofurini/home-page
-      name: Fabio Furini — sito personale
+      name: Fabio Furini — personal website
     - icon: material/school
       link: https://www.diag.uniroma1.it/
-      name: DIAG — Sapienza Università di Roma
+      name: DIAG — Sapienza University of Rome
     - icon: fontawesome/brands/github
       link: https://github.com/fabiofurini
       name: GitHub
@@ -80,11 +81,13 @@ extra_javascript:
 nav:
   - Home: index.md
   - Tools:
+      - tools.md
       - Theory, linear programming: theory-lp.md
       - Theory, nonlinear optimization: theory-nonlinear.md
       - Solver, linear models: solver-lp.md
       - Solver, nonlinear models: solver-nonlinear.md
   - Deterministic models:
+      - deterministic-models.md
       - Production and inventory: production.md
       - Supply chain and CO2: supplychain.md
       - Markowitz portfolio: markowitz.md
@@ -94,9 +97,11 @@ nav:
       - Electric vehicle charging: ev-charging.md
       - Queues and service capacity: queues.md
   - Decisions under uncertainty:
+      - decisions-uncertainty.md
       - The newsvendor: newsvendor.md
       - VaR and CVaR: var-cvar.md
       - Arbitrage and pricing: arbitrage.md
   - Optimization and machine learning:
+      - optimization-ml.md
       - Support Vector Machine: svm.md
   - Lab organization: organization.md
