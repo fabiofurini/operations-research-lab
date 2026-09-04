@@ -98,6 +98,8 @@ outside it drops to −1: an arbitrage exists, in one direction or the other.
   in $[1{,}4615,\; 2{,}0308]$ — outside that interval anyone could build an
   arbitrage by combining the call and the quoted securities.
 
+The same code is also available as a notebook — [`notebooks/lab14_arbitrage.ipynb`](https://github.com/fabiofurini/operations-research-lab/blob/main/notebooks/lab14_arbitrage.ipynb) — which opens in Colab from the badge at the top of the page and runs in the browser, with nothing to install.
+
 ??? example "Show the full script — `lab14_arbitrage.py`"
 
     ```python

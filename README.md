@@ -23,6 +23,8 @@ notes in online form, with Python/Gurobi code, data and case studies.
 
 **📖 Online lecture notes: [fabiofurini.github.io/operations-research-lab](https://fabiofurini.github.io/operations-research-lab/)**
 
+**▶️ Runnable notebooks in Colab: [the list of chapters](https://fabiofurini.github.io/operations-research-lab/notebooks/)** — they run in the browser, with nothing to install.
+
 ## Download as PDF
 
 - [Full lecture notes](https://fabiofurini.github.io/operations-research-lab/pdf/operations-research-lab-notes.pdf) (115 pages)

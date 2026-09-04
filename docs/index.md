@@ -13,6 +13,9 @@ into an optimization model, solves it with Gurobi called from Python and, above 
 *interrogates* it: how much is one extra hour of capacity worth? Does the solution hold if the data
 change by 5%?
 
+Every model can be run **right away in the browser**: each chapter has its own
+[notebook that opens in Colab](notebooks.md), with nothing to install.
+
 !!! tip "The right question"
     At the end of every lab session the question is not only *“what is the optimum?”*,
     but *“which decision do we recommend and how robust is it?”*. All the models use

@@ -198,6 +198,8 @@ deviation until the budget becomes plainly excessive. The budget to choose is no
 the one minimising the historical error, but the one beyond which the shadow
 price becomes negligible.
 
+The same code is also available as a notebook — [`notebooks/lab16_regression.ipynb`](https://github.com/fabiofurini/operations-research-lab/blob/main/notebooks/lab16_regression.ipynb) — which opens in Colab from the badge at the top of the page and runs in the browser, with nothing to install.
+
 ??? example "Show the complete script — `lab16_regression.py`"
     ```python
     """Chapter 16 — Robust and quantile regression (LP).
