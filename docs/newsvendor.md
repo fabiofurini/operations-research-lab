@@ -2,6 +2,8 @@
 
 **Class:** 1D convex / scenario-based stochastic LP · **Script:** `python/lab12_newsvendor.py`
 
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/fabiofurini/operations-research-lab/blob/main/notebooks/lab12_newsvendor.ipynb)
+
 Choosing a quantity **before** observing demand: fashion and seasonal goods, fresh
 products, drugs, hotel capacity. It is the gateway to stochastic optimization, with
 a clear-cut result: **the optimal quantity is not the average demand**.
@@ -193,6 +195,8 @@ products fail together.
 The complete script of the chapter — data, model, solution, sensitivity and figures —
 is [`python/lab12_newsvendor.py`](https://github.com/fabiofurini/operations-research-lab/blob/main/python/lab12_newsvendor.py)
 (reproducible with `python3 python/lab12_newsvendor.py` from the `python/` folder).
+
+The same code is also available as a notebook — [`notebooks/lab12_newsvendor.ipynb`](https://github.com/fabiofurini/operations-research-lab/blob/main/notebooks/lab12_newsvendor.ipynb) — which opens in Colab from the badge at the top of the page and runs in the browser, with nothing to install.
 
 ??? example "Show the full script — `lab12_newsvendor.py`"
 

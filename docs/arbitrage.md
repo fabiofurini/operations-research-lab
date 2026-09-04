@@ -2,6 +2,8 @@
 
 **Class: LP** · Script: `python/lab14_arbitrage.py`
 
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/fabiofurini/operations-research-lab/blob/main/notebooks/lab14_arbitrage.ipynb)
+
 An **arbitrage** is a strategy that creates money out of nothing: it collects cash
 today with no risk of a loss tomorrow (type A), or it costs nothing today and can
 only make money (type B). Detecting one is an LP; duality — shadow prices,

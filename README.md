@@ -73,9 +73,26 @@ python3 -m pip install gurobipy matplotlib pandas scipy
 python3 python/run_all.py     # all models: data, results and figures
 ```
 
+With nothing to install, every chapter has its own notebook in
+[`notebooks/`](notebooks/): it opens in Colab from the badge at the top of the
+chapter page (the full list is [on the website](https://fabiofurini.github.io/operations-research-lab/notebooks/))
+and runs in the browser. The notebooks are generated from the scripts —
+`python3 python/make_notebooks.py` — so the course code stays in one place.
+
 The `gurobipy` licence bundled with the pip package is enough for every model in
 the course; the free academic licence can be activated at
 [portal.gurobi.com](https://portal.gurobi.com).
+
+## Licence
+
+- **Text, figures and data** (`docs/`, `data/`): [CC BY 4.0](LICENSE) — anyone may
+  reuse, adapt and redistribute them, in other courses too, with attribution.
+- **Python code** (`python/`): [MIT](LICENSE-CODE), the usual licence for software,
+  so that reusing the scripts raises no ambiguity.
+
+To cite the material see [`CITATION.cff`](CITATION.cff): GitHub turns it into the
+*Cite this repository* entry. Course slides and exercise solutions are not
+published: they are distributed in class.
 
 ## Versione italiana
 

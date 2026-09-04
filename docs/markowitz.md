@@ -2,6 +2,8 @@
 
 **Class:** convex QP · **Script:** `python/lab06_markowitz.py`
 
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/fabiofurini/operations-research-lab/blob/main/notebooks/lab06_markowitz.ipynb)
+
 How much should we invest in each asset in order to balance expected return and
 risk? The result is not a number but an **efficient frontier**: the complete menu
 of trade-offs among which the decision maker chooses.
@@ -129,6 +131,8 @@ $\bar r = 12\%$).
 The complete script of the chapter — data, model, solution, sensitivity and figures —
 is [`python/lab06_markowitz.py`](https://github.com/fabiofurini/operations-research-lab/blob/main/python/lab06_markowitz.py)
 (reproducible with `python3 python/lab06_markowitz.py` from the `python/` folder).
+
+The same code is also available as a notebook — [`notebooks/lab06_markowitz.ipynb`](https://github.com/fabiofurini/operations-research-lab/blob/main/notebooks/lab06_markowitz.ipynb) — which opens in Colab from the badge at the top of the page and runs in the browser, with nothing to install.
 
 ??? example "Show the full script — `lab06_markowitz.py`"
 

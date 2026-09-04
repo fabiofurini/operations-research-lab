@@ -2,6 +2,8 @@
 
 **Class:** scenario-based LP · **Script:** `python/lab13_var_cvar.py`
 
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/fabiofurini/operations-research-lab/blob/main/notebooks/lab13_var_cvar.ipynb)
+
 Optimizing an average value can hide rare and very large losses. The **VaR**
 (*Value-at-Risk*) answers "what is a high loss threshold?"; the **CVaR**
 (*Conditional Value-at-Risk*) also answers "how much do we lose *on average* when
@@ -190,6 +192,8 @@ grows, capacity migrates towards the reliable supplier: **+79 € of average cos
 The complete script of the chapter — data, model, solution, sensitivity and figures —
 is [`python/lab13_var_cvar.py`](https://github.com/fabiofurini/operations-research-lab/blob/main/python/lab13_var_cvar.py)
 (reproducible with `python3 python/lab13_var_cvar.py` from the `python/` folder).
+
+The same code is also available as a notebook — [`notebooks/lab13_var_cvar.ipynb`](https://github.com/fabiofurini/operations-research-lab/blob/main/notebooks/lab13_var_cvar.ipynb) — which opens in Colab from the badge at the top of the page and runs in the browser, with nothing to install.
 
 ??? example "Show the full script — `lab13_var_cvar.py`"
 

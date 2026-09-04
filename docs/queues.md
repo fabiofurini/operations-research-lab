@@ -2,6 +2,8 @@
 
 **Class:** convex NLP (M/M/1 queue) · **Script:** `python/lab11_queues.py`
 
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/fabiofurini/operations-research-lab/blob/main/notebooks/lab11_queues.ipynb)
+
 How much capacity should be assigned to a call centre, a service desk, a cloud
 service? More capacity costs money; too little capacity makes the waiting times
 explode. The central message, counter-intuitive for anyone who reasons "by
@@ -125,6 +127,8 @@ premium of about 13% is paid in order to be protected from a disaster.
 The complete script of the chapter — data, model, solution, sensitivity and figures —
 is [`python/lab11_queues.py`](https://github.com/fabiofurini/operations-research-lab/blob/main/python/lab11_queues.py)
 (reproducible with `python3 python/lab11_queues.py` from the `python/` folder).
+
+The same code is also available as a notebook — [`notebooks/lab11_queues.ipynb`](https://github.com/fabiofurini/operations-research-lab/blob/main/notebooks/lab11_queues.ipynb) — which opens in Colab from the badge at the top of the page and runs in the browser, with nothing to install.
 
 ??? example "Show the full script — `lab11_queues.py`"
 

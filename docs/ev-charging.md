@@ -2,6 +2,8 @@
 
 **Class:** LP / convex QP · **Script:** `python/lab10_ev_charging.py`
 
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/fabiofurini/operations-research-lab/blob/main/notebooks/lab10_ev_charging.ipynb)
+
 A fleet must be fully charged by the morning by exploiting the cheap hours — but if
 all the vehicles charge together, the peak draw explodes. A problem that *seems* to
 require on/off variables and instead is a pure LP: the real decision — how much
@@ -133,6 +135,8 @@ would spend 27.79 €: the trade-off with $\rho = 0{,}2$ achieves the *same* pea
 The complete script of the chapter — data, model, solution, sensitivity and figures —
 is [`python/lab10_ev_charging.py`](https://github.com/fabiofurini/operations-research-lab/blob/main/python/lab10_ev_charging.py)
 (reproducible with `python3 python/lab10_ev_charging.py` from the `python/` folder).
+
+The same code is also available as a notebook — [`notebooks/lab10_ev_charging.ipynb`](https://github.com/fabiofurini/operations-research-lab/blob/main/notebooks/lab10_ev_charging.ipynb) — which opens in Colab from the badge at the top of the page and runs in the browser, with nothing to install.
 
 ??? example "Show the full script — `lab10_ev_charging.py`"
 

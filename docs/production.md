@@ -2,6 +2,8 @@
 
 **Class:** LP / convex QP · **Script:** `python/lab04_production.py`
 
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/fabiofurini/operations-research-lab/blob/main/notebooks/lab04_production.ipynb)
+
 A firm decides how much to produce today and how much to keep in inventory for future
 demand. Producing in advance costs holding; producing at the last moment risks
 crashing into the capacity limit precisely in the peak months.
@@ -126,6 +128,8 @@ $33{,}003 - 32{,}889 = 114$ € (+0.35%).
 The complete script of the chapter — data, model, solution, sensitivity and figures —
 is [`python/lab04_production.py`](https://github.com/fabiofurini/operations-research-lab/blob/main/python/lab04_production.py)
 (reproducible with `python3 python/lab04_production.py` from the `python/` folder).
+
+The same code is also available as a notebook — [`notebooks/lab04_production.ipynb`](https://github.com/fabiofurini/operations-research-lab/blob/main/notebooks/lab04_production.ipynb) — which opens in Colab from the badge at the top of the page and runs in the browser, with nothing to install.
 
 ??? example "Show the full script — `lab04_production.py`"
 

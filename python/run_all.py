@@ -1,8 +1,8 @@
 """Runs all the laboratory scripts in sequence.
 
-Regenerates: data (dati_en/*.csv), data for the pgfplots figures
-(dispensa_en/figure/dat/*.csv), TikZ diagrams (dispensa_en/figure/*.tex) and
-matplotlib previews (dispensa_en/figure/*.pdf).
+Regenerates: data (data/*.csv), data for the pgfplots figures
+(notes/figure/dat/*.csv), TikZ diagrams (notes/figure/*.tex), matplotlib
+previews (notes/figure/*.pdf) and the chapter notebooks (notebooks/*.ipynb).
 
 Usage:  python3 run_all.py
 """
@@ -35,4 +35,10 @@ for s in SCRIPT:
     if esito.returncode != 0:
         print(f"ERROR in {s}: stopping.")
         sys.exit(1)
+print(f"\n{'#' * 72}\n# make_notebooks.py\n{'#' * 72}")
+esito = subprocess.run([sys.executable, str(base / "make_notebooks.py")], cwd=base)
+if esito.returncode != 0:
+    print("ERROR while generating the notebooks: stopping.")
+    sys.exit(1)
+
 print(f"\nAll scripts completed in {time.time() - inizio:.1f} s.")

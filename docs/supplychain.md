@@ -2,6 +2,8 @@
 
 **Class:** LP / convex NLP · **Script:** `python/lab05_supplychain.py`
 
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/fabiofurini/operations-research-lab/blob/main/notebooks/lab05_supplychain.ipynb)
+
 Products cross a network of plants, hubs and markets. Every leg has a
 cost, a capacity and a CO₂ footprint. How should the flows be routed at minimum cost? What
 changes if we penalize congestion? How much must CO₂ be worth for the
@@ -131,6 +133,8 @@ being strictly convex, would instead move continuously.
 The complete script of the chapter — data, model, solution, sensitivity and figures —
 is [`python/lab05_supplychain.py`](https://github.com/fabiofurini/operations-research-lab/blob/main/python/lab05_supplychain.py)
 (reproducible with `python3 python/lab05_supplychain.py` from the `python/` folder).
+
+The same code is also available as a notebook — [`notebooks/lab05_supplychain.ipynb`](https://github.com/fabiofurini/operations-research-lab/blob/main/notebooks/lab05_supplychain.ipynb) — which opens in Colab from the badge at the top of the page and runs in the browser, with nothing to install.
 
 ??? example "Show the full script — `lab05_supplychain.py`"
 

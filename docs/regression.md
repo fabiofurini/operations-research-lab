@@ -2,6 +2,8 @@
 
 **Class: LP** (compared with a QP) · Script: `python/lab16_regression.py`
 
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/fabiofurini/operations-research-lab/blob/main/notebooks/lab16_regression.ipynb)
+
 Every model in the lab starts from known parameters: the demand curve of
 [pricing](pricing.md), the costs of [production](production.md), the scenarios of
 the [newsvendor](newsvendor.md). Somebody has to estimate those numbers, and the

@@ -2,6 +2,8 @@
 
 **Class:** convex NLP · **Script:** `python/lab09_location.py`
 
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/fabiofurini/operations-research-lab/blob/main/notebooks/lab09_location.ipynb)
+
 Where should a charging station, a micro-hub, a health-care post be placed in order
 to be "close" to demand? It depends on what close means: **mean** distance
 (efficiency), **maximum** (equity) or **squared** (centroid). Three objectives,
@@ -133,6 +135,8 @@ a genuine efficiency-equity conflict.
 The complete script of the chapter — data, model, solution, sensitivity and figures —
 is [`python/lab09_location.py`](https://github.com/fabiofurini/operations-research-lab/blob/main/python/lab09_location.py)
 (reproducible with `python3 python/lab09_location.py` from the `python/` folder).
+
+The same code is also available as a notebook — [`notebooks/lab09_location.ipynb`](https://github.com/fabiofurini/operations-research-lab/blob/main/notebooks/lab09_location.ipynb) — which opens in Colab from the badge at the top of the page and runs in the browser, with nothing to install.
 
 ??? example "Show the full script — `lab09_location.py`"
 

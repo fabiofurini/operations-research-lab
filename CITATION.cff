@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this material, please cite it as below."
+title: "Operations Research Lab: continuous optimization models for Management Engineering"
+abstract: >-
+  Complete teaching material for the Operations Research Lab: online lecture
+  notes, Python/Gurobi code, data and case studies. Seventeen chapters covering
+  linear and nonlinear programming theory, solver usage, eight deterministic
+  models, decisions under uncertainty, and optimization for machine learning.
+  Every model uses continuous variables only and a single solver.
+authors:
+  - family-names: Furini
+    given-names: Fabio
+    email: fabio.furini@uniroma1.it
+    affiliation: "DIAG, Sapienza University of Rome"
+url: "https://fabiofurini.github.io/operations-research-lab/"
+repository-code: "https://github.com/fabiofurini/operations-research-lab"
+license:
+  - CC-BY-4.0
+  - MIT
+date-released: 2026-09-04
+keywords:
+  - operations research
+  - optimization
+  - linear programming
+  - nonlinear optimization
+  - Gurobi
+  - Python
+  - teaching material

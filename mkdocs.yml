@@ -4,6 +4,11 @@ site_description: >-
   lecture notes, Python/Gurobi code, data and case studies.
 site_author: Fabio Furini
 repo_url: https://github.com/fabiofurini/operations-research-lab
+copyright: >-
+  &copy; 2026 Fabio Furini — text, figures and data licensed under
+  <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>,
+  Python code licensed under
+  <a href="https://github.com/fabiofurini/operations-research-lab/blob/main/LICENSE-CODE">MIT</a>
 
 theme:
   name: material
@@ -86,6 +91,7 @@ nav:
       - Theory, nonlinear optimization: theory-nonlinear.md
       - Solver, linear models: solver-lp.md
       - Solver, nonlinear models: solver-nonlinear.md
+      - Notebooks in Colab: notebooks.md
   - Deterministic models:
       - deterministic-models.md
       - Production and inventory: production.md

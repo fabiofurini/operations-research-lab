@@ -153,6 +153,9 @@ python3 -m pip install gurobipy matplotlib pandas scipy   # scipy: statistical f
 python3 python/run_all.py             # regenerates data, results and figures
 ```
 
+Or **with nothing to install**: every chapter has a
+[notebook that opens in Colab](notebooks.md) and runs in the browser.
+
 In the [repository](https://github.com/fabiofurini/operations-research-lab)
 you will find all the **Python scripts** and the case study **data** in CSV format.
 

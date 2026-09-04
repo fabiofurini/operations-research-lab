@@ -2,6 +2,8 @@
 
 **Class:** convex QP · **Script:** `python/lab15_svm.py`
 
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/fabiofurini/operations-research-lab/blob/main/notebooks/lab15_svm.ipynb)
+
 The SVM connects convex optimization to machine learning: the classifier is obtained
 by solving a QP. Here **no ML libraries**: every model is a QP written and solved
 with Gurobi, in order to understand *what* a classifier optimizes. The labels
@@ -216,6 +218,8 @@ Tube eps = 8: 14 points out of 40 outside the tube -> only they determine the li
 The complete script of the chapter — data, model, solution, sensitivity and figures —
 is [`python/lab15_svm.py`](https://github.com/fabiofurini/operations-research-lab/blob/main/python/lab15_svm.py)
 (reproducible with `python3 python/lab15_svm.py` from the `python/` folder).
+
+The same code is also available as a notebook — [`notebooks/lab15_svm.ipynb`](https://github.com/fabiofurini/operations-research-lab/blob/main/notebooks/lab15_svm.ipynb) — which opens in Colab from the badge at the top of the page and runs in the browser, with nothing to install.
 
 ??? example "Show the full script — `lab15_svm.py`"
 

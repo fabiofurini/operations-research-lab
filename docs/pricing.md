@@ -2,6 +2,8 @@
 
 **Class:** concave / non-convex NLP · **Script:** `python/lab07_pricing.py`
 
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/fabiofurini/operations-research-lab/blob/main/notebooks/lab07_pricing.ipynb)
+
 Which price maximizes profit when demand decreases as the price grows? Here the price
 is a *variable*: demand becomes endogenous and the profit $p \cdot q$ introduces a
 bilinear term — the first encounter with non-convexity.
@@ -128,6 +130,8 @@ push demand towards the balcony. With substitute products prices must be decided
 The full script of the chapter — data, model, solution, sensitivity and figures —
 is [`python/lab07_pricing.py`](https://github.com/fabiofurini/operations-research-lab/blob/main/python/lab07_pricing.py)
 (reproducible with `python3 python/lab07_pricing.py` from the `python/` folder).
+
+The same code is also available as a notebook — [`notebooks/lab07_pricing.ipynb`](https://github.com/fabiofurini/operations-research-lab/blob/main/notebooks/lab07_pricing.ipynb) — which opens in Colab from the badge at the top of the page and runs in the browser, with nothing to install.
 
 ??? example "Show the full script — `lab07_pricing.py`"
 

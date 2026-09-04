@@ -2,6 +2,8 @@
 
 **Class:** convex NLP · **Script:** `python/lab08_budget.py`
 
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/fabiofurini/operations-research-lab/blob/main/notebooks/lab08_budget.ipynb)
+
 How should a campaign of 100.000 € be split among channels with diminishing
 marginal returns? Theory says something strong and verifiable: **at the optimum
 the marginal returns are equal to each other** — and this is exactly what the
@@ -122,6 +124,8 @@ funded as long as $\lambda$ exceeds the value of one euro invested elsewhere.
 The complete script of the chapter — data, model, solution, sensitivity and figures —
 is [`python/lab08_budget.py`](https://github.com/fabiofurini/operations-research-lab/blob/main/python/lab08_budget.py)
 (reproducible with `python3 python/lab08_budget.py` from the `python/` folder).
+
+The same code is also available as a notebook — [`notebooks/lab08_budget.ipynb`](https://github.com/fabiofurini/operations-research-lab/blob/main/notebooks/lab08_budget.ipynb) — which opens in Colab from the badge at the top of the page and runs in the browser, with nothing to install.
 
 ??? example "Show the full script — `lab08_budget.py`"
 
