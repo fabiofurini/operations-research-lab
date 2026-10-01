@@ -4,6 +4,10 @@ Eight chapters where every datum is known: you decide under certainty, and the
 value lies in interrogating the solution (how much is one more unit of a
 resource worth? where does the plan break?).
 
+Inside you will find LPs, QPs, convex NLPs and a non-convex NLP: **the modelling
+language changes, the workflow does not** --- build the model, solve it, read the
+duals, move the data and see what holds.
+
 <div class="grid cards" markdown>
 
 -   :material-factory: **Production and inventory**

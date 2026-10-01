@@ -85,6 +85,7 @@ extra_javascript:
 
 nav:
   - Home: index.md
+  - Syllabus: syllabus.md
   - Tools:
       - tools.md
       - Theory, linear programming: theory-lp.md

@@ -18,8 +18,9 @@ Every model can be run **right away in the browser**: each chapter has its own
 
 !!! tip "The right question"
     At the end of every lab session the question is not only *“what is the optimum?”*,
-    but *“which decision do we recommend and how robust is it?”*. All the models use
-    **only continuous variables**: duality, shadow prices and KKT conditions apply.
+    but *“which decision do we recommend and how robust is it?”*. All the decision
+    variables are **continuous**; depending on the class of the model we read the
+    solution through LP/QP duality, shadow prices or the KKT conditions.
 
 ## The four parts of the lab
 
@@ -63,106 +64,28 @@ Every model can be run **right away in the browser**: each chapter has its own
 
 </div>
 
-## Complete index
+## The lab at a glance
 
-**[Tools](tools.md)**
-
-1. [Theory: linear programming](theory-lp.md) and [nonlinear optimization](theory-nonlinear.md) — duality,
-   shadow prices, KKT, sensitivity protocol
-2. [Solver, linear models](solver-lp.md) and [nonlinear](solver-nonlinear.md) — building the model, running
-   it, retrieving the solution, interpreting the output
-
-**[Deterministic models](deterministic-models.md)**
-
-3. [Multi-period production and inventory](production.md) — LP/QP
-4. [Supply chain with congestion and CO₂](supplychain.md) — LP/NLP
-5. [The Markowitz portfolio](markowitz.md) — QP
-6. [Pricing and revenue management](pricing.md) — NLP
-7. [Advertising budget](budget.md) — convex NLP
-8. [Continuous location](location.md) — convex NLP
-9. [Electric vehicle charging](ev-charging.md) — LP/QP
-10. [Queues and service capacity](queues.md) — convex NLP
-
-**[Decisions under uncertainty](decisions-uncertainty.md)**
-
-11. [The Newsvendor and its variants](newsvendor.md) — stochastic LP
-12. [VaR and CVaR](var-cvar.md) — scenario-based LP
-13. [Arbitrage and pricing](arbitrage.md) — LP and duality that prices
-
-**[Optimization and machine learning](optimization-ml.md)**
-
-14. [Support Vector Machine](svm.md) — QP
-15. [Robust and quantile regression](regression.md) — LP
-
-**The course**
-
-16. [Organization of the lab](organization.md) — lab sessions, submissions,
-    assessment, mistakes to avoid
-
-## Notation and classes of models
-
-- **LP** (*Linear Programming*): linear objective and constraints;
-- **QP** (*Quadratic Programming*): quadratic objective, linear constraints;
-- **NLP** (*Nonlinear Programming*): general nonlinear objective or constraints.
-
-A problem is **convex** when every local minimum is also global: for LPs this is
-always true; for QPs and NLPs it depends on the functions.
-
-**Notation used throughout the course.** Scalars and indices in lowercase
-($x_{it}$, $\lambda$); the objects of the models (products, channels, assets,
-scenarios…) are **numbered** and the indices run over explicitly enumerated sets,
-$i \in \{1, 2, \dots, n\}$; integer counts ($n \in \mathbb{Z}_{\ge 1}$),
-rational data ($\mathbb{Q}$); vectors in lowercase bold ($\boldsymbol{x}$),
-matrices in uppercase bold ($\boldsymbol{Q}$). Dual variables $\pi_i$, reduced
-costs $\bar c_j$, slacks $\bar s_i$: the **bar** denotes the values of a feasible
-solution, the **tilde** those of an optimal one ($\tilde x_j$, $\tilde z$). In
-the models the wording is always "subject to", the variables are introduced before
-the formulation and the constraints defining them close the model.
+**13 application chapters · 4 chapters of tools · LP, QP and NLP · one Colab
+notebook per chapter · reproducible Python/Gurobi code.** The full list, chapter
+by chapter, is in the [syllabus](syllabus.md).
 
 ## Download as PDF
 
 - 📘 **[Full lecture notes](pdf/operations-research-lab-notes.pdf)** — 115 pages: models, worked examples, case studies, sensitivity analysis
 - 📊 **[Course slides](pdf/operations-research-lab-slides.pdf)** — 83 slides, the whole content of the notes in compact form
 
-## Installation and licence
+## Getting started
 
-```bash
-python3 -m pip install gurobipy
-```
-
-The pip package ships with a **demo licence** (up to 2000 variables and 2000 constraints):
-enough for every model in this lab. At start-up the line
-`Restricted license - for non-production use only` appears: this is normal.
-
-**Full academic licence (free of charge):**
-1. register at <https://portal.gurobi.com> with your institutional email (`@uniroma1.it`);
-2. request a *Named-User Academic License*;
-3. run the command `grbgetkey XXXXXXXX-...` shown by the portal (you need the university network or a VPN);
-4. the licence is saved in `~/gurobi.lic` and from that moment there are no size limits.
-
-Quick check:
-
-```python
-import gurobipy as gp
-print(gp.gurobi.version())        # e.g. (13, 0, 3)
-```
+Nothing to install: every chapter has its own
+[notebook that opens in Colab](notebooks.md) and runs in the browser. Those who
+prefer to work locally find the commands and the notes on the Gurobi licence on
+the same page.
 
 ---
 
-## Quick start
-
-```bash
-python3 -m pip install gurobipy matplotlib pandas scipy   # scipy: statistical functions only
-python3 python/run_all.py             # regenerates data, results and figures
-```
-
-Or **with nothing to install**: every chapter has a
-[notebook that opens in Colab](notebooks.md) and runs in the browser.
-
-In the [repository](https://github.com/fabiofurini/operations-research-lab)
-you will find all the **Python scripts** and the case study **data** in CSV format.
-
----
+By the same author: **[MIP Modelling](https://fabiofurini.github.io/mip-modelling/)** —
+the module on integer-variable models, with the same tools and the same style.
 
 Teaching material by **[Fabio Furini](https://sites.google.com/view/fabiofurini/home-page)** —
 [DIAG](https://www.diag.uniroma1.it/), Sapienza University of Rome.
