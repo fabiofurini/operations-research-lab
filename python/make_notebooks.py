@@ -105,6 +105,42 @@ keeps running, from the `python/` folder:
 ```bash
 python3 lab06_markowitz.py
 ```
+
+## Installation and licence
+
+Working locally needs only `gurobipy`:
+
+```bash
+python3 -m pip install gurobipy
+```
+
+The pip package ships with a **demo licence** (up to 2000 variables and 2000 constraints):
+enough for every model in this lab. At start-up the line
+`Restricted license - for non-production use only` appears: this is normal.
+
+**Full academic licence (free of charge):**
+
+1. register at <https://portal.gurobi.com> with your institutional email (`@uniroma1.it`);
+2. request a *Named-User Academic License*;
+3. run the command `grbgetkey XXXXXXXX-...` shown by the portal (you need the university network or a VPN);
+4. the licence is saved in `~/gurobi.lic` and from that moment there are no size limits.
+
+Quick check:
+
+```python
+import gurobipy as gp
+print(gp.gurobi.version())        # e.g. (13, 0, 3)
+```
+
+## Regenerating everything
+
+```bash
+python3 -m pip install gurobipy matplotlib pandas scipy   # scipy: statistical functions only
+python3 python/run_all.py             # regenerates data, results and figures
+```
+
+The [repository](https://github.com/fabiofurini/operations-research-lab)
+holds all the **Python scripts** and the case study **data** in CSV format.
 """
 
 
