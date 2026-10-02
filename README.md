@@ -18,7 +18,7 @@
 > researcher at IASI-CNR in Rome.
 > Personal website: <https://sites.google.com/view/fabiofurini/home-page>
 
-Continuous optimization models for Management Engineering — the course lecture
+Continuous optimization models — the course lecture
 notes in online form, with Python/Gurobi code, data and case studies.
 
 **📖 Online lecture notes: [fabiofurini.github.io/operations-research-lab](https://fabiofurini.github.io/operations-research-lab/)**

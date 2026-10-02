@@ -3,7 +3,7 @@
 Teaching material designed and developed by **[Fabio Furini](https://sites.google.com/view/fabiofurini/home-page)**, associate
 professor at [DIAG](https://www.diag.uniroma1.it/), Sapienza University of Rome.
 
-**Continuous optimization models for Management Engineering** — the course lecture
+**Continuous optimization models** — the course lecture
 notes in online form, with Python/Gurobi code, data and reproducible case
 studies.
 

@@ -1,6 +1,6 @@
 site_name: Operations Research Lab · Fabio Furini
 site_description: >-
-  Continuous optimization models for Management Engineering:
+  Continuous optimization models:
   lecture notes, Python/Gurobi code, data and case studies.
 site_author: Fabio Furini
 repo_url: https://github.com/fabiofurini/operations-research-lab
