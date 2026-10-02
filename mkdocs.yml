@@ -1,4 +1,5 @@
 site_name: Operations Research Lab · Fabio Furini
+site_url: https://fabiofurini.github.io/operations-research-lab/
 site_description: >-
   Continuous optimization models:
   lecture notes, Python/Gurobi code, data and case studies.
