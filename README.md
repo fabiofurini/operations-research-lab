@@ -102,6 +102,11 @@ The whole lab is also available in Italian:
 **[fabiofurini.github.io/laboratorio-ricerca-operativa](https://fabiofurini.github.io/laboratorio-ricerca-operativa/)**
 ([repository](https://github.com/fabiofurini/laboratorio-ricerca-operativa)).
 
+## Same series
+
+- [MIP Modelling](https://fabiofurini.github.io/mip-modelling/)
+- [Mathematical Analysis 1](https://fabiofurini.github.io/mathematical-analysis-1/)
+
 ---
 
 Teaching material by **[Fabio Furini](https://sites.google.com/view/fabiofurini/home-page)** — [DIAG](https://www.diag.uniroma1.it/), Sapienza University of Rome.

@@ -85,7 +85,9 @@ the same page.
 ---
 
 By the same author: **[MIP Modelling](https://fabiofurini.github.io/mip-modelling/)** —
-the module on integer-variable models, with the same tools and the same style.
+the module on integer-variable models, with the same tools and the same style —
+and **[Mathematical Analysis 1](https://fabiofurini.github.io/mathematical-analysis-1/)** — the analysis
+lecture notes, with interactive graphs.
 
 Teaching material by **[Fabio Furini](https://sites.google.com/view/fabiofurini/home-page)** —
 [DIAG](https://www.diag.uniroma1.it/), Sapienza University of Rome.
