@@ -62,6 +62,9 @@ extra:
     - icon: material/math-integral
       link: https://fabiofurini.github.io/mathematical-analysis-1/
       name: Mathematical Analysis 1
+    - icon: material/matrix
+      link: https://fabiofurini.github.io/linear-algebra/
+      name: Linear Algebra
   alternate:
     - name: English
       link: https://fabiofurini.github.io/operations-research-lab/
