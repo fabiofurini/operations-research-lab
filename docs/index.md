@@ -1,6 +1,6 @@
 # Operations Research Lab
 
-Teaching material designed and developed by **[Fabio Furini](https://sites.google.com/view/fabiofurini/home-page)**, associate
+Teaching material designed and developed by **[Fabio Furini](https://fabiofurini.github.io/)**, associate
 professor at [DIAG](https://www.diag.uniroma1.it/), Sapienza University of Rome.
 
 **Continuous optimization models** — the course lecture
@@ -73,7 +73,7 @@ by chapter, is in the [syllabus](syllabus.md).
 ## Download as PDF
 
 - 📘 **[Full lecture notes](pdf/operations-research-lab-notes.pdf)** — 115 pages: models, worked examples, case studies, sensitivity analysis
-- 📊 **[Course slides](pdf/operations-research-lab-slides.pdf)** — 83 slides, the whole content of the notes in compact form
+- 📊 **[Lecture slides](downloads.md)** — one deck per chapter of the notes, on the [downloads](downloads.md) page
 
 ## Getting started
 
@@ -89,5 +89,5 @@ the module on integer-variable models, with the same tools and the same style �
 and **[Mathematical Analysis 1](https://fabiofurini.github.io/mathematical-analysis-1/)** — the analysis
 lecture notes, with interactive graphs.
 
-Teaching material by **[Fabio Furini](https://sites.google.com/view/fabiofurini/home-page)** —
+Teaching material by **[Fabio Furini](https://fabiofurini.github.io/)** —
 [DIAG](https://www.diag.uniroma1.it/), Sapienza University of Rome.

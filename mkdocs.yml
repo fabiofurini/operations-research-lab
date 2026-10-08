@@ -48,7 +48,7 @@ plugins:
 extra:
   social:
     - icon: material/web
-      link: https://sites.google.com/view/fabiofurini/home-page
+      link: https://fabiofurini.github.io/
       name: Fabio Furini — personal website
     - icon: material/school
       link: https://www.diag.uniroma1.it/
@@ -97,6 +97,7 @@ extra_javascript:
 nav:
   - Home: index.md
   - Syllabus: syllabus.md
+  - Downloads: downloads.md
   - Tools:
       - tools.md
       - Theory, linear programming: theory-lp.md

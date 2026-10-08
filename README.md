@@ -1,9 +1,9 @@
 <h3 align="center">Teaching material by
-<a href="https://sites.google.com/view/fabiofurini/home-page">Fabio Furini</a></h3>
+<a href="https://fabiofurini.github.io/">Fabio Furini</a></h3>
 <p align="center">
   Associate professor of Operations Research ·
   <a href="https://www.diag.uniroma1.it/">DIAG</a>, Sapienza University of Rome ·
-  <a href="https://sites.google.com/view/fabiofurini/home-page">personal website</a>
+  <a href="https://fabiofurini.github.io/">personal website</a>
 </p>
 
 # Operations Research Lab
@@ -16,7 +16,7 @@
 > des Recherches* in France in 2017 and Italian National Scientific
 > Qualification for Full Professor in Operations Research in 2019. In 2020 CNR
 > researcher at IASI-CNR in Rome.
-> Personal website: <https://sites.google.com/view/fabiofurini/home-page>
+> Personal website: <https://fabiofurini.github.io/>
 
 Continuous optimization models — the course lecture
 notes in online form, with Python/Gurobi code, data and case studies.
@@ -109,5 +109,5 @@ The whole lab is also available in Italian:
 
 ---
 
-Teaching material by **[Fabio Furini](https://sites.google.com/view/fabiofurini/home-page)** — [DIAG](https://www.diag.uniroma1.it/), Sapienza University of Rome.
+Teaching material by **[Fabio Furini](https://fabiofurini.github.io/)** — [DIAG](https://www.diag.uniroma1.it/), Sapienza University of Rome.
 Course slides and exercise solutions are distributed in class.

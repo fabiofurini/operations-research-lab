@@ -245,7 +245,7 @@ def notebook(percorso: Path) -> dict:
             celle.append(cella_testo(f"## {t}"))
         celle.append(cella_codice(c))
     celle.append(cella_testo(CHIUSURA.format(
-        nome=nome, sito="https://sites.google.com/view/fabiofurini/home-page")))
+        nome=nome, sito="https://fabiofurini.github.io/")))
 
     return {"cells": celle,
             "metadata": {"colab": {"provenance": []},
