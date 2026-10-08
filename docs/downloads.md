@@ -50,9 +50,11 @@ The lecture slides, one deck per chapter of the notes (PDF).
 
     ---
 
+    - [Multi-period production and inventory](pdf/slides-04-production.pdf)
     - [Supply chain with congestion and sustainability](pdf/slides-05-supply-chain.pdf)
     - [The Markowitz portfolio](pdf/slides-06-markowitz.pdf)
     - [Pricing and revenue management](pdf/slides-07-pricing.pdf)
+    - [Advertising budget allocation](pdf/slides-08-budget.pdf)
     - [Continuous location of a service](pdf/slides-09-location.pdf)
     - [Smart charging of electric vehicles](pdf/slides-10-ev-charging.pdf)
     - [Service capacity and waiting times](pdf/slides-11-queues.pdf)
