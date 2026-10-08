@@ -106,6 +106,7 @@ The whole lab is also available in Italian:
 
 - [MIP Modelling](https://fabiofurini.github.io/mip-modelling/)
 - [Mathematical Analysis 1](https://fabiofurini.github.io/mathematical-analysis-1/)
+- [Linear Algebra](https://fabiofurini.github.io/linear-algebra/)
 
 ---
 
