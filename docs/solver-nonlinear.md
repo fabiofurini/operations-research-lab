@@ -1,5 +1,7 @@
 # Implementation: nonlinear models
 
+[:material-file-pdf-box: Lecture notes (PDF)](pdf/operations-research-lab-notes.pdf) · [:material-presentation: Chapter slides (PDF)](pdf/slides-03-python-gurobi.pdf)
+
 **A single solver: general NLPs are solved with Gurobi too** (from version 12
 on), with the same syntax and the same checklist as the linear models.
 Nonlinear functions as functional constraints on auxiliary variables — `addGenConstrLog`,

@@ -1,5 +1,7 @@
 # Pricing and revenue management
 
+[:material-file-pdf-box: Lecture notes (PDF)](pdf/operations-research-lab-notes.pdf) · [:material-presentation: Chapter slides (PDF)](pdf/slides-07-pricing.pdf)
+
 **Class:** concave / non-convex NLP · **Script:** `python/lab07_pricing.py`
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/fabiofurini/operations-research-lab/blob/main/notebooks/lab07_pricing.ipynb)

@@ -1,5 +1,7 @@
 # VaR and CVaR: measuring and optimizing risk
 
+[:material-file-pdf-box: Lecture notes (PDF)](pdf/operations-research-lab-notes.pdf) · [:material-presentation: Chapter slides (PDF)](pdf/slides-13-var-cvar.pdf)
+
 **Class:** scenario-based LP · **Script:** `python/lab13_var_cvar.py`
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/fabiofurini/operations-research-lab/blob/main/notebooks/lab13_var_cvar.ipynb)

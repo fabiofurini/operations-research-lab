@@ -1,5 +1,7 @@
 # Continuous location of a service
 
+[:material-file-pdf-box: Lecture notes (PDF)](pdf/operations-research-lab-notes.pdf) · [:material-presentation: Chapter slides (PDF)](pdf/slides-09-location.pdf)
+
 **Class:** convex NLP · **Script:** `python/lab09_location.py`
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/fabiofurini/operations-research-lab/blob/main/notebooks/lab09_location.ipynb)

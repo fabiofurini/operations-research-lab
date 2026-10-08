@@ -27,8 +27,8 @@ notes in online form, with Python/Gurobi code, data and case studies.
 
 ## Download as PDF
 
-- [Full lecture notes](https://fabiofurini.github.io/operations-research-lab/pdf/operations-research-lab-notes.pdf) (115 pages)
-- [Course slides](https://fabiofurini.github.io/operations-research-lab/pdf/operations-research-lab-slides.pdf) (83 slides)
+- [Full lecture notes](https://fabiofurini.github.io/operations-research-lab/pdf/operations-research-lab-notes.pdf) (114 pages)
+- [Lecture slides](https://fabiofurini.github.io/operations-research-lab/downloads/), one deck per chapter, on the downloads page
 
 ## Contents
 
@@ -93,7 +93,7 @@ the course; the free academic licence can be activated at
   so that reusing the scripts raises no ambiguity.
 
 To cite the material see [`CITATION.cff`](CITATION.cff): GitHub turns it into the
-*Cite this repository* entry. Course slides and exercise solutions are not
+*Cite this repository* entry. Exercise solutions are not
 published: they are distributed in class.
 
 ## Versione italiana
@@ -111,4 +111,4 @@ The whole lab is also available in Italian:
 ---
 
 Teaching material by **[Fabio Furini](https://fabiofurini.github.io/)** — [DIAG](https://www.diag.uniroma1.it/), Sapienza University of Rome.
-Course slides and exercise solutions are distributed in class.
+Exercise solutions are distributed in class.

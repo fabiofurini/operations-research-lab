@@ -1,5 +1,7 @@
 # Multi-period production and inventory
 
+[:material-file-pdf-box: Lecture notes (PDF)](pdf/operations-research-lab-notes.pdf) · [:material-presentation: Chapter slides (PDF)](pdf/slides-04-production.pdf)
+
 **Class:** LP / convex QP · **Script:** `python/lab04_production.py`
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/fabiofurini/operations-research-lab/blob/main/notebooks/lab04_production.ipynb)

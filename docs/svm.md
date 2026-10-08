@@ -1,5 +1,7 @@
 # Support Vector Machine: optimization for machine learning
 
+[:material-file-pdf-box: Lecture notes (PDF)](pdf/operations-research-lab-notes.pdf) · [:material-presentation: Chapter slides (PDF)](pdf/slides-15-svm.pdf)
+
 **Class:** convex QP · **Script:** `python/lab15_svm.py`
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/fabiofurini/operations-research-lab/blob/main/notebooks/lab15_svm.ipynb)

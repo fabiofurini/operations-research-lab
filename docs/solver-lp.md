@@ -1,5 +1,7 @@
 # Implementation: linear models
 
+[:material-file-pdf-box: Lecture notes (PDF)](pdf/operations-research-lab-notes.pdf) · [:material-presentation: Chapter slides (PDF)](pdf/slides-03-python-gurobi.pdf)
+
 How to build a linear model with `gurobipy`, how to run it, how to retrieve the
 solution and how to interpret the output. All the examples can be copied and
 pasted straight into a Python terminal. Nonlinear models are on the

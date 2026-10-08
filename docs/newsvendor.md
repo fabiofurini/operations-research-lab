@@ -1,5 +1,7 @@
 # The Newsvendor and its variants
 
+[:material-file-pdf-box: Lecture notes (PDF)](pdf/operations-research-lab-notes.pdf) · [:material-presentation: Chapter slides (PDF)](pdf/slides-12-newsvendor.pdf)
+
 **Class:** 1D convex / scenario-based stochastic LP · **Script:** `python/lab12_newsvendor.py`
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/fabiofurini/operations-research-lab/blob/main/notebooks/lab12_newsvendor.ipynb)

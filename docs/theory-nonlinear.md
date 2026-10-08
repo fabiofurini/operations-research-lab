@@ -1,5 +1,7 @@
 # Theory: nonlinear optimization
 
+[:material-file-pdf-box: Lecture notes (PDF)](pdf/operations-research-lab-notes.pdf) · [:material-presentation: Chapter slides (PDF)](pdf/slides-02-background.pdf)
+
 The second subchapter of the background: convexity, quadratic programming and
 KKT conditions — the nonlinear extension of the [LP theory](theory-lp.md).
 It closes with the sensitivity protocol used in every laboratory session.

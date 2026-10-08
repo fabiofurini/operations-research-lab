@@ -1,5 +1,7 @@
 # Smart charging of electric vehicles
 
+[:material-file-pdf-box: Lecture notes (PDF)](pdf/operations-research-lab-notes.pdf) · [:material-presentation: Chapter slides (PDF)](pdf/slides-10-ev-charging.pdf)
+
 **Class:** LP / convex QP · **Script:** `python/lab10_ev_charging.py`
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/fabiofurini/operations-research-lab/blob/main/notebooks/lab10_ev_charging.ipynb)

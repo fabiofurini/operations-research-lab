@@ -1,5 +1,7 @@
 # Supply chain with congestion and sustainability
 
+[:material-file-pdf-box: Lecture notes (PDF)](pdf/operations-research-lab-notes.pdf) · [:material-presentation: Chapter slides (PDF)](pdf/slides-05-supply-chain.pdf)
+
 **Class:** LP / convex NLP · **Script:** `python/lab05_supplychain.py`
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/fabiofurini/operations-research-lab/blob/main/notebooks/lab05_supplychain.ipynb)

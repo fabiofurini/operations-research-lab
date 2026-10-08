@@ -1,5 +1,7 @@
 # Service capacity and waiting times
 
+[:material-file-pdf-box: Lecture notes (PDF)](pdf/operations-research-lab-notes.pdf) · [:material-presentation: Chapter slides (PDF)](pdf/slides-11-queues.pdf)
+
 **Class:** convex NLP (M/M/1 queue) · **Script:** `python/lab11_queues.py`
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/fabiofurini/operations-research-lab/blob/main/notebooks/lab11_queues.ipynb)

@@ -1,5 +1,7 @@
 # Theory: linear programming
 
+[:material-file-pdf-box: Lecture notes (PDF)](pdf/operations-research-lab-notes.pdf) · [:material-presentation: Chapter slides (PDF)](pdf/slides-02-background.pdf)
+
 The first subchapter of the background: duality, optimality conditions and
 sensitivity analysis of LPs. The nonlinear extension (convexity, QP, KKT) is in
 the [companion page](theory-nonlinear.md).
