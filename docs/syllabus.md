@@ -35,8 +35,8 @@ covered. Every chapter has its own page, its own Python script and its own
 
 **The course**
 
-16. [Organization of the lab](organization.md) — lab sessions, submissions,
-    assessment, mistakes to avoid
+16. [Organization of the lab](organization.md) — lab sessions and mistakes
+    to avoid
 
 ---
 

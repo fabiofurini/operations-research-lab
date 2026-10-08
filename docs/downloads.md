@@ -43,6 +43,7 @@ The lecture slides, one deck per chapter of the notes (PDF).
     ---
 
     - [Introduction to the laboratory](pdf/slides-01-introduction.pdf)
+    - [Theory background](pdf/slides-02-background.pdf)
     - [The solver: building, solving, interpreting](pdf/slides-03-python-gurobi.pdf)
 
 -   :material-presentation: **Deterministic models**
@@ -50,6 +51,7 @@ The lecture slides, one deck per chapter of the notes (PDF).
     ---
 
     - [Supply chain with congestion and sustainability](pdf/slides-05-supply-chain.pdf)
+    - [The Markowitz portfolio](pdf/slides-06-markowitz.pdf)
     - [Pricing and revenue management](pdf/slides-07-pricing.pdf)
     - [Continuous location of a service](pdf/slides-09-location.pdf)
     - [Smart charging of electric vehicles](pdf/slides-10-ev-charging.pdf)
@@ -59,13 +61,16 @@ The lecture slides, one deck per chapter of the notes (PDF).
 
     ---
 
+    - [The Newsvendor and its variants](pdf/slides-12-newsvendor.pdf)
     - [VaR and CVaR](pdf/slides-13-var-cvar.pdf)
+    - [Arbitrage and pricing](pdf/slides-14-arbitrage.pdf)
 
 -   :material-presentation: **Optimization and machine learning**
 
     ---
 
     - [Support Vector Machine](pdf/slides-15-svm.pdf)
+    - [Robust and quantile regression](pdf/slides-16-regression.pdf)
 
 </div>
 

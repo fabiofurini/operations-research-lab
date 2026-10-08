@@ -9,32 +9,6 @@
 | **Lab 3** | Pricing *or* budget | model nonlinear functions; study concavity; check the KKT conditions numerically |
 | **Lab 4** | Project of your choice | supply chain, EV charging, location, queues, Newsvendor, CVaR or SVM; managerial presentation |
 
-## Structure of the deliverable (report, max 8 pages)
-
-1. **Problem and assumptions** — context and simplifications stated explicitly;
-2. **Model** — data, variables, constraints and objective, each of them explained;
-3. **Data** — origin, units of measurement, generation;
-4. **Results** — optimal value, decisions, active constraints;
-5. **Sensitivity** — the complete protocol in six steps;
-6. **Managerial recommendation** — at most ten lines, without formulas.
-
-## Assessment criteria
-
-| Dimension | Weight |
-|---|---|
-| Correctness of the formulation | 30% |
-| Implementation and numerical verification | 25% |
-| Sensitivity analysis | 25% |
-| Interpretation and communication | 20% |
-
-## Typical discussion questions
-
-- Which resource is it best to increase first, and how much can be paid for it?
-- What is the cost of a more ambitious service promise?
-- Does the solution remain credible if the data change by 5%?
-- Which point of the frontier would you recommend to a decision maker, and why?
-- What does the model NOT say?
-
 ## The most common mistakes
 
 1. Reading `.X` or `.Pi` without checking `m.Status`.
