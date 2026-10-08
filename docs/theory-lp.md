@@ -77,9 +77,9 @@ coincide).
     $$
     \begin{array}{r r@{\;}c@{\;}r c r l}
     \max & 30\,x_1 & + & 50\,x_2 & & & \\
-    \text{subject to} & x_1 & + & 3\,x_2 & \le & 90, & \\
-     & 2\,x_1 & + & x_2 & \le & 80, & \\
-     & x_1, & & x_2 & \ge & 0. &
+    \text{subject to} & x_1 & + & 3\,x_2 & \le & 90 & \\
+     & 2\,x_1 & + & x_2 & \le & 80 & \\
+     & x_1, & & x_2 & \ge & 0 &
     \end{array}
     $$
 
@@ -91,9 +91,9 @@ coincide).
     $$
     \begin{array}{r r@{\;}c@{\;}r c r l}
     \min & 90\,\pi_1 & + & 80\,\pi_2 & & & \\
-    \text{subject to} & \pi_1 & + & 2\,\pi_2 & \ge & 30, & \\
-     & 3\,\pi_1 & + & \pi_2 & \ge & 50, & \\
-     & \pi_1, & & \pi_2 & \ge & 0. &
+    \text{subject to} & \pi_1 & + & 2\,\pi_2 & \ge & 30 & \\
+     & 3\,\pi_1 & + & \pi_2 & \ge & 50 & \\
+     & \pi_1, & & \pi_2 & \ge & 0 &
     \end{array}
     $$
 
@@ -104,12 +104,12 @@ coincide).
     $$
     \begin{array}{r r@{\;}c@{\;}r@{\;}c@{\;}r c r}
     \min & 5\,x_1 & + & 8\,x_2 & - & 9\,x_3 & & \\
-    \text{subject to} & x_1 & + & x_2 & & & \ge & 30, \\
-     & x_1 & + & x_2 & - & x_3 & = & 100, \\
-     & x_1 & - & 2\,x_2 & & & \le & -20, \\
-     & x_1 & & & & & \ge & 0, \\
+    \text{subject to} & x_1 & + & x_2 & & & \ge & 30 \\
+     & x_1 & + & x_2 & - & x_3 & = & 100 \\
+     & x_1 & - & 2\,x_2 & & & \le & -20 \\
+     & x_1 & & & & & \ge & 0 \\
      & & & x_2 & & & \gtreqless & 0, \\
-     & & & & & x_3 & \le & 0.
+     & & & & & x_3 & \le & 0 
     \end{array}
     $$
 
@@ -122,12 +122,12 @@ coincide).
     $$
     \begin{array}{r r@{\;}c@{\;}r@{\;}c@{\;}r c r}
     \max & 30\,\pi_1 & + & 100\,\pi_2 & - & 20\,\pi_3 & & \\
-    \text{subject to} & \pi_1 & + & \pi_2 & + & \pi_3 & \le & 5, \\
-     & \pi_1 & + & \pi_2 & - & 2\,\pi_3 & = & 8, \\
-     & & - & \pi_2 & & & \ge & -9, \\
-     & \pi_1 & & & & & \ge & 0, \\
+    \text{subject to} & \pi_1 & + & \pi_2 & + & \pi_3 & \le & 5 \\
+     & \pi_1 & + & \pi_2 & - & 2\,\pi_3 & = & 8 \\
+     & & - & \pi_2 & & & \ge & -9 \\
+     & \pi_1 & & & & & \ge & 0 \\
      & & & \pi_2 & & & \gtreqless & 0, \\
-     & & & & & \pi_3 & \le & 0.
+     & & & & & \pi_3 & \le & 0 
     \end{array}
     $$
 
