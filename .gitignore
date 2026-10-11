@@ -9,9 +9,6 @@
 *.nav
 *.snm
 *.vrb
-notes/main.pdf
-solutions/solutions.pdf
-slides/slides_lab.pdf
 # Python
 __pycache__/
 *.pyc
@@ -20,10 +17,13 @@ site/
 # misc
 .DS_Store
 
-# internal material, not published
-notes/
+# internal material, not published (common module structure)
+note/
+volumes/
 slides/
-solutions/
+*.tex
+build/
+*conflicted copy*
 STYLE_AND_FORMAT.md
 
 # the PDFs published on the site are versioned

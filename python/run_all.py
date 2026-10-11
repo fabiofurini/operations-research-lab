@@ -1,8 +1,8 @@
 """Runs all the laboratory scripts in sequence.
 
-Regenerates: data (data/*.csv), data for the pgfplots figures
-(notes/figure/dat/*.csv), TikZ diagrams (notes/figure/*.tex), matplotlib
-previews (notes/figure/*.pdf) and the chapter notebooks (notebooks/*.ipynb).
+Regenerates: data (data/*.csv) and, in FIG = volumes/lecture_notes/lecture_notes_1_laboratory/figure/,
+the data for the pgfplots figures (FIG/dat/*.csv), TikZ diagrams (FIG/*.tex), matplotlib
+previews (FIG/*.pdf); then the chapter notebooks (notebooks/*.ipynb).
 
 Usage:  python3 run_all.py
 """

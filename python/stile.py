@@ -1,7 +1,7 @@
 """Shared plotting style and helpers for the laboratory scripts.
 
 Every script imports from here: palette consistent with the lecture notes,
-figures saved into notes/figure/, data saved into data/.
+figures saved into volumes/lecture_notes/lecture_notes_1_laboratory/figure/, data saved into data/.
 """
 import os
 import sys
@@ -28,7 +28,7 @@ if not NOTEBOOK:
 import matplotlib.pyplot as plt
 
 BASE = Path(__file__).resolve().parent.parent
-DIR_FIGURE = BASE / "notes" / "figure"
+DIR_FIGURE = BASE / "volumes" / "lecture_notes" / "lecture_notes_1_laboratory" / "figure"
 DIR_DAT = DIR_FIGURE / "dat"
 DIR_DATI = BASE / "data"
 DIR_IMG = BASE / "docs" / "img"
@@ -97,7 +97,7 @@ def salva_dati(df, nome: str) -> None:
 
 
 def salva_dat(df, nome: str) -> None:
-    """Save a pgfplots-ready CSV into notes/figure/dat/<name>.csv.
+    """Save a pgfplots-ready CSV into volumes/lecture_notes/lecture_notes_1_laboratory/figure/dat/<name>.csv.
 
     Only the printed lecture notes need it: in a notebook it does nothing.
     """
@@ -111,7 +111,7 @@ def salva_dat(df, nome: str) -> None:
 
 
 def salva_tikz(codice: str, nome: str) -> None:
-    """Save generated TikZ code into notes/figure/<name>.tex.
+    """Save generated TikZ code into volumes/lecture_notes/lecture_notes_1_laboratory/figure/<name>.tex.
 
     Only the printed lecture notes need it: in a notebook it does nothing.
     """

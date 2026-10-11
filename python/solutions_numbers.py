@@ -1,6 +1,6 @@
 """Supporting computations for the booklet of exercise solutions.
 
-Each section reprints the numbers quoted in soluzioni/soluzioni.tex, so that every
+Each section reprints the numbers quoted in volumes/solutions/solutions_1_laboratory/solutions.tex, so that every
 value of the booklet is reproducible with: python3 solutions_numbers.py
 """
 import numpy as np
