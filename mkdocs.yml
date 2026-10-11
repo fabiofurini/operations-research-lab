@@ -65,6 +65,12 @@ extra:
     - icon: material/matrix
       link: https://fabiofurini.github.io/linear-algebra/
       name: Linear Algebra
+    - icon: material/vector-triangle
+      link: https://fabiofurini.github.io/linear-programming/
+      name: Linear Programming
+    - icon: material/chart-bell-curve
+      link: https://fabiofurini.github.io/convex-optimization/
+      name: Convex Optimization
   alternate:
     - name: English
       link: https://fabiofurini.github.io/operations-research-lab/
