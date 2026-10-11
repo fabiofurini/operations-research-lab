@@ -90,7 +90,8 @@ By the same author:
 - **[Mathematical Analysis 1](https://fabiofurini.github.io/mathematical-analysis-1/)** — the analysis lecture notes, with interactive graphs;
 - **[Linear Algebra](https://fabiofurini.github.io/linear-algebra/)** — the preparatory course, with the step-by-step computation lab;
 - **[Linear Programming](https://fabiofurini.github.io/linear-programming/)** — linear programming problems, the simplex method, duality and advanced methods, with a catalogue of problems;
-- **[Convex Optimization](https://fabiofurini.github.io/convex-optimization/)** — convex sets and functions, optimization problems, with interactive graphs.
+- **[Convex Optimization](https://fabiofurini.github.io/convex-optimization/)** — convex sets and functions, optimization problems, with interactive graphs;
+- **[Algorithms](https://fabiofurini.github.io/algorithms/)** — number representation, pseudo-code, C++, Python and Java, sorting and searching, asymptotic notation, analysis and recursive algorithms, with interactive graphs.
 
 Teaching material by **[Fabio Furini](https://fabiofurini.github.io/)** —
 [DIAG](https://www.diag.uniroma1.it/), Sapienza University of Rome.

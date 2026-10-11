@@ -71,6 +71,9 @@ extra:
     - icon: material/chart-bell-curve
       link: https://fabiofurini.github.io/convex-optimization/
       name: Convex Optimization
+    - icon: material/code-braces
+      link: https://fabiofurini.github.io/algorithms/
+      name: Algorithms
   alternate:
     - name: English
       link: https://fabiofurini.github.io/operations-research-lab/
