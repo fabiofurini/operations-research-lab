@@ -1,6 +1,6 @@
-"""Chapter 16 — Robust and quantile regression (LP).
+"""Chapter 17 — Robust and quantile regression (LP).
 
-Case study: the bakery of chapter 12. Sixty days of history (demand,
+Case study: the bakery of chapter 13. Sixty days of history (demand,
 temperature, price, weekend) plus five transport-strike days on which demand
 collapses.
 
@@ -19,7 +19,7 @@ from gurobipy import GRB
 from stile import (ARANCIO, BLU, GRIGIO, ROSSO, TEAL, VERDE, intestazione, plt,
                    salva_dat, salva_dati, salva_figura)
 
-TAU_NV = 9 / 13                                # critical fractile of chapter 12
+TAU_NV = 9 / 13                                # critical fractile of chapter 13
 
 
 # ----------------------------------------------------------------------
@@ -84,7 +84,7 @@ y7 = np.array([88.0, 96.0, 104.0, 112.0, 120.0, 132.0, 148.0])
 X0 = np.zeros((len(y7), 0))
 m0, _, b0, pi0, _ = quantile_regression(X0, y7, tau=TAU_NV)
 print(f"Seven days: {y7.astype(int)}")
-print(f"tau = alpha* = 9/13 = {TAU_NV:.4f}  (bakery of chapter 12: cu=9, co=4)")
+print(f"tau = alpha* = 9/13 = {TAU_NV:.4f}  (bakery of chapter 13: cu=9, co=4)")
 print(f"Optimal intercept b = {b0:.4f}  -> the 5th ordered value, the 69.23% quantile")
 print(f"Optimal value = {m0.ObjVal:.4f} = 680/13")
 print(f"Duals pi = {np.round(pi0, 4)}  (bounds: -(1-tau) = {-(1 - TAU_NV):.4f}, "
@@ -217,7 +217,7 @@ print(f"  median predicted demand        {pred_med:6.1f} pieces")
 print(f"  predicted {TAU_NV:.4f} quantile     {pred_nv:6.1f} pieces  <- quantity to bake")
 print(f"  safety stock                   {pred_nv - pred_med:6.1f} pieces")
 print(f"  {TAU_NV:.4f} quantile with no features {q_uncond:6.1f} pieces  "
-      f"(chapter 12: same rule, no features)")
+      f"(chapter 13: same rule, no features)")
 
 # ----------------------------------------------------------------------
 # 6. FEATURE SELECTION WITH A BUDGET ON THE COEFFICIENTS
@@ -253,7 +253,7 @@ for t in grid_t:
             entries[name] = t
 curve = pd.DataFrame(curve)
 salva_dati(curve, "regressione_budget")
-salva_dat(curve[["budget", "scarto_medio", "prezzo_ombra"]], "cap16_budget")
+salva_dat(curve[["budget", "scarto_medio", "prezzo_ombra"]], "cap17_budget")
 
 print(f"\nOrder of entry (coefficient above {THRESHOLD:.0f} pieces per standard "
       f"deviation):")
@@ -279,7 +279,7 @@ for t in (5.0, 10.0, 20.0, 30.0, 45.0):
 points = pd.DataFrame({"temperatura": temperature, "domanda": demand,
                        "sciopero": outlier.astype(int),
                        "appoggio": support.astype(int)})
-salva_dat(points, "cap16_panetteria")
+salva_dat(points, "cap17_panetteria")
 
 fig, ax = plt.subplots()
 ax.scatter(temperature[normal], demand[normal], s=18, color=TEAL,
@@ -296,14 +296,14 @@ ax.set_xlabel("maximum temperature (degrees)")
 ax.set_ylabel("demand (pieces)")
 ax.set_title("Five strike days move least squares, not the LP")
 ax.legend(loc="upper right", fontsize=8)
-salva_figura(fig, "cap16_regressione_robusta")
+salva_figura(fig, "cap17_regressione_robusta")
 
 lines = []
 for tau in (0.10, 0.50, TAU_NV):
     _, w_t, b_t, _, _ = quantile_regression(Xt[clean], demand[clean], tau=tau)
     lines.append({"tau": tau, "intercetta": b_t, "pendenza": w_t[0]})
 lines = pd.DataFrame(lines)
-salva_dat(lines, "cap16_rette_quantili")
+salva_dat(lines, "cap17_rette_quantili")
 
 fig, ax = plt.subplots()
 ax.scatter(temperature[clean], demand[clean], s=16, color=GRIGIO, alpha=0.7,
@@ -318,7 +318,7 @@ ax.set_xlabel("maximum temperature (degrees)")
 ax.set_ylabel("demand (pieces)")
 ax.set_title("One line per quantile: the fan of demand")
 ax.legend(loc="upper right", fontsize=8)
-salva_figura(fig, "cap16_quantili")
+salva_figura(fig, "cap17_quantili")
 
 fig, ax = plt.subplots()
 ax.plot(curve["budget"], curve["scarto_medio"], color=TEAL, lw=2)
@@ -330,6 +330,6 @@ for name, t in sorted(entries.items(), key=lambda kv: kv[1]):
 ax.set_xlabel("budget on the coefficients")
 ax.set_ylabel("mean absolute deviation (pieces)")
 ax.set_title("The price of complexity: error against budget")
-salva_figura(fig, "cap16_budget")
+salva_figura(fig, "cap17_budget")
 
-print("\nDone: chapter 16 (robust and quantile regression).")
+print("\nDone: chapter 17 (robust and quantile regression).")

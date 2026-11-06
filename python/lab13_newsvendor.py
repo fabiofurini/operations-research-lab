@@ -1,4 +1,4 @@
-"""Chapter 12 — The Newsvendor and its variants (scenario-based stochastic LP).
+"""Chapter 13 — The Newsvendor and its variants (scenario-based stochastic LP).
 
 Case study: a bakery deciding how many artisan panettoni to produce.
 Price p = 15 €, cost c = 6 €, salvage v = 2 € -> Cu = 9, Co = 4.
@@ -50,7 +50,7 @@ print(f"Expected cost at q*: {costo_atteso(q_star):.2f} €  |  at q = mean: "
       f"{costo_atteso(mu_d):.2f} €")
 
 qq = np.linspace(50, 160, 400)
-salva_dat(pd.DataFrame({"q": qq, "cost": [costo_atteso(q) for q in qq]}), "cap12_costo")
+salva_dat(pd.DataFrame({"q": qq, "cost": [costo_atteso(q) for q in qq]}), "cap13_costo")
 
 # ----------------------------------------------------------------------
 # 2. SCENARIO LP
@@ -112,7 +112,7 @@ for Sn in [10, 30, 100, 300, 1000, 3000]:
     righe.append((Sn, np.mean(stime), np.std(stime)))
     print(f"  S = {Sn:5d}: mean q {np.mean(stime):7.2f}, std dev across replications {np.std(stime):5.2f}")
 stab = pd.DataFrame(righe, columns=["S", "q_mean", "q_std"])
-salva_dat(stab, "cap12_stabilita")
+salva_dat(stab, "cap13_stabilita")
 
 # ----------------------------------------------------------------------
 # 4. SERVICE CONSTRAINTS
@@ -145,7 +145,7 @@ for lam in [0, 0.25, 0.5, 0.75, 1.0]:
     print(f"  lambda = {lam:4.2f}: q = {q_l:7.2f}, mean cost = {cm:6.2f}, "
           f"CVaR90 = {cvar_l:6.2f}")
 front = pd.DataFrame(front, columns=["lam", "q", "mean_cost", "cvar"])
-salva_dat(front, "cap12_frontiera_cvar")
+salva_dat(front, "cap13_frontiera_cvar")
 print("Increasing lambda means ordering more: it costs on average, it protects in the worst scenarios.")
 
 # ----------------------------------------------------------------------
@@ -201,7 +201,7 @@ ax2.set_xscale("log")
 ax2.set_xlabel("number of scenarios S"); ax2.set_ylabel("optimal q")
 ax2.set_title("Stability of the scenario solution")
 ax2.legend(fontsize=8)
-salva_figura(fig, "cap12_quantile_stabilita")
+salva_figura(fig, "cap13_quantile_stabilita")
 
 fig, ax = plt.subplots()
 ax.plot(front["cvar"], front["mean_cost"], "-o", color=TEAL)
@@ -210,6 +210,6 @@ for _, r in front.iterrows():
                 fontsize=8)
 ax.set_xlabel("CVaR$_{0.90}$ of the cost (€)"); ax.set_ylabel("mean cost (€)")
 ax.set_title("Mean cost - tail risk frontier")
-salva_figura(fig, "cap12_frontiera")
+salva_figura(fig, "cap13_frontiera")
 
-print("\nDone: chapter 12.")
+print("\nDone: chapter 13.")

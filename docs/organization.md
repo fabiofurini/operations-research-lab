@@ -7,7 +7,7 @@
 | **Lab 1** | Production and inventory | formulate a multi-period LP; read duals, slacks and ranges; verify a shadow price by perturbation |
 | **Lab 2** | Markowitz | build a convex QP; plot a frontier; discuss the fragility of the estimates |
 | **Lab 3** | Pricing *or* budget | model nonlinear functions; study concavity; check the KKT conditions numerically |
-| **Lab 4** | Project of your choice | supply chain, EV charging, location, queues, Newsvendor, CVaR or SVM; managerial presentation |
+| **Lab 4** | Project of your choice | supply chain, EV charging, location, queues, DEA, Newsvendor, CVaR or SVM; managerial presentation |
 
 ## The most common mistakes
 

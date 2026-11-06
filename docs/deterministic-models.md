@@ -1,6 +1,6 @@
 # Deterministic models
 
-Eight chapters where every datum is known: you decide under certainty, and the
+Nine chapters where every datum is known: you decide under certainty, and the
 value lies in interrogating the solution (how much is one more unit of a
 resource worth? where does the plan break?).
 
@@ -81,5 +81,14 @@ duals, move the data and see what holds.
     robustness to uncertain demand.
 
     [:octicons-arrow-right-24: Convex NLP](queues.md)
+
+-   :material-bank: **Data Envelopment Analysis**
+
+    ---
+
+    The relative efficiency of twelve branches with one LP per branch: the
+    dual gives peers and targets, the CCR/BCC comparison the scale inefficiency.
+
+    [:octicons-arrow-right-24: LP](dea.md)
 
 </div>

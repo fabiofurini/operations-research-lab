@@ -1,4 +1,4 @@
-"""Chapter 15 — Support Vector Machine as a convex QP (no sklearn: everything in Gurobi).
+"""Chapter 16 — Support Vector Machine as a convex QP (no sklearn: everything in Gurobi).
 
 Case study: credit risk. 90 customers described by two standardised indicators:
 x1 = balance-sheet strength, x2 = punctuality in payments.
@@ -101,11 +101,11 @@ print(f"Dual value = {md.ObjVal:.4f} (equal to the primal one by strong duality)
 
 sv = alpha > 1e-5
 salva_dat(pd.DataFrame({"x1": X[:, 0], "x2": X[:, 1], "y": y,
-                        "alpha": alpha, "sv": sv.astype(int)}), "cap14_punti")
+                        "alpha": alpha, "sv": sv.astype(int)}), "cap15_punti")
 salva_dat(pd.DataFrame({"C": [0.05, 1.0, 20.0],
                         "w1": [risultati[C][0][0] for C in [0.05, 1.0, 20.0]],
                         "w2": [risultati[C][0][1] for C in [0.05, 1.0, 20.0]],
-                        "b": [risultati[C][1] for C in [0.05, 1.0, 20.0]]}), "cap14_rette")
+                        "b": [risultati[C][1] for C in [0.05, 1.0, 20.0]]}), "cap15_rette")
 
 # ----------------------------------------------------------------------
 # 4. RBF KERNEL
@@ -121,7 +121,7 @@ X2 = np.vstack([raggi, corona])
 y2 = np.array([1.0] * n2a + [-1.0] * n2b)
 n2 = len(y2)
 salva_dati(pd.DataFrame({"x1": X2[:, 0], "x2": X2[:, 1], "y": y2}), "svm_corona")
-salva_dat(pd.DataFrame({"x1": X2[:, 0], "x2": X2[:, 1], "y": y2}), "cap14_corona")
+salva_dat(pd.DataFrame({"x1": X2[:, 0], "x2": X2[:, 1], "y": y2}), "cap15_corona")
 
 
 def svm_rbf(gamma, C=5.0):
@@ -169,7 +169,7 @@ for gamma in [0.1, 0.7, 5.0]:
         segmenti.append((np.nan, np.nan))       # line separator for pgfplots
     plt.close()
     salva_dat(pd.DataFrame(segmenti, columns=["x", "y"]),
-              f"cap14_rbf_g{str(gamma).replace('.', '_')}")
+              f"cap15_rbf_g{str(gamma).replace('.', '_')}")
 
 # ----------------------------------------------------------------------
 # 5. IMBALANCED CLASSES: asymmetric costs
@@ -225,8 +225,8 @@ print(f"SVR line: demand = {w_s.X:.2f} · price + {b_s.X:.2f} (true: -11 p + 220
 print(f"Epsilon tube = {eps_svr}: {fuori} points outside the tube out of {np_srv} "
       f"(only these determine the line)")
 salva_dat(pd.DataFrame({"price": prezzi, "demand": domanda_v,
-                        "estimate": w_s.X * prezzi + b_s.X}), "cap14_svr")
-salva_dat(pd.DataFrame({"w": [w_s.X], "b": [b_s.X], "eps": [eps_svr]}), "cap14_svr_retta")
+                        "estimate": w_s.X * prezzi + b_s.X}), "cap15_svr")
+salva_dat(pd.DataFrame({"w": [w_s.X], "b": [b_s.X], "eps": [eps_svr]}), "cap15_svr_retta")
 
 # ----------------------------------------------------------------------
 # 7. FIGURES (matplotlib preview)
@@ -255,7 +255,7 @@ for gamma, colore in zip([0.1, 0.7, 5.0], ["k", VERDE, ARANCIO]):
 ax2.set_xlabel("$x_1$"); ax2.set_ylabel("$x_2$")
 ax2.set_title("RBF kernel: non-linear boundaries from a convex QP")
 ax2.legend(fontsize=7, loc="upper right")
-salva_figura(fig, "cap14_svm")
+salva_figura(fig, "cap15_svm")
 
 fig, ax = plt.subplots()
 ordina = np.argsort(prezzi)
@@ -267,6 +267,6 @@ ax.fill_between(prezzi[ordina], (w_s.X * prezzi + b_s.X)[ordina] - eps_svr,
 ax.set_xlabel("price (€)"); ax.set_ylabel("demand (units)")
 ax.set_title("SVR: only the points outside the tube pay a penalty")
 ax.legend(fontsize=8)
-salva_figura(fig, "cap14_svr")
+salva_figura(fig, "cap15_svr")
 
-print("\nDone: chapter 14.")
+print("\nDone: chapter 16.")

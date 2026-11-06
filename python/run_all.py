@@ -20,11 +20,12 @@ SCRIPT = [
     "lab09_location.py",
     "lab10_ev_charging.py",
     "lab11_queues.py",
-    "lab12_newsvendor.py",
-    "lab13_var_cvar.py",
-    "lab14_arbitrage.py",
-    "lab15_svm.py",
-    "lab16_regression.py",
+    "lab12_dea.py",
+    "lab13_newsvendor.py",
+    "lab14_var_cvar.py",
+    "lab15_arbitrage.py",
+    "lab16_svm.py",
+    "lab17_regression.py",
 ]
 
 base = Path(__file__).resolve().parent

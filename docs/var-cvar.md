@@ -1,10 +1,10 @@
 # VaR and CVaR: measuring and optimizing risk
 
-[:material-file-pdf-box: Lecture notes (PDF)](pdf/operations-research-lab-notes.pdf) · [:material-presentation: Chapter slides (PDF)](pdf/slides-13-var-cvar.pdf)
+[:material-file-pdf-box: Lecture notes (PDF)](pdf/operations-research-lab-notes.pdf) · [:material-presentation: Chapter slides (PDF)](pdf/slides-14-var-cvar.pdf)
 
-**Class:** scenario-based LP · **Script:** `python/lab13_var_cvar.py`
+**Class:** scenario-based LP · **Script:** `python/lab14_var_cvar.py`
 
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/fabiofurini/operations-research-lab/blob/main/notebooks/lab13_var_cvar.ipynb)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/fabiofurini/operations-research-lab/blob/main/notebooks/lab14_var_cvar.ipynb)
 
 Optimizing an average value can hide rare and very large losses. The **VaR**
 (*Value-at-Risk*) answers "what is a high loss threshold?"; the **CVaR**
@@ -103,7 +103,7 @@ Compositions: mean-CVaR: ENE 9.9 FIN 1.9 TEC 10.5 SAN 8.6 UTL 46.5 MAT 22.5
               Markowitz: ENE 18.4 FIN 6.4 TEC 6.5 SAN 13.6 UTL 40.4 MAT 14.6
 ```
 
-![Loss distribution and frontier](img/cap13_perdite_frontiera.png)
+![Loss distribution and frontier](img/cap14_perdite_frontiera.png)
 
 For the same required return and the same average loss, the mean-CVaR portfolio cuts
 the tail: CVaR₉₀ of 4.89% against 5.31% for Markowitz (−8%). It does so by reducing
@@ -192,15 +192,15 @@ grows, capacity migrates towards the reliable supplier: **+79 € of average cos
 ## Code
 
 The complete script of the chapter — data, model, solution, sensitivity and figures —
-is [`python/lab13_var_cvar.py`](https://github.com/fabiofurini/operations-research-lab/blob/main/python/lab13_var_cvar.py)
-(reproducible with `python3 python/lab13_var_cvar.py` from the `python/` folder).
+is [`python/lab14_var_cvar.py`](https://github.com/fabiofurini/operations-research-lab/blob/main/python/lab14_var_cvar.py)
+(reproducible with `python3 python/lab14_var_cvar.py` from the `python/` folder).
 
-The same code is also available as a notebook — [`notebooks/lab13_var_cvar.ipynb`](https://github.com/fabiofurini/operations-research-lab/blob/main/notebooks/lab13_var_cvar.ipynb) — which opens in Colab from the badge at the top of the page and runs in the browser, with nothing to install.
+The same code is also available as a notebook — [`notebooks/lab14_var_cvar.ipynb`](https://github.com/fabiofurini/operations-research-lab/blob/main/notebooks/lab14_var_cvar.ipynb) — which opens in Colab from the badge at the top of the page and runs in the browser, with nothing to install.
 
-??? example "Show the full script — `lab13_var_cvar.py`"
+??? example "Show the full script — `lab14_var_cvar.py`"
 
     ```python
-    """Chapter 13 — VaR and CVaR: linear models and applications (scenario LP).
+    """Chapter 14 — VaR and CVaR: linear models and applications (scenario LP).
 
     Contents:
       1. Example with 6 scenarios: VaR = 12, CVaR = 18.67,
@@ -325,10 +325,10 @@ The same code is also available as a notebook — [`notebooks/lab13_var_cvar.ipy
     # histogram of the losses of the mean-CVaR portfolio
     conteggi, bordi = np.histogram(perd_cv * 100, bins=30)
     salva_dat(pd.DataFrame({"center": (bordi[:-1] + bordi[1:]) / 2, "freq": conteggi}),
-              "cap13_istogramma")
+              "cap14_istogramma")
     mm_, var_cv, cvar_cv = stat_perdite(perd_cv)
     salva_dat(pd.DataFrame({"stat": ["mean", "VaR", "CVaR"],
-                            "value": [mm_ * 100, var_cv * 100, cvar_cv * 100]}), "cap13_soglie")
+                            "value": [mm_ * 100, var_cv * 100, cvar_cv * 100]}), "cap14_soglie")
 
     # ----------------------------------------------------------------------
     # 3. RETURN-CVaR FRONTIER
@@ -341,7 +341,7 @@ The same code is also available as a notebook — [`notebooks/lab13_var_cvar.ipy
         if w is not None:
             punti.append((cv * 100, r * 100))
     front = pd.DataFrame(punti, columns=["cvar", "ret"])
-    salva_dat(front, "cap13_frontiera")
+    salva_dat(front, "cap14_frontiera")
     print(f"{len(front)} points computed; minimum CVaR {front['cvar'].min():.2f}% "
           f"at return {front.loc[front['cvar'].idxmin(), 'ret']:.1f}%")
 
@@ -402,7 +402,7 @@ The same code is also available as a notebook — [`notebooks/lab13_var_cvar.ipy
         print(f"  lambda = {lam:3.1f}: reserve F1 = {cap['F1']:6.1f}, F2 = {cap['F2']:6.1f} | "
               f"mean cost {tot.mean():8.2f}, CVaR90 {cvar_t:8.2f} | mean service {serv.mean():.1%}")
     res2 = pd.DataFrame(righe, columns=["lam", "F1", "F2", "mean_cost", "cvar", "service"])
-    salva_dat(res2, "cap13_duestadi")
+    salva_dat(res2, "cap14_duestadi")
     print("The risk-averse decision maker reserves more capacity from the reliable supplier:")
     print("it pays more on average, but it cuts the tail of the scenarios with shortage.")
 
@@ -422,9 +422,9 @@ The same code is also available as a notebook — [`notebooks/lab13_var_cvar.ipy
     ax2.set_xlabel("CVaR$_{0.90}$ of the monthly loss (%)")
     ax2.set_ylabel("expected annual return (%)")
     ax2.set_title("Return-CVaR frontier")
-    salva_figura(fig, "cap13_perdite_frontiera")
+    salva_figura(fig, "cap14_perdite_frontiera")
 
-    print("\nDone: chapter 13.")
+    print("\nDone: chapter 14.")
     ```
 
 ## Exercises

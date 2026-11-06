@@ -1,4 +1,4 @@
-"""Chapter 13 — VaR and CVaR: linear models and applications (scenario LP).
+"""Chapter 14 — VaR and CVaR: linear models and applications (scenario LP).
 
 Contents:
   1. Example with 6 scenarios: VaR = 12, CVaR = 18.67,
@@ -123,10 +123,10 @@ for nome, w in [("mean-CVaR", w_cv), ("Markowitz", w_mk)]:
 # histogram of the losses of the mean-CVaR portfolio
 conteggi, bordi = np.histogram(perd_cv * 100, bins=30)
 salva_dat(pd.DataFrame({"center": (bordi[:-1] + bordi[1:]) / 2, "freq": conteggi}),
-          "cap13_istogramma")
+          "cap14_istogramma")
 mm_, var_cv, cvar_cv = stat_perdite(perd_cv)
 salva_dat(pd.DataFrame({"stat": ["mean", "VaR", "CVaR"],
-                        "value": [mm_ * 100, var_cv * 100, cvar_cv * 100]}), "cap13_soglie")
+                        "value": [mm_ * 100, var_cv * 100, cvar_cv * 100]}), "cap14_soglie")
 
 # ----------------------------------------------------------------------
 # 3. RETURN-CVaR FRONTIER
@@ -139,7 +139,7 @@ for r in r_grid:
     if w is not None:
         punti.append((cv * 100, r * 100))
 front = pd.DataFrame(punti, columns=["cvar", "ret"])
-salva_dat(front, "cap13_frontiera")
+salva_dat(front, "cap14_frontiera")
 print(f"{len(front)} points computed; minimum CVaR {front['cvar'].min():.2f}% "
       f"at return {front.loc[front['cvar'].idxmin(), 'ret']:.1f}%")
 
@@ -200,7 +200,7 @@ for lam in [0.0, 0.5, 1.0]:
     print(f"  lambda = {lam:3.1f}: reserve F1 = {cap['F1']:6.1f}, F2 = {cap['F2']:6.1f} | "
           f"mean cost {tot.mean():8.2f}, CVaR90 {cvar_t:8.2f} | mean service {serv.mean():.1%}")
 res2 = pd.DataFrame(righe, columns=["lam", "F1", "F2", "mean_cost", "cvar", "service"])
-salva_dat(res2, "cap13_duestadi")
+salva_dat(res2, "cap14_duestadi")
 print("The risk-averse decision maker reserves more capacity from the reliable supplier:")
 print("it pays more on average, but it cuts the tail of the scenarios with shortage.")
 
@@ -220,6 +220,6 @@ ax2.plot(front["cvar"], front["ret"], "-o", color=TEAL, ms=4)
 ax2.set_xlabel("CVaR$_{0.90}$ of the monthly loss (%)")
 ax2.set_ylabel("expected annual return (%)")
 ax2.set_title("Return-CVaR frontier")
-salva_figura(fig, "cap13_perdite_frontiera")
+salva_figura(fig, "cap14_perdite_frontiera")
 
-print("\nDone: chapter 13.")
+print("\nDone: chapter 14.")

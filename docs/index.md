@@ -40,9 +40,9 @@ Every model can be run **right away in the browser**: each chapter has its own
     ---
 
     Production, supply chain, portfolio, pricing, budget, location, electric
-    vehicle charging, queues: every datum is known.
+    vehicle charging, queues, branch efficiency: every datum is known.
 
-    [:octicons-arrow-right-24: The eight problems](deterministic-models.md)
+    [:octicons-arrow-right-24: The nine problems](deterministic-models.md)
 
 -   :material-dice-multiple: **Decisions under uncertainty**
 
@@ -66,13 +66,13 @@ Every model can be run **right away in the browser**: each chapter has its own
 
 ## The lab at a glance
 
-**13 application chapters · 4 chapters of tools · LP, QP and NLP · one Colab
+**14 application chapters · 4 chapters of tools · LP, QP and NLP · one Colab
 notebook per chapter · reproducible Python/Gurobi code.** The full list, chapter
 by chapter, is in the [syllabus](syllabus.md).
 
 ## Download as PDF
 
-- 📘 **[Full lecture notes](pdf/operations-research-lab-notes.pdf)** — 115 pages: models, worked examples, case studies, sensitivity analysis
+- 📘 **[Full lecture notes](pdf/operations-research-lab-notes.pdf)** — 127 pages: models, worked examples, case studies, sensitivity analysis
 - 📊 **[Lecture slides](downloads.md)** — one deck per chapter of the notes, on the [downloads](downloads.md) page
 
 ## Getting started

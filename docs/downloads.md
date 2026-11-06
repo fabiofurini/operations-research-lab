@@ -58,21 +58,22 @@ The lecture slides, one deck per chapter of the notes (PDF).
     - [Continuous location of a service](pdf/slides-09-location.pdf)
     - [Smart charging of electric vehicles](pdf/slides-10-ev-charging.pdf)
     - [Service capacity and waiting times](pdf/slides-11-queues.pdf)
+    - [Data Envelopment Analysis](pdf/slides-12-dea.pdf)
 
 -   :material-presentation: **Decisions under uncertainty**
 
     ---
 
-    - [The Newsvendor and its variants](pdf/slides-12-newsvendor.pdf)
-    - [VaR and CVaR](pdf/slides-13-var-cvar.pdf)
-    - [Arbitrage and pricing](pdf/slides-14-arbitrage.pdf)
+    - [The Newsvendor and its variants](pdf/slides-13-newsvendor.pdf)
+    - [VaR and CVaR](pdf/slides-14-var-cvar.pdf)
+    - [Arbitrage and pricing](pdf/slides-15-arbitrage.pdf)
 
 -   :material-presentation: **Optimization and machine learning**
 
     ---
 
-    - [Support Vector Machine](pdf/slides-15-svm.pdf)
-    - [Robust and quantile regression](pdf/slides-16-regression.pdf)
+    - [Support Vector Machine](pdf/slides-16-svm.pdf)
+    - [Robust and quantile regression](pdf/slides-17-regression.pdf)
 
 </div>
 

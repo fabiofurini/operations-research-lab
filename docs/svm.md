@@ -1,10 +1,10 @@
 # Support Vector Machine: optimization for machine learning
 
-[:material-file-pdf-box: Lecture notes (PDF)](pdf/operations-research-lab-notes.pdf) · [:material-presentation: Chapter slides (PDF)](pdf/slides-15-svm.pdf)
+[:material-file-pdf-box: Lecture notes (PDF)](pdf/operations-research-lab-notes.pdf) · [:material-presentation: Chapter slides (PDF)](pdf/slides-16-svm.pdf)
 
-**Class:** convex QP · **Script:** `python/lab15_svm.py`
+**Class:** convex QP · **Script:** `python/lab16_svm.py`
 
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/fabiofurini/operations-research-lab/blob/main/notebooks/lab15_svm.ipynb)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/fabiofurini/operations-research-lab/blob/main/notebooks/lab16_svm.ipynb)
 
 The SVM connects convex optimization to machine learning: the classifier is obtained
 by solving a QP. Here **no ML libraries**: every model is a QP written and solved
@@ -105,7 +105,7 @@ C =  1.00: w = (1.433, 0.611)  b = -0.236 | margin 1.284 | errors 2 | in the mar
 C = 20.00: w = (5.058, 2.338)  b = -2.936 | margin 0.359 | errors 0 | in the margin  3
 ```
 
-![Soft margin and support vectors](img/cap14_svm.png)
+![Soft margin and support vectors](img/cap15_svm.png)
 
 A small $C$ buys a wide margin while accepting 22 points inside the margin; a large
 $C$ chases every point of the training set (zero errors, a very narrow margin): this
@@ -201,7 +201,7 @@ escapes (recall 100%) at the price of a few more false alarms (precision from 10
 97%). The weights must reflect the **decision costs**, not the frequencies of the
 classes.
 
-![Support Vector Regression](img/cap14_svr.png)
+![Support Vector Regression](img/cap15_svr.png)
 
 **SVR**: Support Vector Regression estimates a continuous function while ignoring the
 errors within a tube of width $\varepsilon$, that is,
@@ -218,15 +218,15 @@ Tube eps = 8: 14 points out of 40 outside the tube -> only they determine the li
 ## Code
 
 The complete script of the chapter — data, model, solution, sensitivity and figures —
-is [`python/lab15_svm.py`](https://github.com/fabiofurini/operations-research-lab/blob/main/python/lab15_svm.py)
-(reproducible with `python3 python/lab15_svm.py` from the `python/` folder).
+is [`python/lab16_svm.py`](https://github.com/fabiofurini/operations-research-lab/blob/main/python/lab16_svm.py)
+(reproducible with `python3 python/lab16_svm.py` from the `python/` folder).
 
-The same code is also available as a notebook — [`notebooks/lab15_svm.ipynb`](https://github.com/fabiofurini/operations-research-lab/blob/main/notebooks/lab15_svm.ipynb) — which opens in Colab from the badge at the top of the page and runs in the browser, with nothing to install.
+The same code is also available as a notebook — [`notebooks/lab16_svm.ipynb`](https://github.com/fabiofurini/operations-research-lab/blob/main/notebooks/lab16_svm.ipynb) — which opens in Colab from the badge at the top of the page and runs in the browser, with nothing to install.
 
-??? example "Show the full script — `lab15_svm.py`"
+??? example "Show the full script — `lab16_svm.py`"
 
     ```python
-    """Chapter 15 — Support Vector Machine as a convex QP (no sklearn: everything in Gurobi).
+    """Chapter 16 — Support Vector Machine as a convex QP (no sklearn: everything in Gurobi).
 
     Case study: credit risk. 90 customers described by two standardised indicators:
     x1 = balance-sheet strength, x2 = punctuality in payments.
@@ -329,11 +329,11 @@ The same code is also available as a notebook — [`notebooks/lab15_svm.ipynb`](
 
     sv = alpha > 1e-5
     salva_dat(pd.DataFrame({"x1": X[:, 0], "x2": X[:, 1], "y": y,
-                            "alpha": alpha, "sv": sv.astype(int)}), "cap14_punti")
+                            "alpha": alpha, "sv": sv.astype(int)}), "cap15_punti")
     salva_dat(pd.DataFrame({"C": [0.05, 1.0, 20.0],
                             "w1": [risultati[C][0][0] for C in [0.05, 1.0, 20.0]],
                             "w2": [risultati[C][0][1] for C in [0.05, 1.0, 20.0]],
-                            "b": [risultati[C][1] for C in [0.05, 1.0, 20.0]]}), "cap14_rette")
+                            "b": [risultati[C][1] for C in [0.05, 1.0, 20.0]]}), "cap15_rette")
 
     # ----------------------------------------------------------------------
     # 4. RBF KERNEL
@@ -349,7 +349,7 @@ The same code is also available as a notebook — [`notebooks/lab15_svm.ipynb`](
     y2 = np.array([1.0] * n2a + [-1.0] * n2b)
     n2 = len(y2)
     salva_dati(pd.DataFrame({"x1": X2[:, 0], "x2": X2[:, 1], "y": y2}), "svm_corona")
-    salva_dat(pd.DataFrame({"x1": X2[:, 0], "x2": X2[:, 1], "y": y2}), "cap14_corona")
+    salva_dat(pd.DataFrame({"x1": X2[:, 0], "x2": X2[:, 1], "y": y2}), "cap15_corona")
 
 
     def svm_rbf(gamma, C=5.0):
@@ -397,7 +397,7 @@ The same code is also available as a notebook — [`notebooks/lab15_svm.ipynb`](
             segmenti.append((np.nan, np.nan))       # line separator for pgfplots
         plt.close()
         salva_dat(pd.DataFrame(segmenti, columns=["x", "y"]),
-                  f"cap14_rbf_g{str(gamma).replace('.', '_')}")
+                  f"cap15_rbf_g{str(gamma).replace('.', '_')}")
 
     # ----------------------------------------------------------------------
     # 5. IMBALANCED CLASSES: asymmetric costs
@@ -453,8 +453,8 @@ The same code is also available as a notebook — [`notebooks/lab15_svm.ipynb`](
     print(f"Epsilon tube = {eps_svr}: {fuori} points outside the tube out of {np_srv} "
           f"(only these determine the line)")
     salva_dat(pd.DataFrame({"price": prezzi, "demand": domanda_v,
-                            "estimate": w_s.X * prezzi + b_s.X}), "cap14_svr")
-    salva_dat(pd.DataFrame({"w": [w_s.X], "b": [b_s.X], "eps": [eps_svr]}), "cap14_svr_retta")
+                            "estimate": w_s.X * prezzi + b_s.X}), "cap15_svr")
+    salva_dat(pd.DataFrame({"w": [w_s.X], "b": [b_s.X], "eps": [eps_svr]}), "cap15_svr_retta")
 
     # ----------------------------------------------------------------------
     # 7. FIGURES (matplotlib preview)
@@ -483,7 +483,7 @@ The same code is also available as a notebook — [`notebooks/lab15_svm.ipynb`](
     ax2.set_xlabel("$x_1$"); ax2.set_ylabel("$x_2$")
     ax2.set_title("RBF kernel: non-linear boundaries from a convex QP")
     ax2.legend(fontsize=7, loc="upper right")
-    salva_figura(fig, "cap14_svm")
+    salva_figura(fig, "cap15_svm")
 
     fig, ax = plt.subplots()
     ordina = np.argsort(prezzi)
@@ -495,9 +495,9 @@ The same code is also available as a notebook — [`notebooks/lab15_svm.ipynb`](
     ax.set_xlabel("price (€)"); ax.set_ylabel("demand (units)")
     ax.set_title("SVR: only the points outside the tube pay a penalty")
     ax.legend(fontsize=8)
-    salva_figura(fig, "cap14_svr")
+    salva_figura(fig, "cap15_svr")
 
-    print("\nDone: chapter 14.")
+    print("\nDone: chapter 16.")
     ```
 
 ## Exercises

@@ -27,7 +27,7 @@ notes in online form, with Python/Gurobi code, data and case studies.
 
 ## Download as PDF
 
-- [Full lecture notes](https://fabiofurini.github.io/operations-research-lab/pdf/operations-research-lab-notes.pdf) (114 pages)
+- [Full lecture notes](https://fabiofurini.github.io/operations-research-lab/pdf/operations-research-lab-notes.pdf) (127 pages)
 - [Lecture slides](https://fabiofurini.github.io/operations-research-lab/downloads/), one deck per chapter, on the downloads page
 
 ## Contents
@@ -49,6 +49,7 @@ notes in online form, with Python/Gurobi code, data and case studies.
 - [Continuous location](https://fabiofurini.github.io/operations-research-lab/location/) — convex NLP
 - [Electric vehicle charging](https://fabiofurini.github.io/operations-research-lab/ev-charging/) — LP/QP
 - [Queues and service capacity](https://fabiofurini.github.io/operations-research-lab/queues/) — convex NLP
+- [Data Envelopment Analysis](https://fabiofurini.github.io/operations-research-lab/dea/) — LP, relative efficiency and the dual
 
 **Decisions under uncertainty**
 
@@ -67,7 +68,7 @@ notes in online form, with Python/Gurobi code, data and case studies.
 
 ## Running the models
 
-Every chapter has its own script in [`python/`](python/) (`lab04`–`lab16`), with the
+Every chapter has its own script in [`python/`](python/) (`lab04`–`lab17`), with the
 data in [`data/`](data/):
 
 ```bash

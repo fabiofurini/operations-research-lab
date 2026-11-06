@@ -124,6 +124,7 @@ nav:
       - Continuous location: location.md
       - Electric vehicle charging: ev-charging.md
       - Queues and service capacity: queues.md
+      - Data Envelopment Analysis: dea.md
   - Decisions under uncertainty:
       - decisions-uncertainty.md
       - The newsvendor: newsvendor.md

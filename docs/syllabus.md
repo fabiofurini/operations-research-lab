@@ -21,21 +21,22 @@ covered. Every chapter has its own page, its own Python script and its own
 8. [Continuous location](location.md) — convex NLP
 9. [Electric vehicle charging](ev-charging.md) — LP/QP
 10. [Queues and service capacity](queues.md) — convex NLP
+11. [Data Envelopment Analysis](dea.md) — LP and duality
 
 **[Decisions under uncertainty](decisions-uncertainty.md)**
 
-11. [The Newsvendor and its variants](newsvendor.md) — stochastic LP
-12. [VaR and CVaR](var-cvar.md) — scenario-based LP
-13. [Arbitrage and pricing](arbitrage.md) — LP and duality that prices
+12. [The Newsvendor and its variants](newsvendor.md) — stochastic LP
+13. [VaR and CVaR](var-cvar.md) — scenario-based LP
+14. [Arbitrage and pricing](arbitrage.md) — LP and duality that prices
 
 **[Optimization and machine learning](optimization-ml.md)**
 
-14. [Support Vector Machine](svm.md) — QP
-15. [Robust and quantile regression](regression.md) — LP
+15. [Support Vector Machine](svm.md) — QP
+16. [Robust and quantile regression](regression.md) — LP
 
 **The course**
 
-16. [Organization of the lab](organization.md) — lab sessions and mistakes
+17. [Organization of the lab](organization.md) — lab sessions and mistakes
     to avoid
 
 ---
