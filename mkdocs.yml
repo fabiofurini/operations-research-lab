@@ -103,7 +103,7 @@ extra_javascript:
   - javascripts/cloudflare-analytics.js
   - javascripts/mathjax.js
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
-  - javascripts/quiz.js?v=3990768383
+  - javascripts/quiz.js?v=be7fae2b85
 
 nav:
   - Home: index.md

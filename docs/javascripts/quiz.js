@@ -42,6 +42,7 @@
       scegliPrima: "Scegli una risposta oppure «Lascio in bianco».",
       livelli: { facile: "facile", media: "media", teorema: "teorema", ipotesi: "ipotesi", complessa: "complessa" },
       risultato: "Risultato", trentesimi: "in trentesimi", giuste: "giuste", errate: "errate", bianche: "in bianco",
+      perParte: "Il risultato parte per parte", perParteAiuto: "Dove sei pronto e dove ripassare.", colParte: "Parte del corso", colDomande: "Domande",
       riepilogo: "Riepilogo", colN: "N.", colLiv: "Livello", colCap: "Capitolo", colData: "Data", colGiusta: "Giusta", colPunti: "Punti",
       data: "La tua risposta", giusta: "Risposta giusta", spiegazione: "Spiegazione", rivedi: "Rivedi nelle dispense",
       esitoG: "giusta", esitoE: "errata", esitoB: "in bianco", nessuna: "—",
@@ -66,6 +67,7 @@
       scegliPrima: "Choose an answer or «Leave blank».",
       livelli: { facile: "easy", media: "medium", teorema: "theorem", ipotesi: "hypotheses", complessa: "complex" },
       risultato: "Result", trentesimi: "out of 30", giuste: "right", errate: "wrong", bianche: "blank",
+      perParte: "Your result part by part", perParteAiuto: "Where you are ready and what to review.", colParte: "Part of the course", colDomande: "Questions",
       riepilogo: "Summary", colN: "No.", colLiv: "Level", colCap: "Chapter", colData: "Given", colGiusta: "Correct", colPunti: "Points",
       data: "Your answer", giusta: "Correct answer", spiegazione: "Explanation", rivedi: "Review in the notes",
       esitoG: "right", esitoE: "wrong", esitoB: "blank", nessuna: "—",
@@ -255,18 +257,26 @@
     if (livello === "media" || livello === "complessa") return quante;
     return 0;
   }
-  function costruisciFacsimile(banca, seme, lingua) {
+  function costruisciFacsimile(banca, seme, lingua, parti) {
     var rng = mulberry32(seme);
-    var usoCap = {}, usate = {}, domande = [], mancano = false;
+    var usoCap = {}, usoParte = {}, usate = {}, domande = [], mancano = false;
+    parti = parti || {};
+    function parte(cap) { return parti[cap || ""] || ("cap:" + (cap || "")); }
+    // ogni parte del corso pesa uguale (a prescindere da quanti capitoli ha): il facsimile le copre tutte,
+    // 2-3 domande per parte; senza parti, ogni capitolo è una parte e si torna a «capitoli diversi»
+    var peso = {};
     function scegli(candidati, quante, generata) {
       var presi = [];
       var lista = mescola(candidati.slice(), rng);
       while (presi.length < quante && lista.length) {
-        // il capitolo meno usato finora (a parità, l'ordine mescolato)
-        var best = -1, bestUso = Infinity;
+        // la parte del corso meno coperta rispetto al suo peso, poi il capitolo meno usato
+        // (a parità, l'ordine mescolato)
+        var best = -1, bestP = Infinity, bestUso = Infinity;
         for (var i = 0; i < lista.length; i++) {
-          var u = usoCap[lista[i].capitolo || ""] || 0;
-          if (u < bestUso) { bestUso = u; best = i; }
+          var c = lista[i].capitolo || "", pp = parte(c);
+          var up = ((usoParte[pp] || 0) + 1) / (peso[pp] || 1);
+          var u = usoCap[c] || 0;
+          if (up < bestP - 1e-9 || (Math.abs(up - bestP) < 1e-9 && u < bestUso)) { bestP = up; bestUso = u; best = i; }
         }
         var voce = lista.splice(best, 1)[0];
         if (usate[voce.id]) continue;
@@ -274,6 +284,7 @@
         if (!q) continue;
         usate[voce.id] = 1;
         usoCap[q.capitolo] = (usoCap[q.capitolo] || 0) + 1;
+        usoParte[parte(q.capitolo)] = (usoParte[parte(q.capitolo)] || 0) + 1;
         presi.push(q);
       }
       return presi;
@@ -319,6 +330,7 @@
     this.modulo = radice.getAttribute("data-modulo") || "";
     this.url = baseBanca(radice);
     try { this.capitoli = JSON.parse(radice.getAttribute("data-capitoli") || "{}"); } catch (e) { this.capitoli = {}; }
+    try { this.parti = JSON.parse(radice.getAttribute("data-parti") || "{}"); } catch (e) { this.parti = {}; }
     this.chiave = "quiz-storico:" + (this.modulo || location.pathname);
   }
   App.prototype.nomeCap = function (slug) {
@@ -424,7 +436,7 @@
   // ---------------- il facsimile, una domanda alla volta
   App.prototype.inizia = function (seme, capitolo) {
     this.f = capitolo ? costruisciPratica(this.banca, capitolo, seme, this.lingua)
-                      : costruisciFacsimile(this.banca, seme, this.lingua);
+                      : costruisciFacsimile(this.banca, seme, this.lingua, this.parti);
     this.risposte = [];
     this.i = 0;
     if (!this.f.domande.length) return this.mostra([el("p", { "class": "quiz-stato", text: this.t.nonDisp })]);
@@ -566,6 +578,29 @@
       el("thead", {}, [el("tr", {}, [t.colN, t.colLiv, t.colCap, t.colData, t.colGiusta, "", t.colPunti].map(function (c) {
         return el("th", { scope: "col", text: c }); }))]),
       el("tbody", {}, righe)])]);
+    // risultato per parte del corso (solo nel facsimile, se il sito dà le parti)
+    var tabParti = null, ordine = [], perP = {};
+    f.domande.forEach(function (q, k) {
+      var nome = self.parti[q.capitolo];
+      if (!nome) return;
+      if (!perP[nome]) { perP[nome] = { n: 0, punti: 0, max: 0 }; ordine.push(nome); }
+      perP[nome].n++; perP[nome].punti += R[k].punti; perP[nome].max += q.punti;
+    });
+    if (!f.pratica && ordine.length > 1) {
+      var tutte = [];
+      Object.keys(self.parti).forEach(function (c) { var n = self.parti[c]; if (tutte.indexOf(n) < 0) tutte.push(n); });
+      ordine.sort(function (a, b) { return tutte.indexOf(a) - tutte.indexOf(b); });
+      tabParti = el("div", { "class": "quiz-tab" }, [el("table", {}, [
+        el("caption", { "class": "quiz-sr", text: t.perParte }),
+        el("thead", {}, [el("tr", {}, [t.colParte, t.colDomande, t.colPunti, "%"].map(function (c) {
+          return el("th", { scope: "col", text: c }); }))]),
+        el("tbody", {}, ordine.map(function (nome) {
+          var x = perP[nome], pc = x.max ? Math.max(0, Math.round(100 * x.punti / x.max)) : 0;
+          return el("tr", { "class": pc >= 60 ? "quiz-esito-g" : (pc >= 30 ? "quiz-esito-b" : "quiz-esito-e") }, [
+            el("td", { html: formatta(nome) }), el("td", { "class": "quiz-num", text: String(x.n) }),
+            el("td", { "class": "quiz-num", text: x.punti + " / " + x.max }), el("td", { "class": "quiz-num", text: pc + "%" })]);
+        }))])]);
+    }
     var dettagli = f.domande.map(function (q, k) {
       var r = R[k];
       var ol = el("ol", { "class": "quiz-opz-fine", type: "A" }, q.opzioni.map(function (o, j) {
@@ -590,6 +625,7 @@
     var nodi = [el("section", { "class": "quiz-card quiz-fine", "aria-labelledby": "quiz-h-fine" }, [h, punteggio, conti,
       f.incompleto ? el("p", { "class": "quiz-nota", text: t.pochi }) : null, bottoni])];
     h.id = "quiz-h-fine";
+    if (tabParti) nodi.push(el("h2", { text: t.perParte }), el("p", { "class": "quiz-meta", text: t.perParteAiuto }), tabParti);
     nodi.push(el("h2", { text: t.riepilogo }), tabella, el("h2", { text: t.dettaglio }));
     nodi = nodi.concat(dettagli);
     nodi.push(el("p", { "class": "quiz-azioni" }, [el("button", { type: "button", "class": "md-button md-button--primary",
