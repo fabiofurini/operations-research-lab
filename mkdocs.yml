@@ -84,6 +84,7 @@ extra:
 
 extra_css:
   - stylesheets/extra.css
+  - stylesheets/quiz.css?v=9e3792b41c
 
 markdown_extensions:
   - admonition
@@ -102,6 +103,7 @@ extra_javascript:
   - javascripts/cloudflare-analytics.js
   - javascripts/mathjax.js
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+  - javascripts/quiz.js?v=3990768383
 
 nav:
   - Home: index.md
@@ -135,3 +137,4 @@ nav:
       - Support Vector Machine: svm.md
       - Robust and quantile regression: regression.md
   - Lab organization: organization.md
+  - Quiz: self-assessment.md

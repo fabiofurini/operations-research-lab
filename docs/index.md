@@ -16,6 +16,8 @@ change by 5%?
 Every model can be run **right away in the browser**: each chapter has its own
 [notebook that opens in Colab](notebooks.md), with nothing to install.
 
+[:material-clipboard-check-outline: Test yourself](self-assessment.md){ .md-button }
+
 !!! tip "The right question"
     At the end of every lab session the question is not only *“what is the optimum?”*,
     but *“which decision do we recommend and how robust is it?”*. All the decision
@@ -69,6 +71,20 @@ Every model can be run **right away in the browser**: each chapter has its own
 **14 application chapters · 4 chapters of tools · LP, QP and NLP · one Colab
 notebook per chapter · reproducible Python/Gurobi code.** The full list, chapter
 by chapter, is in the [syllabus](syllabus.md).
+
+<div class="grid cards" markdown>
+
+-   :material-clipboard-check-outline: **Self-assessment**
+
+    ---
+
+    *Mock exam*
+
+    A new mock exam at every start: 13 questions, 33 points, with the solutions and links to the notes.
+
+    [:octicons-arrow-right-24: Test yourself](self-assessment.md)
+
+</div>
 
 ## Download as PDF
 
