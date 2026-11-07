@@ -83,6 +83,7 @@ extra:
       lang: it
 
 extra_css:
+  - stylesheets/collana.css
   - stylesheets/extra.css
   - stylesheets/quiz.css?v=9e3792b41c
 
@@ -107,8 +108,6 @@ extra_javascript:
 
 nav:
   - Home: index.md
-  - Syllabus: syllabus.md
-  - Downloads: downloads.md
   - Tools:
       - tools.md
       - Theory, linear programming: theory-lp.md
@@ -136,5 +135,7 @@ nav:
       - optimization-ml.md
       - Support Vector Machine: svm.md
       - Robust and quantile regression: regression.md
-  - Lab organization: organization.md
   - Quiz: self-assessment.md
+  - Downloads: downloads.md
+  - Lab organization: organization.md
+  - Syllabus: syllabus.md

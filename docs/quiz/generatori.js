@@ -1216,4 +1216,666 @@ window.QUIZ_GEN = window.QUIZ_GEN || {};
       return chiudi(rng, testo, o(I[0], I[1]), cand, sp, { R: R, s0: s0, a: a, c: cc });
     }
   });
+  /* ===================== generatori aggiunti (7 novembre 2026): copertura dettagliata, parte «Strumenti» ===================== */
+
+  gen({
+    id: "orl-g-lp-dualita-debole", livello: "facile", capitolo: "background",
+    link: link("theory-lp/#linear-programming-and-duality", "teoria-lp/#programmazione-lineare-e-dualita"),
+    prova: function (rng, L) {
+      var I = istanzaLP(rng); if (!I) return null;
+      var k1 = ri(rng, 1, 4), k2 = ri(rng, 1, 4), e1 = ri(rng, 1, 3), e2 = ri(rng, 0, 3);
+      function u1(a) { return a === 1 ? "" : String(a); }
+      var xb = [I.x[0] - k1, I.x[1] - k2], pb = [I.pi[0] + e1, I.pi[1] + e2];
+      var lo = I.c[0] * xb[0] + I.c[1] * xb[1], up = I.b[0] * pb[0] + I.b[1] * pb[1], g = up - lo;
+      function o(a, c) { return "$\\tilde z \\in [" + a + "; " + c + "]$"; }
+      var testo = testoLP(I, L) + T(L,
+        "The point $\\bar x = (" + xb[0] + ", " + xb[1] + ")$ is feasible for the primal and $\\bar\\pi = (" + pb[0] + ", " + pb[1] + ")$ is feasible for the dual $\\min\\ " + I.b[0] + "\\pi_1 + " + I.b[1] + "\\pi_2$ (dual constraints $" + u1(I.A[0][0]) + "\\pi_1 + " + u1(I.A[1][0]) + "\\pi_2 \\ge " + I.c[0] + "$, $" + u1(I.A[0][1]) + "\\pi_1 + " + u1(I.A[1][1]) + "\\pi_2 \\ge " + I.c[1] + "$). By weak duality, which interval certainly contains the optimal value $\\tilde z$ of the primal?",
+        "Il punto $\\bar x = (" + xb[0] + ", " + xb[1] + ")$ è ammissibile per il primale e $\\bar\\pi = (" + pb[0] + ", " + pb[1] + ")$ è ammissibile per il duale $\\min\\ " + I.b[0] + "\\pi_1 + " + I.b[1] + "\\pi_2$ (vincoli duali $" + u1(I.A[0][0]) + "\\pi_1 + " + u1(I.A[1][0]) + "\\pi_2 \\ge " + I.c[0] + "$, $" + u1(I.A[0][1]) + "\\pi_1 + " + u1(I.A[1][1]) + "\\pi_2 \\ge " + I.c[1] + "$). Per la dualità debole, quale intervallo contiene certamente il valore ottimo $\\tilde z$ del primale?");
+      var sp = T(L,
+        "Every feasible primal point gives a lower bound for a maximum, $" + I.c[0] + "\\cdot " + xb[0] + " + " + I.c[1] + "\\cdot " + xb[1] + " = " + lo + "$, and every feasible dual point an upper bound, $" + I.b[0] + "\\cdot " + pb[0] + " + " + I.b[1] + "\\cdot " + pb[1] + " = " + up + "$. So $" + lo + " \\le \\tilde z \\le " + up + "$ (here $\\tilde z = " + (I.c[0] * I.x[0] + I.c[1] * I.x[1]) + "$). Swapping the roles of the two bounds is the typical mistake.",
+        "Ogni punto primale ammissibile dà un limite inferiore per un massimo, $" + I.c[0] + "\\cdot " + xb[0] + " + " + I.c[1] + "\\cdot " + xb[1] + " = " + lo + "$, e ogni punto duale ammissibile un limite superiore, $" + I.b[0] + "\\cdot " + pb[0] + " + " + I.b[1] + "\\cdot " + pb[1] + " = " + up + "$. Quindi $" + lo + " \\le \\tilde z \\le " + up + "$ (qui $\\tilde z = " + (I.c[0] * I.x[0] + I.c[1] * I.x[1]) + "$). Scambiare i ruoli dei due limiti è l'errore tipico.");
+      return chiudi(rng, testo, o(lo, up), [o(up, up + g), o(lo - g, lo), o(lo, lo + Math.round(g / 2))], sp,
+        { c: I.c, A: I.A, b: I.b, xb: xb, pb: pb });
+    }
+  });
+
+  gen({
+    id: "orl-g-lp-perturbazione", livello: "facile", capitolo: "background",
+    link: link("theory-lp/#sensitivity-analysis-in-lps", "teoria-lp/#lanalisi-di-sensitivita-negli-lp"),
+    prova: function (rng, L) {
+      var I = istanzaLP(rng); if (!I) return null;
+      var A = I.A, b = I.b, p = I.pi;
+      var r1 = A[0][1] * b[1] / A[1][1], r2 = A[0][0] * b[1] / A[1][0];
+      var lo = Math.min(r1, r2), hi = Math.max(r1, r2);
+      if (quasiMezzo(lo, 2) || quasiMezzo(hi, 2)) return null;
+      var d = ri(rng, -12, 12); if (d === 0) return null;
+      var nb = b[0] + d; if (nb <= lo + 0.5 || nb >= hi - 0.5) return null;
+      var z = I.c[0] * I.x[0] + I.c[1] * I.x[1], nz = z + p[0] * d;
+      function o(v) { return "$\\tilde z = " + m(v, 2, L) + "$"; }
+      var testo = testoLP(I, L) + T(L,
+        "At the optimum $\\tilde z = " + z + "$, the shadow price of constraint 1 is $\\tilde\\pi_1 = " + p[0] + "$ (and $\\tilde\\pi_2 = " + p[1] + "$), and the validity range of $b_1$ (where $\\tilde\\pi_1$ stays exact) is $[" + m(lo, 2, L) + "; " + m(hi, 2, L) + "]$. What is the new optimal value if $b_1$ changes from $" + b[0] + "$ to $" + nb + "$, all else equal?",
+        "All'ottimo $\\tilde z = " + z + "$, il prezzo ombra del vincolo 1 è $\\tilde\\pi_1 = " + p[0] + "$ (e $\\tilde\\pi_2 = " + p[1] + "$), e l'intervallo di validità di $b_1$ (dove $\\tilde\\pi_1$ resta esatto) è $[" + m(lo, 2, L) + "; " + m(hi, 2, L) + "]$. Quanto vale il nuovo valore ottimo se $b_1$ passa da $" + b[0] + "$ a $" + nb + "$, a parità del resto?");
+      var sp = T(L,
+        "The new value $" + nb + "$ is inside the validity range, so the shadow price is exact: $\\tilde z + \\tilde\\pi_1\\,\\Delta b_1 = " + z + " + " + p[0] + "\\cdot(" + d + ") = " + nz + "$.",
+        "Il nuovo valore $" + nb + "$ è dentro l'intervallo di validità, quindi il prezzo ombra è esatto: $\\tilde z + \\tilde\\pi_1\\,\\Delta b_1 = " + z + " + " + p[0] + "\\cdot(" + d + ") = " + nz + "$.");
+      return chiudi(rng, testo, o(nz), [o(z - p[0] * d), o(z + p[0] * (d > 0 ? 1 : -1)), o(z + p[1] * d), o(z * nb / b[0])], sp,
+        { c: I.c, A: A, b: b, nb: nb });
+    }
+  });
+
+  gen({
+    id: "orl-g-qp-kkt", livello: "facile", capitolo: "background",
+    link: link("theory-nonlinear/#the-nonlinear-optimality-conditions-the-kkt-conditions",
+               "teoria-non-lineare/#le-condizioni-di-ottimalita-non-lineari-le-kkt"),
+    prova: function (rng, L) {
+      var a = ri(rng, 1, 6), bq = ri(rng, 1, 6), d = ri(rng, 3, 24);
+      if (a === bq) return null;
+      var x1 = bq * d / (a + bq), x2 = a * d / (a + bq), lam = 2 * a * x1;
+      var vals = [x1, x2, lam, lam / 2];
+      for (var i = 0; i < vals.length; i++) if (quasiMezzo(vals[i], 2)) return null;
+      function o(u, v) { return "$\\tilde x_1 = " + m(u, 2, L) + "$, $\\lambda = " + m(v, 2, L) + "$"; }
+      function k(c) { return c === 1 ? "" : String(c); }
+      var testo = T(L,
+        "Convex QP: $\\min\\ " + k(a) + "x_1^2 + " + k(bq) + "x_2^2$ subject to $x_1 + x_2 \\ge " + d + "$, $x_1, x_2 \\ge 0$. At the optimum the constraint is active, the bounds are not, and stationarity of the Lagrangian $L = f + \\lambda(" + d + " - x_1 - x_2)$ holds. What are $\\tilde x_1$ and the multiplier $\\lambda$?",
+        "QP convesso: $\\min\\ " + k(a) + "x_1^2 + " + k(bq) + "x_2^2$ soggetto a $x_1 + x_2 \\ge " + d + "$, $x_1, x_2 \\ge 0$. All'ottimo il vincolo è attivo, i limiti no, e vale la stazionarietà della Lagrangiana $L = f + \\lambda(" + d + " - x_1 - x_2)$. Quanto valgono $\\tilde x_1$ e il moltiplicatore $\\lambda$?");
+      var sp = T(L,
+        "Stationarity: $" + 2 * a + "x_1 = \\lambda$ and $" + 2 * bq + "x_2 = \\lambda$, so $x_1 = \\lambda/" + 2 * a + "$, $x_2 = \\lambda/" + 2 * bq + "$; the active constraint gives $\\lambda = " + m(lam, 2, L) + "$, hence $\\tilde x_1 = " + m(x1, 2, L) + "$, $\\tilde x_2 = " + m(x2, 2, L) + "$. The variable with the smaller quadratic coefficient takes the larger share; $\\lambda$ is the marginal cost of one more unit of $d$.",
+        "Stazionarietà: $" + 2 * a + "x_1 = \\lambda$ e $" + 2 * bq + "x_2 = \\lambda$, quindi $x_1 = \\lambda/" + 2 * a + "$, $x_2 = \\lambda/" + 2 * bq + "$; il vincolo attivo dà $\\lambda = " + m(lam, 2, L) + "$, da cui $\\tilde x_1 = " + m(x1, 2, L) + "$, $\\tilde x_2 = " + m(x2, 2, L) + "$. La variabile col coefficiente quadratico minore prende la quota maggiore; $\\lambda$ è il costo marginale di un'unità in più di $d$.");
+      return chiudi(rng, testo, o(x1, lam), [o(x2, lam), o(x1, lam / 2), o(d / 2, a * d), o(x1, 2 * lam)], sp,
+        { a: a, b: bq, d: d });
+    }
+  });
+
+  gen({
+    id: "orl-g-sv-dimensioni", livello: "facile", capitolo: "solver",
+    link: link("solver-lp/#the-log-explained", "solver-lp/#il-log-spiegato"),
+    prova: function (rng, L) {
+      var n = ri(rng, 2, 6), mm = ri(rng, 3, 12);
+      var R = n * mm + mm, Cn = 2 * n * mm;
+      function o(r, c) { return T(L, "$" + r + "$ rows, $" + c + "$ columns", "$" + r + "$ righe, $" + c + "$ colonne"); }
+      var testo = T(L,
+        "A gurobipy production-inventory LP has $n = " + n + "$ products and $m = " + mm + "$ months: variables $x_{it} \\ge 0$ (units produced) and $s_{it} \\ge 0$ (inventory at the end of the month) for every product $i$ and month $t$; one balance constraint $s_{i,t-1} + x_{it} = d_{it} + s_{it}$ per product and month (initial inventory $s_{i0}$ is a datum); one machine-hours constraint $\\sum_i a_ix_{it} \\le b_t$ per month. What does the line `Optimize a model with ... rows, ... columns` of the Gurobi log report?",
+        "Un LP gurobipy di produzione e scorte ha $n = " + n + "$ prodotti e $m = " + mm + "$ mesi: variabili $x_{it} \\ge 0$ (unità prodotte) e $s_{it} \\ge 0$ (scorta a fine mese) per ogni prodotto $i$ e mese $t$; un vincolo di bilancio $s_{i,t-1} + x_{it} = d_{it} + s_{it}$ per prodotto e mese (la scorta iniziale $s_{i0}$ è un dato); un vincolo di ore macchina $\\sum_i a_ix_{it} \\le b_t$ per mese. Che cosa riporta la riga `Optimize a model with ... rows, ... columns` del log di Gurobi?");
+      var sp = T(L,
+        "Rows are constraints: $nm = " + n * mm + "$ balances plus $m = " + mm + "$ capacities, $" + R + "$ in all; columns are variables: $2nm = " + Cn + "$. Checking these sizes is the first reading of the log.",
+        "Le righe sono i vincoli: $nm = " + n * mm + "$ bilanci più $m = " + mm + "$ capacità, $" + R + "$ in tutto; le colonne sono le variabili: $2nm = " + Cn + "$. Controllare queste dimensioni è la prima lettura del log.");
+      return chiudi(rng, testo, o(R, Cn), [o(Cn, R), o(n * mm, Cn), o(R, n * mm), o(n * mm + n, Cn)], sp,
+        { n: n, m: mm });
+    }
+  });
+
+  gen({
+    id: "orl-g-lp-tutti-casi", livello: "complessa", capitolo: "background",
+    link: link("theory-lp/#the-optimality-conditions-of-lp-complementary-slackness",
+               "teoria-lp/#le-condizioni-di-ottimalita-delllp-gli-scarti-complementari"),
+    prova: function (rng, L) {
+      var x1 = ri(rng, 10, 60), x2 = ri(rng, 5, 40), sl = ri(rng, 5, 30);
+      var a31 = ri(rng, 1, 3), a32 = -ri(rng, 1, 3);
+      var p2 = ri(rng, 1, 9), p3 = -ri(rng, 1, 5), del = ri(rng, 1, 5);
+      var c1 = p2 + a31 * p3, c2 = p2 + a32 * p3, c3 = -p2 - del;
+      var b1 = x1 + x2 - sl, b2 = x1 + x2, b3 = a31 * x1 + a32 * x2;
+      var w2 = p2 + del, w3 = (c1 - w2) / a31;
+      function u1(a) { return a === 1 ? "" : String(a); }
+      // errore: sistema scritto con le righe dei vincoli (1, 1) e (a31, a32) invece che con le colonne
+      var rr2 = (c1 * a32 - c2) / (a32 - a31), rr3 = (c2 - a31 * c1) / (a32 - a31);
+      if (quasiMezzo(rr2, 2) || quasiMezzo(rr3, 2)) return null;
+      if (quasiMezzo(w3, 2) || w3 === p3 || c1 === 0 || c2 === 0) return null;
+      function o(u, v, w) { return "$(\\tilde\\pi_1; \\tilde\\pi_2; \\tilde\\pi_3) = (" + m(u, 2, L) + "; " + m(v, 2, L) + "; " + m(w, 2, L) + ")$"; }
+      function t(c, s) { return (c < 0 ? " - " : " + ") + (Math.abs(c) === 1 ? "" : Math.abs(c)) + s; }
+      function f1(c, s) { return (c < 0 ? "-" : "") + (Math.abs(c) === 1 ? "" : Math.abs(c)) + s; }
+      var lp = "$\\min\\ " + f1(c1, "x_1") + t(c2, "x_2") + t(c3, "x_3") + "$, " + T(L, "subject to ", "soggetto a ") +
+        "(1) $x_1 + x_2 \\ge " + b1 + "$, (2) $x_1 + x_2 - x_3 = " + b2 + "$, (3) $" + f1(a31, "x_1") + t(a32, "x_2") + " \\le " + b3 + "$, " +
+        "$x_1 \\ge 0$, $x_2$ " + T(L, "free", "libera") + ", $x_3 \\le 0$";
+      var testo = T(L,
+        "Consider the LP " + lp + ". Its optimal solution is $\\tilde x = (" + x1 + ", " + x2 + ", 0)$. Let $\\tilde\\pi_i = \\partial\\tilde z/\\partial b_i$ be the dual value of constraint $i$ (in a minimum: $\\pi_i \\ge 0$ for $\\ge$, free for $=$, $\\le 0$ for $\\le$). Using complementary slackness, what are the optimal dual values?",
+        "Si consideri l'LP " + lp + ". La sua soluzione ottima è $\\tilde x = (" + x1 + ", " + x2 + ", 0)$. Sia $\\tilde\\pi_i = \\partial\\tilde z/\\partial b_i$ il valore duale del vincolo $i$ (in un minimo: $\\pi_i \\ge 0$ per $\\ge$, libera per $=$, $\\le 0$ per $\\le$). Con gli scarti complementari, quali sono i valori duali ottimi?");
+      var sp = T(L,
+        "Constraint (1) is slack ($" + (x1 + x2) + " > " + b1 + "$), so $\\tilde\\pi_1 = 0$. $x_1 > 0$ and $x_2 \\ne 0$ make their dual constraints active (columns of the primal): $\\pi_2 + " + u1(a31) + "\\pi_3 = " + c1 + "$ and $\\pi_2 - " + u1(-a32) + "\\pi_3 = " + c2 + "$, so $\\tilde\\pi_2 = " + p2 + "$, $\\tilde\\pi_3 = " + p3 + " \\le 0$ as required. The dual constraint of $x_3$ need not be active: $x_3$ sits at its bound $0$ with reduced cost $" + c3 + " + " + p2 + " = " + (c3 + p2) + "$. Check: $\\sum_i b_i\\tilde\\pi_i = " + (b2 * p2 + b3 * p3) + " = \\tilde z$.",
+        "Il vincolo (1) è lasco ($" + (x1 + x2) + " > " + b1 + "$), quindi $\\tilde\\pi_1 = 0$. $x_1 > 0$ e $x_2 \\ne 0$ rendono attivi i loro vincoli duali (colonne del primale): $\\pi_2 + " + u1(a31) + "\\pi_3 = " + c1 + "$ e $\\pi_2 - " + u1(-a32) + "\\pi_3 = " + c2 + "$, da cui $\\tilde\\pi_2 = " + p2 + "$, $\\tilde\\pi_3 = " + p3 + " \\le 0$ come richiesto. Il vincolo duale di $x_3$ non deve essere attivo: $x_3$ sta al suo limite $0$ con costo ridotto $" + c3 + " + " + p2 + " = " + (c3 + p2) + "$. Verifica: $\\sum_i b_i\\tilde\\pi_i = " + (b2 * p2 + b3 * p3) + " = \\tilde z$.");
+      return chiudi(rng, testo, o(0, p2, p3), [o(0, rr2, rr3), o(0, w2, w3), o(0, p3, p2), o(0, p2, -p3), o(p2, 0, p3)], sp,
+        { c: [c1, c2, c3], b: [b1, b2, b3], a3: [a31, a32], x: [x1, x2, 0] });
+    }
+  });
+  /* ===================== generatori aggiunti (7 novembre 2026): parte «Ottimizzazione e machine learning» ===================== */
+
+  var SVM_E = "SVM for binary classification: observations $\\mathbf x_i$ with labels $y_i \\in \\{-1, +1\\}$, hyperplane $\\mathbf w'\\mathbf x + b = 0$. ";
+  var SVM_I = "SVM per la classificazione binaria: osservazioni $\\mathbf x_i$ con etichette $y_i \\in \\{-1, +1\\}$, iperpiano $\\mathbf w'\\mathbf x + b = 0$. ";
+  function vec(v, L) { return "(" + v.map(function (u) { return m(u, 3, L); }).join("; ") + ")"; }
+
+  gen({
+    id: "orl-g-svm-margine", livello: "facile", capitolo: "svm",
+    link: link("svm/#hard-margin", "svm/#hard-margin"),
+    prova: function (rng, L) {
+      var w = [ri(rng, -6, 6), ri(rng, -6, 6)], b = ri(rng, -8, 8), x0 = [ri(rng, -4, 4), ri(rng, -4, 4)];
+      if (w[0] === 0 || w[1] === 0) return null;
+      var nw = Math.sqrt(w[0] * w[0] + w[1] * w[1]), f0 = w[0] * x0[0] + w[1] * x0[1] + b;
+      if (f0 === 0) return null;
+      var mg = 2 / nw, dist = Math.abs(f0) / nw;
+      var vals = [mg, dist, 1 / nw, Math.abs(f0), 2 / (nw * nw)];
+      for (var i = 0; i < vals.length; i++) if (quasiMezzo(vals[i], 3)) return null;
+      function o(a, c) { return T(L, "margin $", "margine $") + m(a, 3, L) + T(L, "$, distance $", "$, distanza $") + m(c, 3, L) + "$"; }
+      var testo = (L === "it" ? SVM_I : SVM_E) + T(L,
+        "A trained SVM has $\\mathbf w = (" + w[0] + "; " + w[1] + ")$ and $b = " + b + "$; its margin lines are $\\mathbf w'\\mathbf x + b = \\pm 1$. What are the margin (the distance between the two margin lines) and the distance of the point $\\mathbf x_0 = (" + x0[0] + "; " + x0[1] + ")$ from the hyperplane?",
+        "Una SVM addestrata ha $\\mathbf w = (" + w[0] + "; " + w[1] + ")$ e $b = " + b + "$; le sue rette di margine sono $\\mathbf w'\\mathbf x + b = \\pm 1$. Quanto valgono il margine (la distanza fra le due rette di margine) e la distanza del punto $\\mathbf x_0 = (" + x0[0] + "; " + x0[1] + ")$ dall'iperpiano?");
+      var sp = T(L,
+        "$\\|\\mathbf w\\| = \\sqrt{" + (w[0] * w[0] + w[1] * w[1]) + "} = " + m(nw, 3, L) + "$: the margin is $2/\\|\\mathbf w\\| = " + m(mg, 3, L) + "$; the distance of $\\mathbf x_0$ is $|\\mathbf w'\\mathbf x_0 + b|/\\|\\mathbf w\\| = " + Math.abs(f0) + "/" + m(nw, 3, L) + " = " + m(dist, 3, L) + "$. Forgetting to divide by $\\|\\mathbf w\\|$ is the typical mistake.",
+        "$\\|\\mathbf w\\| = \\sqrt{" + (w[0] * w[0] + w[1] * w[1]) + "} = " + m(nw, 3, L) + "$: il margine è $2/\\|\\mathbf w\\| = " + m(mg, 3, L) + "$; la distanza di $\\mathbf x_0$ è $|\\mathbf w'\\mathbf x_0 + b|/\\|\\mathbf w\\| = " + Math.abs(f0) + "/" + m(nw, 3, L) + " = " + m(dist, 3, L) + "$. Dimenticare di dividere per $\\|\\mathbf w\\|$ è l'errore tipico.");
+      return chiudi(rng, testo, o(mg, dist), [o(1 / nw, dist), o(mg, Math.abs(f0)), o(2 / (nw * nw), dist), o(1 / nw, Math.abs(f0))], sp,
+        { w: w, b: b, x0: x0 });
+    }
+  });
+
+  gen({
+    id: "orl-g-svm-duale-w", livello: "facile", capitolo: "svm",
+    link: link("svm/#the-dual-and-the-support-vectors", "svm/#il-duale-e-i-support-vector"),
+    prova: function (rng, L) {
+      var X = [[ri(rng, -3, 4), ri(rng, -3, 4)], [ri(rng, -3, 4), ri(rng, -3, 4)], [ri(rng, -3, 4), ri(rng, -3, 4)]];
+      var a1 = pk(rng, [0.5, 1, 1.5, 2]), a2 = pk(rng, [0.5, 1, 1.5, 2]), al = [a1, a2, a1 + a2], y = [1, 1, -1];
+      var w = [0, 1].map(function (k) { return al[0] * X[0][k] + al[1] * X[1][k] - al[2] * X[2][k]; });
+      var nos = [0, 1].map(function (k) { return al[0] * X[0][k] + al[1] * X[1][k] + al[2] * X[2][k]; });
+      var pos = [0, 1].map(function (k) { return al[0] * X[0][k] + al[1] * X[1][k]; });
+      if (w[0] === 0 && w[1] === 0) return null;
+      for (var u = 0; u < 3; u++) for (var v = u + 1; v < 3; v++) if (X[u][0] === X[v][0] && X[u][1] === X[v][1]) return null;
+      function o(v) { return "$\\tilde{\\mathbf w} = " + vec(v, L) + "$"; }
+      var testo = (L === "it" ? SVM_I : SVM_E) + T(L,
+        "In the dual of the soft margin ($\\max\\ \\sum_i\\alpha_i - \\tfrac12\\sum_i\\sum_j\\alpha_i\\alpha_jy_iy_j\\mathbf x_i'\\mathbf x_j$, $\\sum_i\\alpha_iy_i = 0$, $0 \\le \\alpha_i \\le C$) only three points have $\\tilde\\alpha_i > 0$: $\\mathbf x_1 = (" + X[0].join("; ") + ")$, $y_1 = +1$, $\\tilde\\alpha_1 = " + m(a1, 1, L) + "$; $\\mathbf x_2 = (" + X[1].join("; ") + ")$, $y_2 = +1$, $\\tilde\\alpha_2 = " + m(a2, 1, L) + "$; $\\mathbf x_3 = (" + X[2].join("; ") + ")$, $y_3 = -1$, $\\tilde\\alpha_3 = " + m(a1 + a2, 1, L) + "$. What is the optimal $\\tilde{\\mathbf w}$ of the primal?",
+        "Nel duale del soft margin ($\\max\\ \\sum_i\\alpha_i - \\tfrac12\\sum_i\\sum_j\\alpha_i\\alpha_jy_iy_j\\mathbf x_i'\\mathbf x_j$, $\\sum_i\\alpha_iy_i = 0$, $0 \\le \\alpha_i \\le C$) solo tre punti hanno $\\tilde\\alpha_i > 0$: $\\mathbf x_1 = (" + X[0].join("; ") + ")$, $y_1 = +1$, $\\tilde\\alpha_1 = " + m(a1, 1, L) + "$; $\\mathbf x_2 = (" + X[1].join("; ") + ")$, $y_2 = +1$, $\\tilde\\alpha_2 = " + m(a2, 1, L) + "$; $\\mathbf x_3 = (" + X[2].join("; ") + ")$, $y_3 = -1$, $\\tilde\\alpha_3 = " + m(a1 + a2, 1, L) + "$. Quanto vale il $\\tilde{\\mathbf w}$ ottimo del primale?");
+      var sp = T(L,
+        "Primal–dual relation: $\\tilde{\\mathbf w} = \\sum_i\\tilde\\alpha_iy_i\\mathbf x_i$, a sum over the support vectors only, with the sign of the labels: $" + m(a1, 1, L) + "\\,\\mathbf x_1 + " + m(a2, 1, L) + "\\,\\mathbf x_2 - " + m(a1 + a2, 1, L) + "\\,\\mathbf x_3 = " + vec(w, L) + "$. Forgetting the labels $y_i$ is the typical mistake.",
+        "Relazione primale-duale: $\\tilde{\\mathbf w} = \\sum_i\\tilde\\alpha_iy_i\\mathbf x_i$, una somma sui soli support vector, col segno delle etichette: $" + m(a1, 1, L) + "\\,\\mathbf x_1 + " + m(a2, 1, L) + "\\,\\mathbf x_2 - " + m(a1 + a2, 1, L) + "\\,\\mathbf x_3 = " + vec(w, L) + "$. Dimenticare le etichette $y_i$ è l'errore tipico.");
+      return chiudi(rng, testo, o(w), [o(nos), o([-w[0], -w[1]]), o(pos), o([w[1], w[0]])], sp,
+        { X: X, y: y, alpha: al });
+    }
+  });
+
+  gen({
+    id: "orl-g-svm-rbf-valore", livello: "facile", capitolo: "svm",
+    link: link("svm/#rbf-kernel", "svm/#kernel-rbf"),
+    prova: function (rng, L) {
+      var x = [ri(rng, 0, 4), ri(rng, 0, 4)], z = [ri(rng, 0, 4), ri(rng, 0, 4)], g = pk(rng, [0.1, 0.2, 0.25, 0.5, 1]);
+      var d2 = (x[0] - z[0]) * (x[0] - z[0]) + (x[1] - z[1]) * (x[1] - z[1]);
+      if (d2 === 0 || d2 > 10) return null;
+      var K = Math.exp(-g * d2), w1 = Math.exp(-g * Math.sqrt(d2)), w2 = Math.exp(-d2 / g), w3 = Math.exp(-g * d2 / 2);
+      var vals = [K, w1, w2, w3];
+      for (var i = 0; i < vals.length; i++) if (quasiMezzo(vals[i], 3) || vals[i] < 0.001) return null;
+      function o(v) { return "$K = " + m(v, 3, L) + "$"; }
+      var testo = (L === "it" ? SVM_I : SVM_E) + T(L,
+        "With the RBF (Gaussian) kernel $K(\\mathbf x, \\mathbf z) = e^{-\\gamma\\|\\mathbf x - \\mathbf z\\|^2}$ and $\\gamma = " + m(g, 2, L) + "$, what is $K(\\mathbf x, \\mathbf z)$ for $\\mathbf x = (" + x.join("; ") + ")$ and $\\mathbf z = (" + z.join("; ") + ")$?",
+        "Con il kernel RBF (gaussiano) $K(\\mathbf x, \\mathbf z) = e^{-\\gamma\\|\\mathbf x - \\mathbf z\\|^2}$ e $\\gamma = " + m(g, 2, L) + "$, quanto vale $K(\\mathbf x, \\mathbf z)$ per $\\mathbf x = (" + x.join("; ") + ")$ e $\\mathbf z = (" + z.join("; ") + ")$?");
+      var sp = T(L,
+        "$\\|\\mathbf x - \\mathbf z\\|^2 = " + d2 + "$ (the squared distance, not the distance), so $K = e^{-" + m(g, 2, L) + "\\cdot " + d2 + "} = " + m(K, 3, L) + "$. Points far apart give $K$ close to 0, coincident points $K = 1$; a larger $\\gamma$ makes the kernel more local.",
+        "$\\|\\mathbf x - \\mathbf z\\|^2 = " + d2 + "$ (la distanza al quadrato, non la distanza), quindi $K = e^{-" + m(g, 2, L) + "\\cdot " + d2 + "} = " + m(K, 3, L) + "$. Punti lontani danno $K$ vicino a 0, punti coincidenti $K = 1$; un $\\gamma$ più grande rende il kernel più locale.");
+      return chiudi(rng, testo, o(K), [o(w1), o(w2), o(w3)], sp, { x: x, z: z, g: g });
+    }
+  });
+
+  gen({
+    id: "orl-g-svr-tubo", livello: "facile", capitolo: "svm",
+    link: link("svm/#unbalanced-classes-and-svr", "svm/#classi-sbilanciate-e-svr"),
+    prova: function (rng, L) {
+      var a = -ri(rng, 2, 12), c0 = 10 * ri(rng, 15, 25), eps = ri(rng, 3, 8);
+      var xs = [1, 2, 3, 4, 5].map(function (k) { return k + ri(rng, 0, 2) * 5; });
+      xs = sortNum(xs);
+      for (var k = 1; k < xs.length; k++) if (xs[k] === xs[k - 1]) return null;
+      var r = xs.map(function () { return ri(rng, -2 * eps, 2 * eps); });
+      var ys = xs.map(function (x, i) { return a * x + c0 + r[i]; });
+      var fuori = 0, pen = 0, assol = 0;
+      r.forEach(function (e) { if (Math.abs(e) > eps) { fuori++; pen += Math.abs(e) - eps; assol += Math.abs(e); } });
+      if (fuori === 0 || fuori === 5) return null;
+      function o(k, p) { return T(L, "$" + k + "$ points outside, penalty $" + p + "$", "$" + k + "$ punti fuori, penalità $" + p + "$"); }
+      var pts = xs.map(function (x, i) { return "(" + x + "; " + ys[i] + ")"; }).join(", ");
+      var testo = T(L,
+        "Support Vector Regression: errors within a tube $|y_i - \\hat y_i| \\le \\varepsilon$ cost nothing, those outside pay $|y_i - \\hat y_i| - \\varepsilon$ (the slacks $\\xi_i$, $\\xi_i^*$). The estimated line is $\\hat y = " + a + "x + " + c0 + "$, with $\\varepsilon = " + eps + "$; the observations $(x_i; y_i)$ are " + pts + ". How many points fall outside the tube, and what is their total penalty $\\sum_i(\\xi_i + \\xi_i^*)$?",
+        "Support Vector Regression: gli errori dentro un tubo $|y_i - \\hat y_i| \\le \\varepsilon$ non costano, quelli fuori pagano $|y_i - \\hat y_i| - \\varepsilon$ (gli scarti $\\xi_i$, $\\xi_i^*$). La retta stimata è $\\hat y = " + a + "x + " + c0 + "$, con $\\varepsilon = " + eps + "$; le osservazioni $(x_i; y_i)$ sono " + pts + ". Quanti punti cadono fuori dal tubo, e qual è la loro penalità totale $\\sum_i(\\xi_i + \\xi_i^*)$?");
+      var sp = T(L,
+        "Residuals $y_i - \\hat y_i$: $" + r.join("$, $") + "$. Those with $|r_i| > " + eps + "$ are " + fuori + "; each pays only the part beyond the tube, $|r_i| - " + eps + "$, for a total of $" + pen + "$. Paying the whole residual gives $" + assol + "$.",
+        "Residui $y_i - \\hat y_i$: $" + r.join("$, $") + "$. Quelli con $|r_i| > " + eps + "$ sono " + fuori + "; ciascuno paga solo la parte oltre il tubo, $|r_i| - " + eps + "$, per un totale di $" + pen + "$. Pagare l'intero residuo dà $" + assol + "$.");
+      return chiudi(rng, testo, o(fuori, pen), [o(fuori, assol), o(5 - fuori, pen), o(5 - fuori, assol), o(fuori, pen + eps)], sp,
+        { xs: xs, ys: ys, a: a, c: c0, eps: eps });
+    }
+  });
+
+  gen({
+    id: "orl-g-reg-mediana-media", livello: "facile", capitolo: "regression",
+    link: link("regression/#case-study-the-bakery-history", "regressione/#caso-di-studio-lo-storico-della-panetteria"),
+    prova: function (rng, L) {
+      var y = [];
+      for (var i = 0; i < 6; i++) y.push(ri(rng, 90, 150));
+      y.push(ri(rng, 10, 30));
+      var s = sortNum(y);
+      for (var k = 1; k < 7; k++) if (s[k] === s[k - 1]) return null;
+      var med = s[3], media = y.reduce(function (u, v) { return u + v; }, 0) / 7;
+      var med6 = (s[3] + s[4]) / 2;
+      if (quasiMezzo(media, 2) || Math.abs(media - med) < 3) return null;
+      function o(a, c) { return T(L, "LP $\\tilde b = ", "LP $\\tilde b = ") + m(a, 2, L) + T(L, "$, QP $\\tilde b = ", "$, QP $\\tilde b = ") + m(c, 2, L) + "$"; }
+      var testo = T(L,
+        "Seven days of sales of a bakery, one of them during a strike: $" + y.join("$, $") + "$. With no features, the LP of least absolute deviations ($\\min\\sum_i|y_i - b|$, quantile regression with $\\tau = 1/2$) and the QP of least squares ($\\min\\sum_i(y_i - b)^2$) each estimate one number $b$. What are the two estimates?",
+        "Sette giorni di vendite di una panetteria, uno dei quali durante uno sciopero: $" + y.join("$, $") + "$. Senza caratteristiche, l'LP dei minimi scostamenti assoluti ($\\min\\sum_i|y_i - b|$, regressione quantile con $\\tau = 1/2$) e il QP dei minimi quadrati ($\\min\\sum_i(y_i - b)^2$) stimano ciascuno un solo numero $b$. Quanto valgono le due stime?");
+      var sp = T(L,
+        "The LP returns the median, the 4th of the 7 sorted values, $" + med + "$; the QP returns the mean, $" + m(media, 2, L) + "$, pulled down by the strike day. The median ignores how far the anomalous value is: this is the robustness of the LP.",
+        "L'LP restituisce la mediana, il 4º dei 7 valori ordinati, $" + med + "$; il QP restituisce la media, $" + m(media, 2, L) + "$, tirata in basso dal giorno di sciopero. La mediana ignora quanto è lontano il valore anomalo: è la robustezza dell'LP.");
+      return chiudi(rng, testo, o(med, media), [o(media, med), o(med6, media), o(med, (s[1] + s[2] + s[3] + s[4] + s[5] + s[6]) / 6)], sp,
+        { y: y });
+    }
+  });
+
+  gen({
+    id: "orl-g-svm-duale-b", livello: "media", capitolo: "svm",
+    link: link("svm/#the-dual-and-the-support-vectors", "svm/#il-duale-e-i-support-vector"),
+    prova: function (rng, L) {
+      var w = [ri(rng, -3, 3), ri(rng, -3, 3)], xk = [ri(rng, -3, 3), ri(rng, -3, 3)], yk = pk(rng, [-1, 1]);
+      var x0 = [ri(rng, -3, 3), ri(rng, -3, 3)];
+      if (w[0] === 0 && w[1] === 0) return null;
+      var b = yk - (w[0] * xk[0] + w[1] * xk[1]), f0 = w[0] * x0[0] + w[1] * x0[1] + b;
+      var bw = -(w[0] * xk[0] + w[1] * xk[1]), b1 = 1 - (w[0] * xk[0] + w[1] * xk[1]);
+      if (f0 === 0 || b1 === b) return null;
+      function o(bb, ff) { return "$\\tilde b = " + bb + "$, $f(\\mathbf x_0) = " + ff + "$"; }
+      function fx(bb) { return w[0] * x0[0] + w[1] * x0[1] + bb; }
+      var testo = (L === "it" ? SVM_I : SVM_E) + T(L,
+        "A soft-margin SVM (dual multipliers $0 \\le \\alpha_i \\le C$) gives $\\tilde{\\mathbf w} = (" + w.join("; ") + ")$. The point $\\mathbf x_k = (" + xk.join("; ") + ")$ with label $y_k = " + (yk > 0 ? "+1" : "-1") + "$ has $0 < \\tilde\\alpha_k < C$. What are the intercept $\\tilde b$ and the score $f(\\mathbf x_0) = \\tilde{\\mathbf w}'\\mathbf x_0 + \\tilde b$ of $\\mathbf x_0 = (" + x0.join("; ") + ")$?",
+        "Una SVM soft margin (moltiplicatori duali $0 \\le \\alpha_i \\le C$) dà $\\tilde{\\mathbf w} = (" + w.join("; ") + ")$. Il punto $\\mathbf x_k = (" + xk.join("; ") + ")$ con etichetta $y_k = " + (yk > 0 ? "+1" : "-1") + "$ ha $0 < \\tilde\\alpha_k < C$. Quanto valgono l'intercetta $\\tilde b$ e il punteggio $f(\\mathbf x_0) = \\tilde{\\mathbf w}'\\mathbf x_0 + \\tilde b$ di $\\mathbf x_0 = (" + x0.join("; ") + ")$?");
+      var sp = T(L,
+        "$0 < \\tilde\\alpha_k < C$ means $\\mathbf x_k$ lies exactly on its margin line: $y_k(\\tilde{\\mathbf w}'\\mathbf x_k + b) = 1$, so $\\tilde b = y_k - \\tilde{\\mathbf w}'\\mathbf x_k = " + b + "$ (since $1/y_k = y_k$). Then $f(\\mathbf x_0) = " + f0 + "$: $\\mathbf x_0$ is assigned to class $" + (f0 > 0 ? "+1" : "-1") + "$.",
+        "$0 < \\tilde\\alpha_k < C$ vuol dire che $\\mathbf x_k$ sta esattamente sulla sua retta di margine: $y_k(\\tilde{\\mathbf w}'\\mathbf x_k + b) = 1$, quindi $\\tilde b = y_k - \\tilde{\\mathbf w}'\\mathbf x_k = " + b + "$ (perché $1/y_k = y_k$). Allora $f(\\mathbf x_0) = " + f0 + "$: $\\mathbf x_0$ va nella classe $" + (f0 > 0 ? "+1" : "-1") + "$.");
+      return chiudi(rng, testo, o(b, f0), [o(bw, fx(bw)), o(b1, fx(b1)), o(-b, fx(-b)), o(b, -f0)], sp,
+        { w: w, xk: xk, yk: yk, x0: x0 });
+    }
+  });
+
+  gen({
+    id: "orl-g-reg-duale-interpolato", livello: "media", capitolo: "regression",
+    link: link("regression/#the-dual-reading-the-support-points", "regressione/#la-lettura-duale-i-punti-di-appoggio"),
+    prova: function (rng, L) {
+      var n = pk(rng, [5, 7, 9]), k = ri(rng, 2, n - 1);
+      var y = [];
+      for (var i = 0; i < n; i++) y.push(ri(rng, 80, 160));
+      var s = sortNum(y);
+      for (var j = 1; j < n; j++) if (s[j] === s[j - 1]) return null;
+      var num = 2 * k - 1, den = 2 * n, tau = num / den;
+      var pi = (k - 1) - tau * (n - 1);
+      if (quasiMezzo(pi, 3) || quasiMezzo(1 - tau, 3)) return null;
+      function o(bb, p) { return "$\\tilde b = " + bb + "$, $\\tilde\\pi = " + m(p, 3, L) + "$"; }
+      var testo = T(L,
+        "Quantile regression LP with no features: $\\min\\sum_i[\\tau u_i + (1 - \\tau)v_i]$ subject to $b + u_i - v_i = y_i$, $u_i, v_i \\ge 0$, $b$ free; $\\tilde\\pi_i$ is the optimal dual of the constraint of observation $i$ (it equals $\\tau$ for observations above $\\tilde b$, $-(1 - \\tau)$ for those below, and $\\sum_i\\tilde\\pi_i = 0$). Data: $y = (" + y.join("; ") + ")$, $\\tau = " + num + "/" + den + "$. What are $\\tilde b$ and the dual $\\tilde\\pi$ of the interpolated observation ($y_i = \\tilde b$)?",
+        "LP di regressione quantile senza caratteristiche: $\\min\\sum_i[\\tau u_i + (1 - \\tau)v_i]$ soggetto a $b + u_i - v_i = y_i$, $u_i, v_i \\ge 0$, $b$ libera; $\\tilde\\pi_i$ è il duale ottimo del vincolo dell'osservazione $i$ (vale $\\tau$ per le osservazioni sopra $\\tilde b$, $-(1 - \\tau)$ per quelle sotto, e $\\sum_i\\tilde\\pi_i = 0$). Dati: $y = (" + y.join("; ") + ")$, $\\tau = " + num + "/" + den + "$. Quanto valgono $\\tilde b$ e il duale $\\tilde\\pi$ dell'osservazione interpolata ($y_i = \\tilde b$)?");
+      var sp = T(L,
+        "$\\tilde b$ is the empirical $\\tau$-quantile: with $(k - 1)/n < \\tau < k/n$ for $k = " + k + "$ it is the " + k + "th smallest value, $" + s[k - 1] + "$, with $" + (k - 1) + "$ observations below and $" + (n - k) + "$ above. From $\\sum_i\\tilde\\pi_i = 0$: $\\tilde\\pi = (1 - \\tau)\\cdot " + (k - 1) + " - \\tau\\cdot " + (n - k) + " = " + m(pi, 3, L) + "$, inside $[-(1 - \\tau), \\tau]$.",
+        "$\\tilde b$ è il quantile empirico di livello $\\tau$: con $(k - 1)/n < \\tau < k/n$ per $k = " + k + "$ è il " + k + "º valore più piccolo, $" + s[k - 1] + "$, con $" + (k - 1) + "$ osservazioni sotto e $" + (n - k) + "$ sopra. Da $\\sum_i\\tilde\\pi_i = 0$: $\\tilde\\pi = (1 - \\tau)\\cdot " + (k - 1) + " - \\tau\\cdot " + (n - k) + " = " + m(pi, 3, L) + "$, dentro $[-(1 - \\tau), \\tau]$.");
+      return chiudi(rng, testo, o(s[k - 1], pi), [o(s[k - 1], -pi), o(s[k], pi), o(s[k - 2], tau), o(s[k - 1], tau), o(s[k - 1], -(1 - tau))], sp,
+        { y: y, tau: tau, b: s[k - 1] });
+    }
+  });
+
+  gen({
+    id: "orl-g-reg-lad-3punti", livello: "complessa", capitolo: "regression",
+    link: link("regression/#the-dual-reading-the-support-points", "regressione/#la-lettura-duale-i-punti-di-appoggio"),
+    prova: function (rng, L) {
+      var xs = sortNum([ri(rng, 0, 9), ri(rng, 0, 9), ri(rng, 0, 9)]);
+      if (xs[0] === xs[1] || xs[1] === xs[2]) return null;
+      var ys = [ri(rng, 10, 60), ri(rng, 10, 60), ri(rng, 10, 60)];
+      var tau = pk(rng, [0.25, 0.5, 0.75]);
+      var cand = [];
+      [[0, 1, 2], [0, 2, 1], [1, 2, 0]].forEach(function (t) {
+        var i = t[0], j = t[1], h = t[2];
+        var a = (ys[j] - ys[i]) / (xs[j] - xs[i]), c = ys[i] - a * xs[i], r = ys[h] - (a * xs[h] + c);
+        cand.push({ a: a, c: c, z: r > 0 ? tau * r : -(1 - tau) * r });
+      });
+      var ord = cand.slice().sort(function (u, v) { return u.z - v.z; });
+      if (ord[1].z - ord[0].z < 0.5) return null;
+      for (var q = 0; q < 3; q++) if (quasiMezzo(cand[q].a, 2) || quasiMezzo(cand[q].c, 2) || quasiMezzo(cand[q].z, 2)) return null;
+      var best = ord[0];
+      function o(u) { return T(L, "slope $", "pendenza $") + m(u.a, 2, L) + T(L, "$, intercept $", "$, intercetta $") + m(u.c, 2, L) + T(L, "$, value $", "$, valore $") + m(u.z, 2, L) + "$"; }
+      // errore: costi dei due lati scambiati
+      var sw = [[0, 1, 2], [0, 2, 1], [1, 2, 0]].map(function (t) {
+        var i = t[0], j = t[1], h = t[2];
+        var a = (ys[j] - ys[i]) / (xs[j] - xs[i]), c = ys[i] - a * xs[i], r = ys[h] - (a * xs[h] + c);
+        return { a: a, c: c, z: r > 0 ? (1 - tau) * r : -tau * r };
+      }).sort(function (u, v) { return u.z - v.z; })[0];
+      var pts = xs.map(function (x, i) { return "(" + x + "; " + ys[i] + ")"; }).join(", ");
+      var testo = T(L,
+        "Quantile regression LP with one feature ($p = 1$): $\\min\\sum_i[\\tau u_i + (1 - \\tau)v_i]$ subject to $wx_i + b + u_i - v_i = y_i$, $u_i, v_i \\ge 0$ ($u_i$: observation above the line, $v_i$: below), $w, b$ free, with $\\tau = " + m(tau, 2, L) + "$ and three observations $(x_i; y_i)$: " + pts + ". An optimal line interpolates $p + 1 = 2$ observations. What are the optimal slope $\\tilde w$, intercept $\\tilde b$ and optimal value?",
+        "LP di regressione quantile con una caratteristica ($p = 1$): $\\min\\sum_i[\\tau u_i + (1 - \\tau)v_i]$ soggetto a $wx_i + b + u_i - v_i = y_i$, $u_i, v_i \\ge 0$ ($u_i$: osservazione sopra la retta, $v_i$: sotto), $w, b$ liberi, con $\\tau = " + m(tau, 2, L) + "$ e tre osservazioni $(x_i; y_i)$: " + pts + ". Una retta ottima interpola $p + 1 = 2$ osservazioni. Quanto valgono la pendenza ottima $\\tilde w$, l'intercetta $\\tilde b$ e il valore ottimo?");
+      var sp = T(L,
+        "Three candidate lines, one per pair of points; each leaves one residual $r$ on the third point, which costs $\\tau r$ if the point is above ($r > 0$) and $(1 - \\tau)|r|$ if below. Values: $" + cand.map(function (u) { return m(u.z, 2, L); }).join("$, $") + "$. The cheapest is the line with slope $" + m(best.a, 2, L) + "$ and intercept $" + m(best.c, 2, L) + "$.",
+        "Tre rette candidate, una per coppia di punti; ciascuna lascia un residuo $r$ sul terzo punto, che costa $\\tau r$ se il punto sta sopra ($r > 0$) e $(1 - \\tau)|r|$ se sta sotto. Valori: $" + cand.map(function (u) { return m(u.z, 2, L); }).join("$, $") + "$. La più economica è la retta con pendenza $" + m(best.a, 2, L) + "$ e intercetta $" + m(best.c, 2, L) + "$.");
+      return chiudi(rng, testo, o(best), [o(ord[1]), o(ord[2]), o(sw), o({ a: best.a, c: best.c, z: 2 * best.z })], sp,
+        { xs: xs, ys: ys, tau: tau });
+    }
+  });
+  /* ===================== generatori aggiunti (7 novembre 2026): parte «Decisioni sotto incertezza» ===================== */
+
+  gen({
+    id: "orl-g-nv-normale", livello: "facile", capitolo: "newsvendor",
+    link: link("newsvendor/#case-study", "newsvendor/#caso-di-studio"),
+    prova: function (rng, L) {
+      var tab = [[0.6, 0.253], [0.7, 0.524], [0.75, 0.674], [0.8, 0.842], [0.9, 1.282]];
+      var k = ri(rng, 0, 4), al = tab[k][0], z = tab[k][1];
+      var co = pk(rng, [2, 4, 6]), cu = Math.round(co * al / (1 - al) * 1000) / 1000;
+      if (Math.abs(cu - Math.round(cu)) > 1e-9) return null;
+      var v = ri(rng, 1, 5), c = v + co, p = c + cu;
+      var mu = 10 * ri(rng, 8, 20), sg = 5 * ri(rng, 2, 8);
+      var qs = mu + z * sg, qm = mu - z * sg, k2 = k < 4 ? k + 1 : k - 1, qw = mu + tab[k2][1] * sg;
+      if (quasiMezzo(qs, 1) || quasiMezzo(qm, 1) || quasiMezzo(qw, 1)) return null;
+      function o(x) { return "$\\tilde q = " + m(x, 1, L) + "$"; }
+      var zt = tab.map(function (t) { return "$\\Phi^{-1}(" + m(t[0], 2, L) + ") = " + m(t[1], 3, L) + "$"; }).join(", ");
+      var testo = T(L,
+        "Newsvendor: a product is bought at $c = " + c + "$ €, sold at $p = " + p + "$ € and each unsold unit is recovered at $v = " + v + "$ €; demand is normal with mean $" + mu + "$ and standard deviation $" + sg + "$. The optimal order satisfies $F(\\tilde q) = c_u/(c_u + c_o)$ with $c_u = p - c$ and $c_o = c - v$, so $\\tilde q = \\mu + z\\sigma$ with $z = \\Phi^{-1}(c_u/(c_u + c_o))$ (standard normal quantiles: " + zt + "). What is $\\tilde q$?",
+        "Newsvendor: un prodotto si compra a $c = " + c + "$ €, si vende a $p = " + p + "$ € e ogni unità invenduta si recupera a $v = " + v + "$ €; la domanda è normale con media $" + mu + "$ e deviazione standard $" + sg + "$. L'ordine ottimo soddisfa $F(\\tilde q) = c_u/(c_u + c_o)$ con $c_u = p - c$ e $c_o = c - v$, quindi $\\tilde q = \\mu + z\\sigma$ con $z = \\Phi^{-1}(c_u/(c_u + c_o))$ (quantili della normale standard: " + zt + "). Quanto vale $\\tilde q$?");
+      var sp = T(L,
+        "$c_u = " + cu + "$, $c_o = " + co + "$, critical ratio $" + cu + "/" + (cu + co) + " = " + m(al, 2, L) + "$, $z = " + m(z, 3, L) + "$: $\\tilde q = " + mu + " + " + m(z, 3, L) + "\\cdot " + sg + " = " + m(qs, 1, L) + "$, above the mean because shortages cost more than leftovers. Swapping $c_u$ and $c_o$ gives $\\mu - z\\sigma$.",
+        "$c_u = " + cu + "$, $c_o = " + co + "$, rapporto critico $" + cu + "/" + (cu + co) + " = " + m(al, 2, L) + "$, $z = " + m(z, 3, L) + "$: $\\tilde q = " + mu + " + " + m(z, 3, L) + "\\cdot " + sg + " = " + m(qs, 1, L) + "$, sopra la media perché la carenza costa più dell'invenduto. Scambiare $c_u$ e $c_o$ dà $\\mu - z\\sigma$.");
+      return chiudi(rng, testo, o(qs), [o(qm), o(qw), o(mu), o(mu + sg)], sp,
+        { p: p, c: c, v: v, mu: mu, sigma: sg });
+    }
+  });
+
+  gen({
+    id: "orl-g-cvar-eccessi", livello: "facile", capitolo: "var-cvar",
+    link: link("var-cvar/#the-rockafellaruryasev-linear-formulation", "var-cvar/#la-formulazione-lineare-di-rockafellaruryasev"),
+    prova: function (rng, L) {
+      var l = [ri(rng, 1, 30), ri(rng, 1, 30), ri(rng, 1, 30), ri(rng, 1, 30), ri(rng, 1, 30)];
+      var al = pk(rng, [0.6, 0.8]), eta = ri(rng, 5, 25);
+      var xi = l.map(function (u) { return pos(u - eta); }), sx = xi.reduce(function (a, b) { return a + b; }, 0);
+      var neg = l.reduce(function (a, b) { return a + b - eta; }, 0);
+      if (sx === 0 || sx === neg) return null;
+      var F = eta + 0.2 * sx / (1 - al), F1 = eta + 0.2 * sx, F2 = eta + 0.2 * sx / al, F3 = eta + 0.2 * neg / (1 - al);
+      function o(s, f) { return "$\\sum_s\\xi_s = " + m(s, 2, L) + "$, " + T(L, "value", "valore") + " $" + m(f, 2, L) + "$"; }
+      var testo = T(L,
+        "Rockafellar–Uryasev formulation of the CVaR: for a threshold $\\eta$, the excesses are $\\xi_s = (\\ell_s - \\eta)^+$ and the function to minimize over $\\eta$ is $F(\\eta) = \\eta + \\frac{1}{1-\\alpha}\\sum_s\\pi_s\\xi_s$. Five equiprobable scenarios ($\\pi_s = 0{.}2$) with losses $\\ell = (" + l.join("; ") + ")$, $\\alpha = " + m(al, 1, L) + "$. For $\\eta = " + eta + "$ (not necessarily optimal), what are $\\sum_s\\xi_s$ and $F(\\eta)$?",
+        "Formulazione di Rockafellar–Uryasev del CVaR: per una soglia $\\eta$ gli eccessi sono $\\xi_s = (\\ell_s - \\eta)^+$ e la funzione da minimizzare in $\\eta$ è $F(\\eta) = \\eta + \\frac{1}{1-\\alpha}\\sum_s\\pi_s\\xi_s$. Cinque scenari equiprobabili ($\\pi_s = 0{,}2$) con perdite $\\ell = (" + l.join("; ") + ")$, $\\alpha = " + m(al, 1, L) + "$. Per $\\eta = " + eta + "$ (non necessariamente ottimo), quanto valgono $\\sum_s\\xi_s$ e $F(\\eta)$?");
+      testo = testo.replace("0{.}2", "0.2");
+      var sp = T(L,
+        "Only the losses above $" + eta + "$ count: $\\xi = (" + xi.join("; ") + ")$, sum $" + sx + "$. Then $F(" + eta + ") = " + eta + " + \\frac{1}{" + m(1 - al, 1, L) + "}\\cdot 0.2\\cdot " + sx + " = " + m(F, 2, L) + "$. Negative differences are cut at zero; forgetting the factor $1/(1-\\alpha)$ is the other typical mistake.",
+        "Contano solo le perdite sopra $" + eta + "$: $\\xi = (" + xi.join("; ") + ")$, somma $" + sx + "$. Allora $F(" + eta + ") = " + eta + " + \\frac{1}{" + m(1 - al, 1, L) + "}\\cdot 0{,}2\\cdot " + sx + " = " + m(F, 2, L) + "$. Le differenze negative si tagliano a zero; dimenticare il fattore $1/(1-\\alpha)$ è l'altro errore tipico.");
+      return chiudi(rng, testo, o(sx, F), [o(sx, F1), o(neg, F3), o(sx, F2)], sp,
+        { l: l, alpha: al, eta: eta });
+    }
+  });
+
+  gen({
+    id: "orl-g-arb-portafoglio", livello: "facile", capitolo: "arbitrage",
+    link: link("arbitrage/#the-model", "arbitraggio/#il-modello"),
+    prova: function (rng, L) {
+      var R = pk(rng, [1.02, 1.04, 1.05]);
+      var s1 = [ri(rng, 5, 20), ri(rng, 5, 20), ri(rng, 5, 20)], s2 = [ri(rng, 10, 40), ri(rng, 10, 40), ri(rng, 10, 40)];
+      var p1 = ri(rng, 5, 20), p2 = ri(rng, 10, 40);
+      var x1 = pk(rng, [-1, 1, 2]), x2 = pk(rng, [-1, 1, 2]), x0 = -ri(rng, 5, 40);
+      var costo = x0 + x1 * p1 + x2 * p2;
+      var pay = [0, 1, 2].map(function (j) { return x0 * R + x1 * s1[j] + x2 * s2[j]; });
+      var mn = Math.min.apply(null, pay), mx = Math.max.apply(null, pay);
+      var payNoR = [0, 1, 2].map(function (j) { return x0 + x1 * s1[j] + x2 * s2[j]; });
+      var mnNoR = Math.min.apply(null, payNoR);
+      if (Math.abs(mn - mnNoR) < 0.5 || mn === mx) return null;
+      function o(c, w) { return T(L, "cost $", "costo $") + m(c, 2, L) + T(L, "$, smallest payoff $", "$, pagamento minimo $") + m(w, 2, L) + "$"; }
+      var testo = T(L,
+        "One-period market with three states: security 0 is risk-free (costs 1 today, pays $R = " + m(R, 2, L) + "$ in every state); security 1 costs $" + p1 + "$ and pays $(" + s1.join("; ") + ")$; security 2 costs $" + p2 + "$ and pays $(" + s2.join("; ") + ")$. The portfolio $x = (" + x0 + "; " + x1 + "; " + x2 + ")$ holds $x_i$ units of security $i$ (negative = short). What are its cost today, $\\sum_is^0_ix_i$, and its smallest payoff tomorrow over the three states?",
+        "Mercato a un periodo con tre stati: il titolo 0 è privo di rischio (costa 1 oggi, paga $R = " + m(R, 2, L) + "$ in ogni stato); il titolo 1 costa $" + p1 + "$ e paga $(" + s1.join("; ") + ")$; il titolo 2 costa $" + p2 + "$ e paga $(" + s2.join("; ") + ")$. Il portafoglio $x = (" + x0 + "; " + x1 + "; " + x2 + ")$ contiene $x_i$ unità del titolo $i$ (negativo = allo scoperto). Quanto valgono il suo costo di oggi, $\\sum_is^0_ix_i$, e il suo pagamento minimo domani sui tre stati?");
+      var sp = T(L,
+        "Cost: $" + x0 + "\\cdot 1 + " + x1 + "\\cdot " + p1 + " + " + x2 + "\\cdot " + p2 + " = " + costo + "$. Payoffs: $" + x0 + "\\cdot " + m(R, 2, L) + " + " + x1 + "s^1_{1j} + " + x2 + "s^1_{2j}$ = $" + pay.map(function (u) { return m(u, 2, L); }).join("$, $") + "$, smallest $" + m(mn, 2, L) + "$. A negative cost with every payoff $\\ge 0$ would be an arbitrage of type A. The risk-free position pays $R$ per unit, not 1.",
+        "Costo: $" + x0 + "\\cdot 1 + " + x1 + "\\cdot " + p1 + " + " + x2 + "\\cdot " + p2 + " = " + costo + "$. Pagamenti: $" + x0 + "\\cdot " + m(R, 2, L) + " + " + x1 + "s^1_{1j} + " + x2 + "s^1_{2j}$ = $" + pay.map(function (u) { return m(u, 2, L); }).join("$, $") + "$, il minimo $" + m(mn, 2, L) + "$. Un costo negativo con tutti i pagamenti $\\ge 0$ sarebbe un arbitraggio di tipo A. La posizione priva di rischio paga $R$ per unità, non 1.");
+      return chiudi(rng, testo, o(costo, mn), [o(costo, mnNoR), o(costo, mx), o(x0 * R + x1 * p1 + x2 * p2, mn), o(-costo, mn)], sp,
+        { R: R, s1: s1, s2: s2, p1: p1, p2: p2, x: [x0, x1, x2] });
+    }
+  });
+
+  gen({
+    id: "orl-g-arb-prezzo-atteso", livello: "facile", capitolo: "arbitrage",
+    link: link("arbitrage/#duality-is-pricing", "arbitraggio/#la-dualita-e-la-prezzatura"),
+    prova: function (rng, L) {
+      var a = ri(rng, 1, 7), b = ri(rng, 1, 8 - a), q = [a / 10, b / 10, (10 - a - b) / 10];
+      if (q[2] <= 0) return null;
+      var R = pk(rng, [1.02, 1.04, 1.05]), s = [ri(rng, 0, 30), ri(rng, 0, 30), ri(rng, 0, 30)];
+      var e = q[0] * s[0] + q[1] * s[1] + q[2] * s[2], pr = e / R;
+      var media = (s[0] + s[1] + s[2]) / 3 / R;
+      var vals = [pr, e, e * R, media];
+      for (var i = 0; i < vals.length; i++) if (quasiMezzo(vals[i], 2)) return null;
+      if (Math.abs(pr - media) < 0.05 || e === 0) return null;
+      function o(x) { return "$s^0 = " + m(x, 2, L) + "$"; }
+      var testo = T(L,
+        "One-period market with three states and risk-free gross return $R = " + m(R, 2, L) + "$. The duals of the arbitrage LP give the risk-neutral probabilities $q = (" + q.map(function (u) { return m(u, 1, L); }).join("; ") + ")$, and every price today is the discounted expected payoff under $q$: $s^0_i = \\frac1R\\sum_jq_js^1_{ij}$. A new security pays $(" + s.join("; ") + ")$ in the three states. What is its arbitrage-free price today?",
+        "Mercato a un periodo con tre stati e rendimento lordo privo di rischio $R = " + m(R, 2, L) + "$. I duali dell'LP di arbitraggio danno le probabilità neutrali al rischio $q = (" + q.map(function (u) { return m(u, 1, L); }).join("; ") + ")$, e ogni prezzo di oggi è il pagamento atteso scontato sotto $q$: $s^0_i = \\frac1R\\sum_jq_js^1_{ij}$. Un titolo nuovo paga $(" + s.join("; ") + ")$ nei tre stati. Qual è il suo prezzo di oggi senza arbitraggio?");
+      var sp = T(L,
+        "Expected payoff under $q$: $" + m(e, 2, L) + "$; discounted: $" + m(e, 2, L) + "/" + m(R, 2, L) + " = " + m(pr, 2, L) + "$. Forgetting to discount, or using equal probabilities instead of $q$, are the typical mistakes.",
+        "Pagamento atteso sotto $q$: $" + m(e, 2, L) + "$; scontato: $" + m(e, 2, L) + "/" + m(R, 2, L) + " = " + m(pr, 2, L) + "$. Dimenticare lo sconto, o usare probabilità uguali invece di $q$, sono gli errori tipici.");
+      return chiudi(rng, testo, o(pr), [o(e), o(e * R), o(media)], sp, { q: q, R: R, s: s });
+    }
+  });
+
+  gen({
+    id: "orl-g-nv-servizio-uniforme", livello: "media", capitolo: "newsvendor",
+    link: link("newsvendor/#service-levels-and-risk", "newsvendor/#livelli-di-servizio-e-rischio"),
+    prova: function (rng, L) {
+      var a = 10 * ri(rng, 5, 10), w = 10 * ri(rng, 4, 12), b = a + w;
+      var cu = ri(rng, 2, 9), co = ri(rng, 2, 9);
+      var al = cu / (cu + co), be = pk(rng, [0.9, 0.95]);
+      if (al >= be - 0.05 || cu === co) return null;
+      function C(qq) { return (co * (qq - a) * (qq - a) + cu * (b - qq) * (b - qq)) / (2 * w); }
+      var qs = a + al * w, qb = a + be * w, ex = C(qb) - C(qs);
+      var qb2 = a + (1 - be) * w;
+      function Cs(qq) { return (cu * (qq - a) * (qq - a) + co * (b - qq) * (b - qq)) / (2 * w); }
+      var exs = Cs(qb) - Cs(qs);
+      var vals = [qb, ex, exs, C(qb)];
+      for (var i = 0; i < vals.length; i++) if (quasiMezzo(vals[i], 2)) return null;
+      if (Math.abs(ex - exs) < 0.05) return null;
+      function o(x, y) { return "$q_\\beta = " + m(x, 2, L) + "$, " + T(L, "extra cost", "costo in più") + " $" + m(y, 2, L) + "$"; }
+      var testo = T(L,
+        "Newsvendor with uniform demand on $[" + a + ", " + b + "]$, $c_u = " + cu + "$, $c_o = " + co + "$. The expected cost of an order $q$ in $[" + a + ", " + b + "]$ is $C(q) = \\frac{c_o(q - " + a + ")^2 + c_u(" + b + " - q)^2}{2\\cdot " + w + "}$, minimized at $\\tilde q = " + a + " + \\frac{c_u}{c_u + c_o}\\cdot " + w + "$. A contract imposes a cycle service level $\\mathbb P(D \\le q) = " + m(be, 2, L) + "$. What are the required order $q_\\beta$ and its extra expected cost $C(q_\\beta) - C(\\tilde q)$?",
+        "Newsvendor con domanda uniforme su $[" + a + ", " + b + "]$, $c_u = " + cu + "$, $c_o = " + co + "$. Il costo atteso di un ordine $q$ in $[" + a + ", " + b + "]$ è $C(q) = \\frac{c_o(q - " + a + ")^2 + c_u(" + b + " - q)^2}{2\\cdot " + w + "}$, minimo in $\\tilde q = " + a + " + \\frac{c_u}{c_u + c_o}\\cdot " + w + "$. Un contratto impone un livello di servizio di ciclo $\\mathbb P(D \\le q) = " + m(be, 2, L) + "$. Quanto valgono l'ordine richiesto $q_\\beta$ e il suo costo atteso in più $C(q_\\beta) - C(\\tilde q)$?");
+      var sp = T(L,
+        "$q_\\beta = " + a + " + " + m(be, 2, L) + "\\cdot " + w + " = " + m(qb, 2, L) + "$; $\\tilde q = " + m(qs, 2, L) + "$; $C(q_\\beta) = " + m(C(qb), 2, L) + "$ and $C(\\tilde q) = " + m(C(qs), 2, L) + "$, so the service level costs $" + m(ex, 2, L) + "$ more per cycle than the economic optimum, whose service level is only $" + m(al, 2, L) + "$.",
+        "$q_\\beta = " + a + " + " + m(be, 2, L) + "\\cdot " + w + " = " + m(qb, 2, L) + "$; $\\tilde q = " + m(qs, 2, L) + "$; $C(q_\\beta) = " + m(C(qb), 2, L) + "$ e $C(\\tilde q) = " + m(C(qs), 2, L) + "$, quindi il livello di servizio costa $" + m(ex, 2, L) + "$ in più a ciclo rispetto all'ottimo economico, il cui livello di servizio è solo $" + m(al, 2, L) + "$.");
+      return chiudi(rng, testo, o(qb, ex), [o(qb, exs), o(qb2, ex), o(qb, C(qb)), o(qb2, C(qb2) - C(qs))], sp,
+        { a: a, b: b, cu: cu, co: co, beta: be });
+    }
+  });
+  /* ===================== generatori aggiunti (7 novembre 2026): equilibrio fra capitoli (meno ripetizioni) ===================== */
+
+  gen({
+    id: "orl-g-sv-rc-soglia", livello: "facile", capitolo: "solver",
+    link: link("solver-lp/#43-reduced-costs-rc-why-is-this-variable-at-zero", "solver-lp/#43-costi-ridotti-rc-perche-questa-variabile-e-a-zero"),
+    prova: function (rng, L) {
+      var a1 = ri(rng, 1, 3), a2 = ri(rng, 1, 3), c1 = ri(rng, 2, 9) * a1, D = 10 * ri(rng, 3, 12);
+      var pi = c1 / a1, c2 = a2 * pi + ri(rng, 1, 8), rc = c2 - a2 * pi, thr = a2 * pi;
+      function o(r, t) { return "`RC` $= " + m(r, 2, L) + "$, " + T(L, "threshold", "soglia") + " $" + m(t, 2, L) + "$"; }
+      function k(a) { return a === 1 ? "" : String(a); }
+      var testo = T(L,
+        "gurobipy, minimization LP: $\\min\\ " + c1 + "x_1 + " + c2 + "x_2$ subject to $" + k(a1) + "x_1 + " + k(a2) + "x_2 \\ge " + D + "$, $x_1, x_2 \\ge 0$. At the optimum $x_2 = 0$. What are its reduced cost (attribute `x2.RC`, $c_2$ minus the value of the resources it uses at the shadow prices) and the cost threshold `SAObjLow` below which $x_2$ becomes worth using?",
+        "gurobipy, LP di minimo: $\\min\\ " + c1 + "x_1 + " + c2 + "x_2$ soggetto a $" + k(a1) + "x_1 + " + k(a2) + "x_2 \\ge " + D + "$, $x_1, x_2 \\ge 0$. All'ottimo $x_2 = 0$. Quanto valgono il suo costo ridotto (attributo `x2.RC`, $c_2$ meno il valore delle risorse che usa ai prezzi ombra) e la soglia di costo `SAObjLow` sotto la quale conviene usare $x_2$?");
+      var sp = T(L,
+        "Only $x_1$ is used, so the shadow price of the constraint is $c_1/a_1 = " + m(pi, 2, L) + "$; $x_2$ uses $" + a2 + "$ units, worth $" + m(thr, 2, L) + "$: `RC` $= " + c2 + " - " + m(thr, 2, L) + " = " + m(rc, 2, L) + " \\ge 0$ (a variable at its lower bound in a minimum). It becomes worth using when its cost falls to $" + m(thr, 2, L) + "$.",
+        "Si usa solo $x_1$, quindi il prezzo ombra del vincolo è $c_1/a_1 = " + m(pi, 2, L) + "$; $x_2$ usa $" + a2 + "$ unità, che valgono $" + m(thr, 2, L) + "$: `RC` $= " + c2 + " - " + m(thr, 2, L) + " = " + m(rc, 2, L) + " \\ge 0$ (una variabile al limite inferiore in un minimo). Conviene usarla quando il suo costo scende a $" + m(thr, 2, L) + "$.");
+      return chiudi(rng, testo, o(rc, thr), [o(-rc, thr), o(rc, c2 + rc), o(c2 - pi, pi), o(rc, c2)], sp,
+        { c: [c1, c2], a: [a1, a2], D: D });
+    }
+  });
+
+  gen({
+    id: "orl-g-sv-pi-capacita", livello: "facile", capitolo: "solver",
+    link: link("solver-lp/#43-bis-the-general-case-signs-and-reading", "solver-lp/#43-bis-il-caso-generale-segni-e-lettura"),
+    prova: function (rng, L) {
+      var c1 = ri(rng, 2, 8), c2 = c1 + ri(rng, 2, 9), u = 10 * ri(rng, 2, 8), D = u + 10 * ri(rng, 1, 6);
+      var dlt = ri(rng, 1, 9) * pk(rng, [-1, 1]);
+      if (u + dlt <= 0 || u + dlt >= D) return null;
+      var z = c1 * u + c2 * (D - u), pcap = c1 - c2, nz = z + pcap * dlt;
+      function o(v) { return "$\\tilde z = " + v + "$"; }
+      var testo = T(L,
+        "gurobipy, minimization LP: $\\min\\ " + c1 + "x_1 + " + c2 + "x_2$ subject to demand $x_1 + x_2 \\ge " + D + "$ and capacity of the cheap source $x_1 \\le " + u + "$, $x \\ge 0$. Output: optimal cost $" + z + "$; demand constraint `Pi` $= " + c2 + "$; capacity constraint `Pi` $= " + pcap + "$, `SARHS` $= [0, " + D + "]$. What is the optimal cost if the capacity becomes $" + (u + dlt) + "$?",
+        "gurobipy, LP di minimo: $\\min\\ " + c1 + "x_1 + " + c2 + "x_2$ soggetto a domanda $x_1 + x_2 \\ge " + D + "$ e capacità della fonte economica $x_1 \\le " + u + "$, $x \\ge 0$. Output: costo ottimo $" + z + "$; vincolo di domanda `Pi` $= " + c2 + "$; vincolo di capacità `Pi` $= " + pcap + "$, `SARHS` $= [0, " + D + "]$. Quanto vale il costo ottimo se la capacità diventa $" + (u + dlt) + "$?");
+      var sp = T(L,
+        "`Pi` $= \\partial\\tilde z/\\partial b$: a $\\le$ capacity in a minimum has `Pi` $\\le 0$, each unit saves $" + (-pcap) + "$ (the cheap source replaces the expensive one). The new value is inside `SARHS`, so $" + z + " + (" + pcap + ")\\cdot(" + dlt + ") = " + nz + "$.",
+        "`Pi` $= \\partial\\tilde z/\\partial b$: una capacità $\\le$ in un minimo ha `Pi` $\\le 0$, ogni unità fa risparmiare $" + (-pcap) + "$ (la fonte economica sostituisce quella cara). Il nuovo valore è dentro `SARHS`, quindi $" + z + " + (" + pcap + ")\\cdot(" + dlt + ") = " + nz + "$.");
+      return chiudi(rng, testo, o(nz), [o(z - pcap * dlt), o(z + c2 * dlt), o(z + c1 * dlt), o(z)], sp,
+        { c: [c1, c2], u: u, D: D, nu: u + dlt });
+    }
+  });
+
+  gen({
+    id: "orl-g-sv-rhs-costante", livello: "facile", capitolo: "solver",
+    link: link("solver-lp/#43-bis-the-general-case-signs-and-reading", "solver-lp/#43-bis-il-caso-generale-segni-e-lettura"),
+    prova: function (rng, L) {
+      var base = ri(rng, 10, 60), C = base + 10 * ri(rng, 2, 10), C2 = C + 5 * ri(rng, 1, 6) * pk(rng, [-1, 1]);
+      if (C2 <= base) return null;
+      function o(r, s) { return "`constr.RHS` $= " + r + "$, " + T(L, "to set", "da impostare") + " $" + s + "$"; }
+      var testo = T(L,
+        "In gurobipy the meter constraint of an EV-charging model is written `constr = m.addConstr(quicksum(x[v,t] for v in V) + base[t] <= C)`, with the constant `base[t] = " + base + "` (base load, kW) and `C = " + C + "` (meter limit). What value does Gurobi store in `constr.RHS`, and which value must be assigned to `constr.RHS` to study a meter limit of $" + C2 + "$ kW?",
+        "In gurobipy il vincolo del contatore di un modello di ricarica EV si scrive `constr = m.addConstr(quicksum(x[v,t] for v in V) + base[t] <= C)`, con la costante `base[t] = " + base + "` (carico di base, kW) e `C = " + C + "` (limite del contatore). Quale valore memorizza Gurobi in `constr.RHS`, e quale valore va assegnato a `constr.RHS` per studiare un limite di $" + C2 + "$ kW?");
+      var sp = T(L,
+        "Gurobi moves the constant to the right-hand side: `RHS` $= " + C + " - " + base + " = " + (C - base) + "$. Writing `constr.RHS = " + C2 + "` would impose $\\sum_v x_{vt} \\le " + C2 + "$, another constraint; the correct assignment is $" + C2 + " - " + base + " = " + (C2 - base) + "$.",
+        "Gurobi sposta la costante nel termine noto: `RHS` $= " + C + " - " + base + " = " + (C - base) + "$. Scrivere `constr.RHS = " + C2 + "` imporrebbe $\\sum_v x_{vt} \\le " + C2 + "$, un altro vincolo; l'assegnazione corretta è $" + C2 + " - " + base + " = " + (C2 - base) + "$.");
+      return chiudi(rng, testo, o(C - base, C2 - base), [o(C, C2), o(C - base, C2), o(C + base, C2 + base), o(C, C2 - base)], sp,
+        { base: base, C: C, C2: C2 });
+    }
+  });
+
+  gen({
+    id: "orl-g-sv-perturbazione-nl", livello: "facile", capitolo: "solver",
+    link: link("solver-nonlinear/#the-multipliers-in-nonlinear-models", "solver-non-lineare/#i-moltiplicatori-nei-modelli-non-lineari"),
+    prova: function (rng, L) {
+      var a = 10 * ri(rng, 2, 9), k = pk(rng, [0.1, 0.2, 0.5, 1]), b = ri(rng, 2, 20), eps = 0.1;
+      var z1 = a * Math.log(1 + k * b), z2 = a * Math.log(1 + k * (b + eps));
+      var z1r = Math.round(z1 * 1e4) / 1e4, z2r = Math.round(z2 * 1e4) / 1e4;
+      var est = (z2r - z1r) / eps, der = a * k / (1 + k * b);
+      if (quasiMezzo(est, 2) || quasiMezzo(z2r - z1r, 2) || Math.abs(est - der) < 0.01) return null;
+      function o(v) { return "$\\approx " + m(v, 2, L) + "$"; }
+      var testo = T(L,
+        "A gurobipy model maximizes $" + a + "\\log(1 + " + m(k, 1, L) + "x)$ subject to $0 \\le x \\le b$, with the logarithm written through `addGenConstrLog`, so the solver returns no dual for the bound $x \\le b$. Solving with $b = " + b + "$ gives $" + m(z1r, 4, L) + "$; with $b = " + m(b + eps, 1, L) + "$ it gives $" + m(z2r, 4, L) + "$. What is the perturbation estimate of the multiplier of $x \\le b$?",
+        "Un modello gurobipy massimizza $" + a + "\\log(1 + " + m(k, 1, L) + "x)$ soggetto a $0 \\le x \\le b$, con il logaritmo scritto tramite `addGenConstrLog`, quindi il solver non restituisce il duale del limite $x \\le b$. Risolvendo con $b = " + b + "$ si ottiene $" + m(z1r, 4, L) + "$; con $b = " + m(b + eps, 1, L) + "$ si ottiene $" + m(z2r, 4, L) + "$. Qual è la stima per perturbazione del moltiplicatore di $x \\le b$?");
+      var sp = T(L,
+        "Incremental ratio: $(" + m(z2r, 4, L) + " - " + m(z1r, 4, L) + ")/0.1 = " + m(est, 2, L) + "$, close to the exact derivative $" + a + "\\cdot " + m(k, 1, L) + "/(1 + " + m(k, 1, L) + "\\cdot " + b + ") = " + m(der, 2, L) + "$ (the difference is the curvature). Forgetting to divide by $0.1$ is the typical slip.",
+        "Rapporto incrementale: $(" + m(z2r, 4, L) + " - " + m(z1r, 4, L) + ")/0{,}1 = " + m(est, 2, L) + "$, vicino alla derivata esatta $" + a + "\\cdot " + m(k, 1, L) + "/(1 + " + m(k, 1, L) + "\\cdot " + b + ") = " + m(der, 2, L) + "$ (la differenza è la curvatura). Dimenticare di dividere per $0{,}1$ è la svista tipica.");
+      return chiudi(rng, testo, o(est), [o(z2r - z1r), o(z1r / b), o(10 * est)], sp,
+        { a: a, k: k, b: b, z1: z1r, z2: z2r });
+    }
+  });
+
+  gen({
+    id: "orl-g-reg-obiettivo-retta", livello: "facile", capitolo: "regression",
+    link: link("regression/#the-model", "regressione/#il-modello"),
+    prova: function (rng, L) {
+      var w = ri(rng, -5, 5), b = 10 * ri(rng, 5, 15), tau = pk(rng, [0.25, 0.5, 0.75, 0.9]);
+      if (w === 0) return null;
+      var xs = [ri(rng, 0, 4), ri(rng, 5, 9), ri(rng, 10, 14), ri(rng, 15, 20)];
+      var r = xs.map(function () { return ri(rng, -12, 12); });
+      var ys = xs.map(function (x, i) { return w * x + b + r[i]; });
+      var U = 0, V = 0;
+      r.forEach(function (e) { if (e > 0) U += e; else V -= e; });
+      if (U === 0 || V === 0) return null;
+      var z = tau * U + (1 - tau) * V, zs = (1 - tau) * U + tau * V, za = U + V;
+      if (Math.abs(z - zs) < 0.01) return null;
+      function o(u, v, zz) { return "$\\sum u_i = " + u + "$, $\\sum v_i = " + v + "$, " + T(L, "value", "valore") + " $" + m(zz, 2, L) + "$"; }
+      var pts = xs.map(function (x, i) { return "(" + x + "; " + ys[i] + ")"; }).join(", ");
+      var testo = T(L,
+        "Quantile regression LP with one feature: $\\min\\sum_i[\\tau u_i + (1 - \\tau)v_i]$ with $wx_i + b + u_i - v_i = y_i$, $u_i, v_i \\ge 0$ ($u_i$: observation above the line, $v_i$: below). For the candidate line $w = " + w + "$, $b = " + b + "$ (not necessarily optimal), $\\tau = " + m(tau, 2, L) + "$ and the observations $(x_i; y_i)$ " + pts + ", what are $\\sum_iu_i$, $\\sum_iv_i$ and the objective value?",
+        "LP di regressione quantile con una caratteristica: $\\min\\sum_i[\\tau u_i + (1 - \\tau)v_i]$ con $wx_i + b + u_i - v_i = y_i$, $u_i, v_i \\ge 0$ ($u_i$: osservazione sopra la retta, $v_i$: sotto). Per la retta candidata $w = " + w + "$, $b = " + b + "$ (non necessariamente ottima), $\\tau = " + m(tau, 2, L) + "$ e le osservazioni $(x_i; y_i)$ " + pts + ", quanto valgono $\\sum_iu_i$, $\\sum_iv_i$ e il valore dell'obiettivo?");
+      var sp = T(L,
+        "Residuals $y_i - (wx_i + b)$: $" + r.join("$, $") + "$; positive parts sum to $" + U + "$ (the $u_i$), negative parts to $" + V + "$ (the $v_i$). Value $" + m(tau, 2, L) + "\\cdot " + U + " + " + m(1 - tau, 2, L) + "\\cdot " + V + " = " + m(z, 2, L) + "$; swapping the weights of the two sides is the typical mistake.",
+        "Residui $y_i - (wx_i + b)$: $" + r.join("$, $") + "$; le parti positive sommano $" + U + "$ (gli $u_i$), quelle negative $" + V + "$ (i $v_i$). Valore $" + m(tau, 2, L) + "\\cdot " + U + " + " + m(1 - tau, 2, L) + "\\cdot " + V + " = " + m(z, 2, L) + "$; scambiare i pesi dei due lati è l'errore tipico.");
+      return chiudi(rng, testo, o(U, V, z), [o(U, V, zs), o(V, U, z), o(U, V, za), o(V, U, zs)], sp,
+        { w: w, b: b, tau: tau, xs: xs, ys: ys });
+    }
+  });
+
+  gen({
+    id: "orl-g-reg-scorta", livello: "facile", capitolo: "regression",
+    link: link("regression/#quantile-regression-and-safety-stock", "regressione/#regressione-quantile-e-scorta-di-sicurezza"),
+    prova: function (rng, L) {
+      var t = ri(rng, 10, 32), pr = pk(rng, [2.5, 3, 3.5]), we = pk(rng, [0, 1]);
+      var A = [270 + ri(rng, -5, 5), -(3.5 + ri(rng, 0, 6) / 10), -(22 + ri(rng, 0, 4)), 28 + ri(rng, 0, 6)];
+      var B = [A[0] + ri(rng, 6, 14), A[1] - ri(rng, -2, 2) / 10, A[2] - ri(rng, 0, 3), A[3] + ri(rng, 0, 4)];
+      function prev(c) { return c[0] + c[1] * t + c[2] * pr + c[3] * we; }
+      var med = prev(A), qu = prev(B), ss = qu - med;
+      if (ss <= 0.5 || quasiMezzo(med, 1) || quasiMezzo(qu, 1) || quasiMezzo(ss, 1)) return null;
+      function o(x, y) { return T(L, "produce $", "produrre $") + m(x, 1, L) + T(L, "$, safety stock $", "$, scorta di sicurezza $") + m(y, 1, L) + "$"; }
+      function f(c) { return m(c[0], 2, L) + " " + (c[1] < 0 ? "-" : "+") + " " + m(Math.abs(c[1]), 2, L) + "\\,t " + (c[2] < 0 ? "-" : "+") + " " + m(Math.abs(c[2]), 2, L) + "\\,p + " + m(c[3], 2, L) + "\\,e"; }
+      var testo = T(L,
+        "A bakery forecasts daily demand from temperature $t$ (°C), price $p$ (€) and weekend indicator $e \\in \\{0, 1\\}$ with quantile regression. Median model ($\\tau = 0.5$): $" + f(A) + "$; model at the critical fractile $\\tau = 9/13$ (the newsvendor quantile): $" + f(B) + "$. For a day with $t = " + t + "$, $p = " + m(pr, 1, L) + "$, $e = " + we + "$, how much should be produced, and what is the safety stock?",
+        "Una panetteria prevede la domanda giornaliera da temperatura $t$ (°C), prezzo $p$ (€) e indicatore di weekend $e \\in \\{0, 1\\}$ con la regressione quantile. Modello mediano ($\\tau = 0{,}5$): $" + f(A) + "$; modello al frattile critico $\\tau = 9/13$ (il quantile del newsvendor): $" + f(B) + "$. Per un giorno con $t = " + t + "$, $p = " + m(pr, 1, L) + "$, $e = " + we + "$, quanto conviene produrre, e qual è la scorta di sicurezza?");
+      var sp = T(L,
+        "One produces the forecast at the critical fractile, $" + m(qu, 1, L) + "$; the median forecast is $" + m(med, 1, L) + "$, and their difference, $" + m(ss, 1, L) + "$, is the safety stock, obtained with no assumption on the distribution of demand.",
+        "Si produce la previsione al frattile critico, $" + m(qu, 1, L) + "$; la previsione mediana è $" + m(med, 1, L) + "$, e la loro differenza, $" + m(ss, 1, L) + "$, è la scorta di sicurezza, ottenuta senza ipotesi sulla distribuzione della domanda.");
+      return chiudi(rng, testo, o(qu, ss), [o(med, ss), o(qu, qu), o(med + 2 * ss, ss), o(qu, med)], sp,
+        { A: A, B: B, t: t, p: pr, e: we });
+    }
+  });
+
+  gen({
+    id: "orl-g-kkt-proiezione", livello: "media", capitolo: "background",
+    link: link("theory-nonlinear/#the-nonlinear-optimality-conditions-the-kkt-conditions",
+               "teoria-non-lineare/#le-condizioni-di-ottimalita-non-lineari-le-kkt"),
+    prova: function (rng, L) {
+      var a = ri(rng, 1, 6), b = ri(rng, 1, 6), c = ri(rng, 2, 8);
+      if (a + b <= c) return null;
+      // proiezione sulla retta x + y = c
+      var t = (a + b - c) / 2, x = a - t, y = b - t, lam = 2 * t;
+      if (x <= 0.2 || y <= 0.2) return null;
+      var fv = 2 * t * t;
+      if (quasiMezzo(x, 2) || quasiMezzo(y, 2) || quasiMezzo(lam, 2) || quasiMezzo(fv, 2)) return null;
+      function o(u, v, l) { return "$(" + m(u, 2, L) + "; " + m(v, 2, L) + ")$, $\\lambda = " + m(l, 2, L) + "$"; }
+      var testo = T(L,
+        "Convex QP: $\\min\\ (x - " + a + ")^2 + (y - " + b + ")^2$ subject to $x + y \\le " + c + "$, $x, y \\ge 0$; $\\lambda \\ge 0$ is the KKT multiplier of $x + y \\le " + c + "$ (Lagrangian $L = f + \\lambda(x + y - " + c + ")$). What are the optimum and $\\lambda$?",
+        "QP convesso: $\\min\\ (x - " + a + ")^2 + (y - " + b + ")^2$ soggetto a $x + y \\le " + c + "$, $x, y \\ge 0$; $\\lambda \\ge 0$ è il moltiplicatore KKT di $x + y \\le " + c + "$ (Lagrangiana $L = f + \\lambda(x + y - " + c + ")$). Quanto valgono l'ottimo e $\\lambda$?");
+      var sp = T(L,
+        "The free minimum $(" + a + ", " + b + ")$ violates $x + y \\le " + c + "$, so the constraint is active. Stationarity: $2(x - " + a + ") + \\lambda = 0$, $2(y - " + b + ") + \\lambda = 0$, so $x = " + a + " - \\lambda/2$, $y = " + b + " - \\lambda/2$; with $x + y = " + c + "$: $\\lambda = " + m(lam, 2, L) + "$, optimum $(" + m(x, 2, L) + "; " + m(y, 2, L) + ")$, both positive (bounds inactive). Convex problem: the KKT point is the global optimum.",
+        "Il minimo libero $(" + a + ", " + b + ")$ viola $x + y \\le " + c + "$, quindi il vincolo è attivo. Stazionarietà: $2(x - " + a + ") + \\lambda = 0$, $2(y - " + b + ") + \\lambda = 0$, quindi $x = " + a + " - \\lambda/2$, $y = " + b + " - \\lambda/2$; con $x + y = " + c + "$: $\\lambda = " + m(lam, 2, L) + "$, ottimo $(" + m(x, 2, L) + "; " + m(y, 2, L) + ")$, entrambe positive (limiti inattivi). Problema convesso: il punto KKT è l'ottimo globale.");
+      return chiudi(rng, testo, o(x, y, lam), [o(x, y, t), o(a, b, 0), o(y, x, lam), o(x, y, 2 * lam)], sp,
+        { a: a, b: b, c: c });
+    }
+  });
+  /* ===================== generatori aggiunti (7 novembre 2026): parte «Modelli deterministici» ===================== */
+
+  gen({
+    id: "orl-g-mk-due-titoli-r", livello: "complessa", capitolo: "markowitz",
+    link: link("markowitz/#model", "markowitz/#modello"),
+    prova: function (rng, L) {
+      var mu1 = ri(rng, 10, 20), mu2 = ri(rng, 3, 8), s1 = ri(rng, 15, 30), s2 = ri(rng, 8, 14), rho = pk(rng, [-0.2, 0, 0.2, 0.4]);
+      var v1 = s1 * s1 / 1e4, v2 = s2 * s2 / 1e4, cv = rho * s1 * s2 / 1e4;
+      var xmv = (v2 - cv) / (v1 + v2 - 2 * cv);
+      if (xmv <= 0.05 || xmv >= 0.95) return null;
+      var rmv = xmv * mu1 + (1 - xmv) * mu2;
+      var rb = pk(rng, [Math.round(rmv) - 2, Math.round(rmv) + 1, Math.round(rmv) + 2, Math.round(rmv) + 3]);
+      if (rb >= mu1 || rb <= mu2 || Math.abs(rb - rmv) < 0.3) return null;
+      var xr = (rb - mu2) / (mu1 - mu2);
+      var x1 = rb <= rmv ? xmv : xr;
+      function vol(x) { return 100 * Math.sqrt(x * x * v1 + (1 - x) * (1 - x) * v2 + 2 * x * (1 - x) * cv); }
+      function vol0(x) { return 100 * Math.sqrt(x * x * v1 + (1 - x) * (1 - x) * v2); }
+      var alt = rb <= rmv ? xr : xmv;
+      var vals = [x1, vol(x1), alt, vol(alt), vol0(x1)];
+      for (var i = 0; i < vals.length; i++) if (quasiMezzo(100 * vals[i], 1) || quasiMezzo(vals[i], 2)) return null;
+      function o(x, s) { return "$x_1 = " + m(100 * x, 1, L) + "\\%$, " + T(L, "volatility", "volatilità") + " $" + m(s, 2, L) + "\\%$"; }
+      var testo = T(L,
+        "Markowitz with two assets: expected returns $\\mu_1 = " + mu1 + "\\%$, $\\mu_2 = " + mu2 + "\\%$; volatilities $\\sigma_1 = " + s1 + "\\%$, $\\sigma_2 = " + s2 + "\\%$; correlation $\\rho = " + m(rho, 1, L) + "$. Minimize the portfolio variance $x_1^2\\sigma_1^2 + x_2^2\\sigma_2^2 + 2x_1x_2\\rho\\sigma_1\\sigma_2$ with $x_1 + x_2 = 1$, $x \\ge 0$ and expected return at least $\\bar r = " + rb + "\\%$. What are the optimal share $x_1$ and the portfolio volatility?",
+        "Markowitz con due titoli: rendimenti attesi $\\mu_1 = " + mu1 + "\\%$, $\\mu_2 = " + mu2 + "\\%$; volatilità $\\sigma_1 = " + s1 + "\\%$, $\\sigma_2 = " + s2 + "\\%$; correlazione $\\rho = " + m(rho, 1, L) + "$. Si minimizza la varianza del portafoglio $x_1^2\\sigma_1^2 + x_2^2\\sigma_2^2 + 2x_1x_2\\rho\\sigma_1\\sigma_2$ con $x_1 + x_2 = 1$, $x \\ge 0$ e rendimento atteso almeno $\\bar r = " + rb + "\\%$. Quanto valgono la quota ottima $x_1$ e la volatilità del portafoglio?");
+      var sp = T(L,
+        "Minimum-variance share without the return constraint: $x_1 = (\\sigma_2^2 - \\rho\\sigma_1\\sigma_2)/(\\sigma_1^2 + \\sigma_2^2 - 2\\rho\\sigma_1\\sigma_2) = " + m(100 * xmv, 1, L) + "\\%$, with return $" + m(rmv, 2, L) + "\\%$. " + (rb <= rmv ? "It already meets $\\bar r$: the return constraint is inactive (zero multiplier)." : "It is below $\\bar r$, so the constraint binds: $x_1\\mu_1 + (1 - x_1)\\mu_2 = \\bar r$ gives $x_1 = " + m(100 * xr, 1, L) + "\\%$.") + " Volatility $" + m(vol(x1), 2, L) + "\\%$.",
+        "Quota di minima varianza senza il vincolo di rendimento: $x_1 = (\\sigma_2^2 - \\rho\\sigma_1\\sigma_2)/(\\sigma_1^2 + \\sigma_2^2 - 2\\rho\\sigma_1\\sigma_2) = " + m(100 * xmv, 1, L) + "\\%$, con rendimento $" + m(rmv, 2, L) + "\\%$. " + (rb <= rmv ? "Rispetta già $\\bar r$: il vincolo di rendimento è inattivo (moltiplicatore nullo)." : "È sotto $\\bar r$, quindi il vincolo morde: $x_1\\mu_1 + (1 - x_1)\\mu_2 = \\bar r$ dà $x_1 = " + m(100 * xr, 1, L) + "\\%$.") + " Volatilità $" + m(vol(x1), 2, L) + "\\%$.");
+      var cand = [o(alt, vol(alt)), o(x1, vol0(x1)), o(x1, x1 * s1 + (1 - x1) * s2), o(1 - x1, vol(1 - x1))];
+      return chiudi(rng, testo, o(x1, vol(x1)), cand, sp,
+        { mu: [mu1, mu2], s: [s1, s2], rho: rho, rb: rb });
+    }
+  });
+
+  gen({
+    id: "orl-g-code-robusto", livello: "complessa", capitolo: "queues",
+    link: link("queues/#the-price-of-a-service-promise", "code/#il-prezzo-di-una-promessa-di-servizio"),
+    prova: function (rng, L) {
+      var lo = ri(rng, 20, 40), hi = lo + ri(rng, 6, 15), c = ri(rng, 1, 5), h = pk(rng, [1, 1.5, 2, 3]);
+      var l0 = (lo + hi) / 2;
+      function mu(l) { return l + Math.sqrt(h * l / c); }
+      function C(m_, l) { return c * m_ + h * l / (m_ - l); }
+      var mr = mu(hi), cw = C(mr, hi), cn = C(mu(l0), l0), pr = 100 * (cw / cn - 1);
+      var mm = mu(l0), cm = C(mm, l0);
+      var vals = [mr, cw, pr, mm];
+      for (var i = 0; i < vals.length; i++) if (quasiMezzo(vals[i], 2)) return null;
+      function o(a, b, p) { return "$\\mu = " + m(a, 2, L) + "$, " + T(L, "worst-case cost", "costo nel caso peggiore") + " $" + m(b, 2, L) + "$, " + T(L, "premium", "premio") + " $" + m(p, 1, L) + "\\%$"; }
+      var testo = T(L,
+        "M/M/1 capacity model: choose the capacity $\\mu$ to minimize $C(\\mu, \\lambda) = c\\mu + h\\lambda/(\\mu - \\lambda)$, with $c = " + c + "$ € per unit of capacity and $h = " + m(h, 1, L) + "$ €/h per customer in the system. The arrival rate is uncertain, $\\lambda \\in [" + lo + ", " + hi + "]$ per hour, nominal value $" + m(l0, 1, L) + "$. One sizes $\\mu$ to minimize the worst-case cost over the interval. What are the robust $\\mu$, its worst-case cost and its premium over the nominal optimal cost $C(\\tilde\\mu(" + m(l0, 1, L) + "), " + m(l0, 1, L) + ")$?",
+        "Modello di capacità M/M/1: si sceglie la capacità $\\mu$ per minimizzare $C(\\mu, \\lambda) = c\\mu + h\\lambda/(\\mu - \\lambda)$, con $c = " + c + "$ € per unità di capacità e $h = " + m(h, 1, L) + "$ €/h per cliente nel sistema. Il tasso di arrivo è incerto, $\\lambda \\in [" + lo + ", " + hi + "]$ all'ora, valore nominale $" + m(l0, 1, L) + "$. Si dimensiona $\\mu$ minimizzando il costo nel caso peggiore sull'intervallo. Quanto valgono il $\\mu$ robusto, il suo costo nel caso peggiore e il premio rispetto al costo ottimo nominale $C(\\tilde\\mu(" + m(l0, 1, L) + "), " + m(l0, 1, L) + ")$?");
+      var sp = T(L,
+        "For fixed $\\mu$ the cost grows with $\\lambda$, so the worst case is $\\lambda = " + hi + "$: $\\mu_{\\rm rob} = " + hi + " + \\sqrt{h\\cdot " + hi + "/c} = " + m(mr, 2, L) + "$, worst-case cost $" + m(cw, 2, L) + "$. The nominal optimum costs $" + m(cn, 2, L) + "$: the insurance premium is $" + m(pr, 1, L) + "\\%$. Sizing on the nominal $\\tilde\\mu = " + m(mm, 2, L) + " < " + hi + "$ would make the queue unstable at the top of the interval.",
+        "A $\\mu$ fissato il costo cresce con $\\lambda$, quindi il caso peggiore è $\\lambda = " + hi + "$: $\\mu_{\\rm rob} = " + hi + " + \\sqrt{h\\cdot " + hi + "/c} = " + m(mr, 2, L) + "$, costo nel caso peggiore $" + m(cw, 2, L) + "$. L'ottimo nominale costa $" + m(cn, 2, L) + "$: il premio assicurativo è del $" + m(pr, 1, L) + "\\%$. Dimensionare sul $\\tilde\\mu = " + m(mm, 2, L) + " < " + hi + "$ nominale renderebbe instabile la coda in cima all'intervallo.");
+      var ml = mu(lo), cl = C(ml, lo);
+      return chiudi(rng, testo, o(mr, cw, pr), [o(mm, cm, 0), o(mr, C(mr, l0), 100 * (C(mr, l0) / cn - 1)), o(hi + h * hi / c, C(hi + h * hi / c, hi), 100 * (C(hi + h * hi / c, hi) / cn - 1)), o(ml, cl, 100 * (cl / cn - 1))], sp,
+        { lo: lo, hi: hi, c: c, h: h });
+    }
+  });
 })();

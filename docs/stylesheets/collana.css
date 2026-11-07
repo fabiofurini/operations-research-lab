@@ -1,0 +1,17 @@
+/* La collana: stile comune delle prime pagine (COLLANA/collana.py lo copia in docs/stylesheets/collana.css) */
+.md-typeset .hero {
+  background: linear-gradient(120deg, #16324A, #0E7490 70%, #15AABF);
+  color: #fff;
+  border-radius: 18px;
+  padding: 1.6em 1.8em 1.4em;
+  margin: .4em 0 1.6em;
+  box-shadow: 0 10px 30px rgba(22, 50, 74, .25);
+}
+.md-typeset .hero h1 { color: #fff !important; margin: 0 0 .3em; font-size: 2em; }
+.md-typeset .hero p { margin: .4em 0; opacity: .95; }
+.md-typeset .hero a { color: #fff; text-decoration: underline; }
+.md-typeset .hero .md-button { color: #fff; border-color: #ffffffaa; margin: .6em .4em 0 0; text-decoration: none; }
+.md-typeset .hero .md-button--primary { background: #fff; color: #16324A; border-color: #fff; }
+.md-typeset .hero .admonition { color: var(--md-default-fg-color); }
+.md-typeset .hero .admonition a { color: var(--md-typeset-a-color); }
+.md-typeset .collana-riga { font-size: .9em; opacity: .85; letter-spacing: .02em; }
