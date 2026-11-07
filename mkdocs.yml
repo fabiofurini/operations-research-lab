@@ -137,5 +137,6 @@ nav:
       - Robust and quantile regression: regression.md
   - Quiz: self-assessment.md
   - Downloads: downloads.md
-  - Lab organization: organization.md
-  - Syllabus: syllabus.md
+  - Index:
+      - Syllabus: syllabus.md
+      - How to work with the course: organization.md

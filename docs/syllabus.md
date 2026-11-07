@@ -1,5 +1,22 @@
 # Syllabus
 
+<!-- collana-dalla-fascia -->
+Every chapter starts from a concrete managerial problem — how much to produce, where
+to locate a service, which price to set, how much risk to accept — turns it
+into an optimization model, solves it with Gurobi called from Python and, above all,
+*interrogates* it: how much is one extra hour of capacity worth? Does the solution hold if the data
+change by 5%?
+
+Every model can be run **right away in the browser**: each chapter has its own
+[notebook that opens in Colab](notebooks.md), with nothing to install.
+
+!!! tip "The right question"
+    At the end of every lab session the question is not only *“what is the optimum?”*,
+    but *“which decision do we recommend and how robust is it?”*. All the decision
+    variables are **continuous**; depending on the class of the model we read the
+    solution through LP/QP duality, shadow prices or the KKT conditions.
+<!-- /collana-dalla-fascia -->
+
 The complete list of the chapters of the lab, in the order in which they are
 covered. Every chapter has its own page, its own Python script and its own
 [notebook that opens in Colab](notebooks.md).
