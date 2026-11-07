@@ -78,3 +78,10 @@ The lecture slides, one deck per chapter of the notes (PDF).
 </div>
 
 <!-- slide:fine -->
+
+<!-- banca-domande -->
+## Quiz question bank
+
+All the self-assessment questions, by part and chapter, with the correct answer and the explanation; for the generated questions, whose numbers change at every start, a few examples.
+
+[:material-format-list-checks: Question bank](quiz/question_list.html){ .md-button }
