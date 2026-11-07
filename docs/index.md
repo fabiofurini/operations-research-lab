@@ -40,7 +40,19 @@ Every model can be run **right away in the browser**: each chapter has its own
 
 </div>
 
-## The four parts of the lab
+<!-- collana-app -->
+## Try it now
+
+Markowitz's efficient frontier: every point is an optimal portfolio for a level of risk. Open the notebook in Colab, change the data and solve it again with Gurobi, with nothing to install.
+
+[![](img/cap06_frontiera.png)](markowitz.md)
+
+[:simple-googlecolab: Open the notebook in Colab](https://colab.research.google.com/github/fabiofurini/operations-research-lab/blob/main/notebooks/lab06_markowitz.ipynb){ .md-button .md-button--primary }
+[:material-book-open-variant: The chapter](markowitz.md){ .md-button }
+[:material-language-python: All the notebooks](notebooks.md){ .md-button }
+<!-- /collana-app -->
+
+## The parts of the course
 
 <div class="grid cards" markdown>
 
@@ -82,37 +94,37 @@ Every model can be run **right away in the browser**: each chapter has its own
 
 </div>
 
-## The lab at a glance
-
-**14 application chapters · 4 chapters of tools · LP, QP and NLP · one Colab
-notebook per chapter · reproducible Python/Gurobi code.** The full list, chapter
-by chapter, is in the [syllabus](syllabus.md).
+<!-- collana-da-non-perdere -->
+## Don't miss
 
 <div class="grid cards" markdown>
 
--   :material-clipboard-check-outline: **Self-assessment**
+-   :material-clipboard-check-outline: **Self-assessment quiz**
 
     ---
 
-    *Mock exam*
-
-    A new mock exam at every start: 13 questions, 33 points, with the solutions and links to the notes.
+    A new mock exam at every start: 13 questions, 33 points, with the solution and the link to the notes. Downloads also has the full question bank.
 
     [:octicons-arrow-right-24: Test yourself](self-assessment.md)
 
+-   :material-download: **Lecture notes in PDF**
+
+    ---
+
+    Lecture notes, exercise books and slides in PDF, with the same numbering as the website.
+
+    [:octicons-arrow-right-24: Downloads](downloads.md)
+
+-   :material-language-python: **Notebooks in Colab**
+
+    ---
+
+    The code of the course running in the browser, with nothing to install.
+
+    [:octicons-arrow-right-24: The notebooks](notebooks.md)
+
 </div>
-
-## Download as PDF
-
-- 📘 **[Full lecture notes](pdf/operations-research-lab-notes.pdf)** — 127 pages: models, worked examples, case studies, sensitivity analysis
-- 📊 **[Lecture slides](downloads.md)** — one deck per chapter of the notes, on the [downloads](downloads.md) page
-
-## Getting started
-
-Nothing to install: every chapter has its own
-[notebook that opens in Colab](notebooks.md) and runs in the browser. Those who
-prefer to work locally find the commands and the notes on the Gurobi licence on
-the same page.
+<!-- /collana-da-non-perdere -->
 
 ---
 
@@ -165,6 +177,8 @@ Ten courses built the same way: lecture notes online and in PDF, exercises with 
 
 </div>
 <!-- /collana -->
+
+---
 
 Teaching material by **[Fabio Furini](https://fabiofurini.github.io/)** —
 [DIAG](https://www.diag.uniroma1.it/), Sapienza University of Rome.

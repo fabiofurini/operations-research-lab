@@ -1,5 +1,39 @@
 # Organization of the lab
 
+<!-- collana-dalla-home -->
+## The lab at a glance
+
+**14 application chapters · 4 chapters of tools · LP, QP and NLP · one Colab
+notebook per chapter · reproducible Python/Gurobi code.** The full list, chapter
+by chapter, is in the [syllabus](syllabus.md).
+
+<div class="grid cards" markdown>
+
+-   :material-clipboard-check-outline: **Self-assessment**
+
+    ---
+
+    *Mock exam*
+
+    A new mock exam at every start: 13 questions, 33 points, with the solutions and links to the notes.
+
+    [:octicons-arrow-right-24: Test yourself](self-assessment.md)
+
+</div>
+
+## Download as PDF
+
+- 📘 **[Full lecture notes](pdf/operations-research-lab-notes.pdf)** — 127 pages: models, worked examples, case studies, sensitivity analysis
+- 📊 **[Lecture slides](downloads.md)** — one deck per chapter of the notes, on the [downloads](downloads.md) page
+
+## Getting started
+
+Nothing to install: every chapter has its own
+[notebook that opens in Colab](notebooks.md) and runs in the browser. Those who
+prefer to work locally find the commands and the notes on the Gurobi licence on
+the same page.
+<!-- /collana-dalla-home -->
+
 ## Essential path in four lab sessions
 
 | | Content | Learning objectives |
