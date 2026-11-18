@@ -19,6 +19,8 @@ professor at [DIAG](https://www.diag.uniroma1.it/), Sapienza University of Rome.
 notes in online form, with Python/Gurobi code, data and reproducible case
 studies.
 
+Prerequisites: [Linear Programming](https://fabiofurini.github.io/linear-programming/) and [Convex Optimization](https://fabiofurini.github.io/convex-optimization/).
+
 [Start :material-arrow-right:](tools.md){ .md-button .md-button--primary }
 [:material-clipboard-check-outline: Quiz](self-assessment.md){ .md-button }
 [:material-download: Downloads](downloads.md){ .md-button }
