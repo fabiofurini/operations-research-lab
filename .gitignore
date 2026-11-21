@@ -28,3 +28,5 @@ STYLE_AND_FORMAT.md
 
 # the PDFs published on the site are versioned
 !docs/pdf/*.pdf
+# ricalcola le soluzioni riservate ai docenti: privato
+python/solutions_numbers.py
