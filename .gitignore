@@ -1,32 +1,6 @@
-# LaTeX
-*.aux
-*.log
-*.out
-*.toc
-*.fls
-*.fdb_latexmk
-*.synctex.gz
-*.nav
-*.snm
-*.vrb
-# Python
-__pycache__/
-*.pyc
-# MkDocs
-site/
-# misc
-.DS_Store
-
-# internal material, not published (common module structure)
-note/
+# materiale interno, non pubblicato (resta solo in locale come archivio)
 volumes/
 slides/
-*.tex
-build/
+_site/
+.DS_Store
 *conflicted copy*
-STYLE_AND_FORMAT.md
-
-# the PDFs published on the site are versioned
-!docs/pdf/*.pdf
-# ricalcola le soluzioni riservate ai docenti: privato
-python/solutions_numbers.py
